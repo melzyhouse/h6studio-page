@@ -4,7 +4,11 @@ ZOOM H6studio 핸디 레코더 상세페이지를 Apple MacBook Neo 페이지 �
 사용자는 한국어로 대화한다. 답변도 한국어로.
 
 ## 폴더
-- `zoom-audio-home/` : **ZOOM AUDIO 홈페이지 2안 (현재 진행안)** — Apple 홈 구조에서 벗어나 장비·뮤지션 톤으로 재구성
+- `zoom-audio-light/` : **ZOOM AUDIO 홈페이지 3안 (사용자 선호 방향: Apple 톤)** — 2안 구성 그대로, 흰색 #FFFFFF·연회색 #F5F5F7 바탕 + 검정 글자 + ZOOM 블루 #2362FF 포인트. 네이비는 쓰지 않음. 어두운 구간(신제품 패널, 출시 예정)은 회색 차콜 #2A2B2F, 그 안에서만 라임 포인트
+  - 2안 index.html을 복사해 `<style>` 끝에 라이트·차콜 덮어쓰기 CSS를 붙인 구조. 이미지는 ../zoom-audio-home, ../zoom-studio-home 공유
+  - `python3 build.py` → `zoom-audio-light.html`(게시용)
+  - 게시 링크: https://claude.ai/artifact/WUzJV9XzhrBfjd4oZ3chSu
+- `zoom-audio-home/` : **ZOOM AUDIO 홈페이지 2안 (네이비 버전, 비교용)** — Apple 홈 구조에서 벗어나 장비·뮤지션 톤으로 재구성
   - 히어로(연주 사진+왼쪽 정렬 타이포) → 신제품 H6studio(장비 화면 패널) → 채널 스트립 '어디서 연주하나요?'(CH 01~06, 레벨 미터) → 전체 라인업(필터 탭, 20종) → 출시 예정 NEURIG → 신호 흐름 정품·A/S + FAQ → 푸터
   - 제품 데이터(이름·설명·가격·AVX 상품번호)는 index.html 스크립트의 `PRODUCTS` 배열, 용도별 구성은 `CH` 배열에서 수정
   - 제품 이미지는 `../zoom-studio-home/img/products/` 공유, 사용 장면 사진은 `img/scenes/` (아티스트 실명 사진은 홍보 오해 소지가 있어 제외)
