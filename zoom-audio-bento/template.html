@@ -486,6 +486,11 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
   .sup-tab svg { margin: 0; } .sup-tab strong { font-size: 20px; } .sup-tab span { width: 100%; padding-left: 38px; margin-top: -4px; }
   .tel { font-size: 26px; }
 }
+
+/* 대표 박스: 카테고리 이름·제품명 키움 */
+.rep .cat-name { font-size: 20px; font-weight: 700; color: var(--ink-2); margin-bottom: 6px; letter-spacing: -0.02em; }
+.p-tile.rep2 h3 { font-size: 40px; line-height: 1.1; }
+@media (max-width: 734px) { .rep .cat-name { font-size: 18px; } .p-tile.rep2 h3 { font-size: 32px; } }
 </style>
 
 <header class="nav">
@@ -552,7 +557,7 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
 
   <!-- 카테고리별 대표 제품 (최신 제품 하나씩) -->
   <section class="sec wrap" id="series" aria-labelledby="h-series">
-    <div class="sec-head"><div><h2 id="h-series">제품 카테고리</h2></div><p>카테고리마다 최신 제품을 모았어요. 누르면 시리즈 전체를 볼 수 있어요.</p></div>
+    <div class="sec-head"><div><h2 id="h-series">제품 카테고리</h2></div></div>
     <div class="bento">
 <!--REPS-->
     </div>
@@ -560,7 +565,7 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
 
   <!-- 용도별 추천: 차콜 섹션 -->
   <section class="uses dark-sec" id="finder" aria-labelledby="h-uses">
-    <div class="wrap uses-head"><h2 id="h-uses">용도별 추천</h2><p>지금 하는 음악에 맞는 ZOOM을 골라 드려요.</p>
+    <div class="wrap uses-head"><h2 id="h-uses">용도별 추천</h2>
     </div>
     <div class="use-track" id="useTrack"></div>
     <div class="use-ctrl">
@@ -571,7 +576,7 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
 
   <!-- 고객 지원: 자료실 / 기술 상담 / A/S (누르면 아래에 내용) -->
   <section class="sec wrap" id="support" aria-labelledby="h-support">
-    <div class="sec-head"><h2 id="h-support">고객 지원</h2><p>매뉴얼·펌웨어, 기술 상담, A/S를 한 곳에서.</p></div>
+    <div class="sec-head"><h2 id="h-support">고객 지원</h2></div>
     <div class="sup-tabs" role="tablist" aria-label="고객 지원">
       <button class="sup-tab" role="tab" type="button" id="tab-docs" aria-selected="true" aria-controls="pane-docs" data-pane="docs">
         <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg>
@@ -606,7 +611,6 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
         <h3>카카오톡으로 기술 상담</h3>
         <p>연결, 세팅, 장비 선택이 막히면 AVX 카카오톡 채널로 물어보세요. 사진이나 영상을 함께 보내 주시면 더 빠르게 안내해 드려요.</p>
         <div class="btns"><a class="btn go kakao" href="https://pf.kakao.com/_vXeNxj/chat">카카오톡 상담하기</a></div>
-        <p class="fine">카카오톡이 열리지 않으면 카카오톡에서 '에이브이엑스' 채널을 검색해 주세요.</p>
       </div>
       <div class="pane-side">
         <h4>전화 상담</h4>
@@ -628,7 +632,6 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
         <h4>A/S 문의</h4>
         <p class="tel">02-2265-0032</p>
         <div class="btns"><a class="btn line" href="https://pf.kakao.com/_vXeNxj/chat">카카오톡 문의</a><a class="btn line" href="https://www.avx.co.kr/board/?id=faq">자주 묻는 질문</a></div>
-        <p class="fine">AVX 고객센터 자주 묻는 질문 기준이에요.</p>
       </div>
     </div>
   </section>

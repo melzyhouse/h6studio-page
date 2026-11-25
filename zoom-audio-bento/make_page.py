@@ -56,7 +56,7 @@ def rep_tile(c):
     specs = ""
     head = "h3"
     return f'''      <a class="tile p-tile rep {size} rise" href="#{c["id"]}" data-series="{c["id"]}" aria-label="{e(c["title"])} 시리즈 보기, 대표 제품 {e(it["n"])}">
-        <div class="p-copy">{tag}<span class="cat-name">{e(c["title"])}</span><{head}>{e(it["n"])}</{head}><p>{e(it["sub"])}</p>{specs}<p class="price{"" if it["price"][0].isdigit() else " kr"}">{e(it["price"])}</p><span class="see">시리즈 보기 ›</span><span class="count">{len(c["items"])}개 제품</span></div>
+        <div class="p-copy">{tag}<span class="cat-name">{e(c["title"])}</span><{head}>{e(it["n"])}</{head}><p>{e(it["sub"])}</p>{specs}<p class="price{"" if it["price"][0].isdigit() else " kr"}">{e(it["price"])}</p><span class="see">시리즈 보기 ›</span></div>
         <img class="art" data-src="{it["k"]}" alt="">
       </a>'''
 
