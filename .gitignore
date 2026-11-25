@@ -6,3 +6,5 @@ __pycache__/
 .DS_Store
 zoom-studio-home/zoom-studio.html
 zoom-studio-home/zoom-studio-preview.html
+zoom-audio-home/zoom-audio.html
+zoom-audio-home/zoom-audio-preview.html

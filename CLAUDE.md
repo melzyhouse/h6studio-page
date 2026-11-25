@@ -4,6 +4,13 @@ ZOOM H6studio 핸디 레코더 상세페이지를 Apple MacBook Neo 페이지 �
 사용자는 한국어로 대화한다. 답변도 한국어로.
 
 ## 폴더
+- `zoom-audio-home/` : **ZOOM AUDIO 홈페이지 2안 (현재 진행안)** — Apple 홈 구조에서 벗어나 장비·뮤지션 톤으로 재구성
+  - 히어로(연주 사진+왼쪽 정렬 타이포) → 신제품 H6studio(장비 화면 패널) → 채널 스트립 '어디서 연주하나요?'(CH 01~06, 레벨 미터) → 전체 라인업(필터 탭, 20종) → 출시 예정 NEURIG → 신호 흐름 정품·A/S + FAQ → 푸터
+  - 제품 데이터(이름·설명·가격·AVX 상품번호)는 index.html 스크립트의 `PRODUCTS` 배열, 용도별 구성은 `CH` 배열에서 수정
+  - 제품 이미지는 `../zoom-studio-home/img/products/` 공유, 사용 장면 사진은 `img/scenes/` (아티스트 실명 사진은 홍보 오해 소지가 있어 제외)
+  - `python3 build.py` → `zoom-audio.html`(게시용) / `zoom-audio-preview.html`
+  - 게시 링크: https://claude.ai/artifact/WgDHUfEdeuXHwKHgJUD3PK
+- `zoom-studio-home/` 은 1안(Apple 홈 구성 그대로, 비교용으로 보관). 링크 https://claude.ai/artifact/3RPxPbxKGWfGUaGpFeWBak
 - `zoom-studio-home/` : **ZOOM AUDIO 홈페이지 시안 (폴더명은 zoom-studio-home 그대로)** (apple.com/kr 홈페이지 구성)
   - `index.html` 원본 → `python3 build.py` → `zoom-studio.html`(게시용, 이미지 내장) / `zoom-studio-preview.html`(로컬 미리보기)
   - `img/products/` : zoomcorp.com 공식 목록용 투명 PNG(정면 컷, 1000px로 정리)
