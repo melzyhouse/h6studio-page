@@ -1,0 +1,36 @@
+# H6studio 상세페이지 프로젝트
+
+ZOOM H6studio 핸디 레코더 상세페이지를 Apple MacBook Neo 페이지 스타일로 만든 디자인 시안.
+사용자는 한국어로 대화한다. 답변도 한국어로.
+
+## 폴더
+- `macbook-neo-study/` : apple.com/kr/macbook-neo 페이지를 코드로 분석한 학습 자료
+  - `README.md` 구조·카피 톤·디자인 원칙, `design-tokens.css` 색·폰트·간격 토큰, `raw/` 원본 HTML/CSS
+- `h6studio-page/` : 상세페이지 시안
+  - `index.html` : **원본. 수정은 여기서.**
+  - `design-tokens.css` : 위 학습 자료의 토큰
+  - `img/` : zoomcorp.com 원본 이미지, `img/orig/` 고해상도 원본, `img/adobe/` Adobe 배경 제거 결과
+  - `img/slots/` : 페이지에 실제 들어가는 슬롯별 이미지 (S01~S35)
+  - `slots_data.py` : 슬롯 목록·상태(bad/warn/fixed/ok)·필요한 이미지 규격
+  - `make_slots.py` : img/ 원본 → img/slots/ 생성(크롭·누끼 보정 포함). **`--keep` 없이 다시 돌리면 직접 바꿔 넣은 슬롯 파일이 덮어써진다.**
+  - `build.py` : index.html + 이미지를 단일 파일로 묶음 → `h6studio-preview.html`(미리보기), `h6studio-artifact.html`(claude.ai 페이지 링크용)
+  - `make_worklist.py` : slots_data.py → `worklist.html`(이미지 작업표)
+
+## 작업 순서
+1. `index.html` 수정 (또는 `img/slots/`의 파일을 같은 이름으로 교체)
+2. `cd h6studio-page && python3 build.py` (슬롯 상태를 바꿨으면 `python3 make_worklist.py`도)
+3. 브라우저로 데스크톱·모바일(390px) 확인
+4. 게시된 페이지 업데이트: Artifact 도구로 `h6studio-artifact.html`을 아래 URL에 publish
+   - 상세페이지: https://claude.ai/artifact/SCHGy9TERkg3ViwjEJdivj
+   - 이미지 작업표: https://claude.ai/artifact/359CuS8f5PtuZeNZDoqzLY (`worklist.html`)
+
+## 지켜야 할 것
+- 공식 ZOOM 페이지로 오해되지 않도록 게시본 상단 띠의 "디자인 스타일 학습용 시안" 문구 유지 (build.py가 넣음)
+- 가격은 국내 정식 판매처 에이브이엑스(AVX) 기준: H6studio 699,000원 / H5studio 659,000원 / H6essential 559,000원 (2026년 11월 확인). 구입 버튼 → https://www.avx.co.kr/goods/view?no=2545
+- 라이트(기본)/다크 테마 토글, 스크롤 모션, 32비트 플로트 파형 데모, `#slots` 디버그 모드가 있음. 한쪽 테마만 고치지 말 것
+- 이미지 출처는 zoomcorp.com (ZOOM 저작물). 시안 용도
+
+## 남은 일 (slots_data.py의 bad/warn)
+- 꼭 필요: S02·S03 하이라이트 카드용 세로 사진(744×1200+), S09 포맷 스위치 클로즈업
+- 추천: 비교 카드 S32~34 같은 정면 각도 누끼(Adobe 배경 제거 사용), 히어로 S01 고해상도 누끼
+- Adobe 도구 사용 시: zoomcorp.com URL은 직접 못 받음 → 파일을 받아 asset_initialize_file_upload로 올린 뒤 처리

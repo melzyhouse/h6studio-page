@@ -1,0 +1,248 @@
+[p.] 교육 할인가로 MacBook Neo 구입하기.
+[span.icon-copy] 쇼핑하기
+
+=== <section id=None class=section section-welcome  no-pad section-welcome-localnav-overlap >
+[h1.header-eyebrow typography-marquee-eyebrow-base] MacBook Neo
+[span.html-copy] 반가워요, Neo.
+[span.icon-copy] 구입하기
+
+=== <section id=None class=section section-highlights>
+[h2.section-header-headline typography-section-header-headline] 일단 핵심부터.
+[span.visuallyhidden] 색상 및 디자인
+[span.visuallyhidden] 성능 및 배터리
+[span.visuallyhidden] 디스플레이
+[span.visuallyhidden] AI
+[span.visuallyhidden] Mac + iPhone
+[span.visuallyhidden] macos
+[span.visuallyhidden] 개인정보 보호 및 보안
+[p.caption typography-media-card-gallery-headline] 실버, 블러시, 시트러스, 인디고. 4가지 환상적인 컬러. 한 견고함 하는 디자인.
+[p.caption typography-media-card-gallery-headline] 당신의 모든 일상 작업을 빠르게.최대 16시간 가는 배터리로 고고고.
+[p.caption typography-media-card-gallery-headline] 33.0cm Liquid Retina 디스플레이.
+[a.] 비범한 선명도와 밝기. 10억 개의 색상. 열자마자 와우.
+[p.caption typography-media-card-gallery-headline] AI를 위한 강력한 플랫폼.여기에 Apple Intelligence 기본 탑재까지.
+[a.] 차원이 다른 스마트함.
+[p.caption typography-media-card-gallery-headline] iPhone과의 마법 같은 연동으로더욱더 많은 기능을.
+[p.caption typography-media-card-gallery-headline] macOS. 쓰기 간편하고, 필수 앱도 모두 구동하고. 유용함에 경쾌함까지.
+[p.caption typography-media-card-gallery-headline] 무료 소프트웨어 업데이트. 기본 탑재된 개인정보 보호, 보안, 안티바이러스 보호 기능까지. 안심 그 자체.
+
+=== <section id=None class=section section-design background-alt no-pad-bottom no-pad-top>
+[h2.gradient-text text ps-headline-elevated ps-spacing-large-10 ] 첫
+[span.] Mac에 반하다.
+[p.ps-header-description large-centered ps-spacing-large-24 typ] 놀라운 Mac을 놀라운 실속으로 만나는 법, MacBook Neo를 소개합니다. 견고한 디자인, 아름다운 색상, 강력한 기능으로 매일매일 Mac의 매력에 흠뻑 빠지게 해줄 완전히 새로운 모델이죠.
+[span.icon-copy] 동영상 보기
+
+=== <section id=None class=section section-product-viewer >
+[h2.section-header-headline typography-section-header-headline] 보다 자세히 들여다보기.
+[span.] AR로 보기
+[span.control-color-active-swatch Silver colornav-swatch] 실버
+[span.control-color-active-label] 색상
+[p.typography-all-access-pass-pv-item-body] 색상. 역대 가장 컬러풀한 MacBook 라인업. 키보드까지 깔 맞춤 한 4가지 환상적인 색상 중에서 선택 가능.
+[span.control-color-current] 실버 색상의 모습.
+[span.control-color-current] MacBook Neo 색상.
+[span.colornav-label] 실버
+[span.colornav-label] 블러시
+[span.colornav-label] 시트러스
+[span.colornav-label] 인디고
+[span.control-item-label typography-all-access-pass-pv-item-label] 견고한 디자인
+[p.typography-all-access-pass-pv-item-body] 견고한 디자인. 견고한 재활용 알루미늄 외장으로 제작된 MacBook Neo. 덕분에 중량 기준 재활용 소재 포함 비율 Apple 제품 사상 최대인 60% 달성.
+[span.control-item-label typography-all-access-pass-pv-item-label] 디스플레이
+[p.typography-all-access-pass-pv-item-body] 디스플레이. 탁월한 해상도와 500 니트 밝기를 자랑하는 33.0cm Liquid Retina 디스플레이.
+[a.] 사진, 웹사이트, 동영상을 또렷한 화질과 선명한 색상으로 생생하게 표현.
+[span.control-item-label typography-all-access-pass-pv-item-label] 키보드 및 트랙패드
+[p.typography-all-access-pass-pv-item-body] 키보드 및 트랙패드. Magic Keyboard가 정밀하고 편안한 타이핑 경험 제공. 널찍한 Multi‑Touch 트랙패드는 어디든 탭, 핀치, 스와이프, 클릭 가능.
+[span.control-item-label typography-all-access-pass-pv-item-label] Touch ID
+[p.typography-all-access-pass-pv-item-body] Touch ID. Touch ID 탑재 모델로는 손가락 터치만으로 MacBook Neo 잠금 해제, 웹사이트 및 앱 로그인, 앱 다운로드 가능.
+[span.control-item-label typography-all-access-pass-pv-item-label] 카메라
+[p.typography-all-access-pass-pv-item-body] 카메라. 1080p FaceTime HD 카메라가 영상 통화 시 당신의 모습을 깨끗하고 선명하게 전달.
+[span.control-item-label typography-all-access-pass-pv-item-label] 마이크 및 스피커
+[p.typography-all-access-pass-pv-item-body] 마이크 및 스피커. 2개의 사이드 파이어링 스피커가 몰입감 넘치는 사운드를 선사하고, 듀얼 마이크가 당신의 목소리를 분리하고 더욱 또렷하게 살려 깨끗하게 전달.
+[span.control-item-label typography-all-access-pass-pv-item-label] 연결성
+[p.typography-all-access-pass-pv-item-body] 연결성. USB‑C 포트 2개와 헤드폰 잭을 통해 다양한 액세서리 연결과 데이터 전송, MacBook Neo 충전 가능.
+
+=== <section id=performance class=section section-performance section-product-stories>
+[h2.ps-headline-eyebrow typography-ps-body] 성능
+[p.ps-headline-elevated ps-spacing-large-10 ps-spacing-small-8 ] 멋진 활약을 위한 야무진 능력.
+[p.ps-header-description ric-large-8 ric-medium-10 ric-small-12] 즐겨 쓰는 필수 앱을 구동하고, 일상 작업을 척척 해내고, 창의력을 펼치는 데다 액션 가득한 게임까지 즐길 수 있게 해주는 A18 Pro 칩. 덕분에 하루 종일 어떤 일이든, 영감을 받는 순간 바로 할 수 있습니다.
+[span.] 일상을 효율적으로.
+[p.copy typography-ps-callout] 이메일 답장, 영상 통화, 웹 브라우징, 방과 후 일정 업데이트, 사진 공유 등. MacBook Neo와 함께라면 해야 할 모든 일을 능수능란하게 할 수 있습니다.
+[span.] 학업을 거침없이.
+[p.copy typography-ps-callout] 시험을 앞두고 집중해서 공부하고, 수업 때 적은 노트를 Apple Intelligence로 깔끔하게 요약하고,
+[a.] 과제 발표를 위해 멋진 프레젠테이션도 만드는 등, MacBook Neo는 학업에도 딱입니다.
+[span.] 일을 즐겁게.
+[p.copy typography-ps-callout] 스프레드시트 작성부터 급여 관리까지, MacBook Neo는 이것저것 가뿐하게 처리합니다.
+[span.] 놀 때도 제대로.
+[p.copy typography-ps-callout] 탁월한 그래픽과 생생한 Liquid Retina 디스플레이 덕분에 영화, TV 프로그램, 동영상, 게임을 놀랍도록 디테일하게 즐길 수 있습니다.
+[span.] 일상 작업을 척척.
+[p.] 당신의 필수 앱과 AI 작업을 수월하게 처리하는 A18 Pro 칩이 파워와 효율성을 당신의 손끝에 선사합니다.
+[span.] 늘 함께하는 단짝.
+[p.lifestyle-static-caption typography-ps-callout] 이른 아침 수업부터 야밤의 웹 서핑까지, MacBook Neo는 언제 어디서나 당신과 함께할 준비가 되어 있습니다.
+[span.stat-caption] 최대
+[span.html-copy] 16시간
+[span.stat-caption] 배터리 사용 시간(한 번 충전 시)
+
+=== <section id=display class=section section-display section-product-stories>
+[h2.ps-headline-eyebrow typography-ps-body] 디스플레이, 카메라, 오디오
+[p.ps-headline-elevated ps-spacing-large-10 ps-spacing-small-8 ] 시각 청각 모두 매혹.
+[p.ps-header-description ric-large-8 ric-small-12 large-centere] 사진과 동영상이 풍부한 대비와 또렷한 디테일로 아름답게 돋보이고, 텍스트도 선명해서 읽기가 무척 편안합니다. 여기에 듀얼 사이드 파이어링 스피커가 당신을 소리로 흠뻑 감싸 눈과 귀를 모두 즐겁게 해주죠.
+[span.] 10억 색상을 지원하는
+[span.] 33.0cm Liquid Retina 디스플레이.
+[span.html-copy] 3,600만
+[span.stat-caption] 픽셀의 놀라운 해상도
+[span.html-copy] 500
+[span.stat-caption] 니트 밝기
+[p.media-caption ric-large-10 ric-small-11 typography-ps-captio] 구독 후 Apple TV에서 ‘플루리부스: 행복의 시대’ - Pluribus 스트리밍 가능.
+[span.] 1080p FaceTime HD 카메라가 생생한 영상 촬영 성능을 통해 당신을 늘 최고의 모습으로 담아줍니다.
+[p.gradient-text text copy copy1  ps-spacing-large-0 typography] 빔포밍 기술을 갖춘
+[span.] 듀얼 마이크 어레이가 배경 소음을 최소화하고 당신의 목소리를 분리해서 더욱 또렷하게 살려줍니다. 덕분에 당신의 말이 분명하고 깨끗하게 들리죠.
+[span.] 듀얼 사이드 파이어링 스피커가 몰입감 넘치는 사운드를 선사합니다. 게다가
+[span.] Dolby Atmos 지원 공간 음향은 음악, TV 프로그램, 영화 감상 시 소리를 입체적으로 들려주죠.
+
+=== <section id=None class=section section-apple-intelligence section-product-stories>
+[h2.ps-headline-eyebrow typography-ps-body] AI
+[p.ps-headline-elevated ps-spacing-large-10 ps-spacing-small-8 ] 꼭 해야 할 일, 똑소리 나게.
+[p.ps-header-description large-centered ric-large-8 ric-medium-] ChatGPT, Canva 등 당신이 가장 자주 사용하는 AI 앱 및 도구가 MacBook Neo에서 아주 훌륭하게 구동됩니다. 매끄럽고 다재다능한 AI 경험을 선사하는 MacBook Neo는 당신의 일과 취미 생활에 새로운 가능성을 열어주죠.
+[span.] Apple Intelligence를 위한 탄생.
+[p.gallery-copy typography-ps-body text-large-center large-cent] Apple Intelligence는 당신이 글을 쓰고, 개성을 표출하고, 이것저것 처리하는 것을 도와주는 개인용 지능 시스템입니다.
+[a.] MacBook Neo 전반에 걸쳐 통합되어 있죠.
+[h3.card-caption-heading typography-caption-tile] 글쓰기 도구.
+[p.] 클릭만으로 간편하게 당신이 쓴 글을 교정해 주고, 가장 적절한 어조와 표현을 찾을 수 있을 때까지 다양한 버전으로 재작성해 주고, 선택한 텍스트를 요약해 줍니다.
+[h3.card-caption-heading typography-caption-tile] 젠모지.
+[p.] 직접 만든 재미난 이모지로 자신의 개성을 표현할 수 있습니다. 설명을 입력하거나 좋아하는 이모지들을 조합해 새로운 젠모지를 만들 수도 있죠.
+[h3.card-caption-heading typography-caption-tile] 클린업.
+[p.] 사진에 거슬리는 요소나 원치 않는 배경 사물이 있을 때 빠르게 없애서 다듬을 수 있습니다. 해당 부분을 하이라이트한 뒤 클릭하기만 하면 되죠.
+[h3.gradient-text persistent text privacy-headline typography-ps] 강력한 역량과 함께하는 강력한
+[span.] 개인정보 보호 기능.
+[p.privacy-copy typography-ps-body text-large-center large-cent] 모든 단계에서 당신의 개인정보를 보호하도록 설계된 Apple Intelligence. 이 시스템은 온디바이스 처리를 통해 Mac의 근간에 통합되어 있습니다. 그래서 당신의 개인정보를 따로 수집하지 않고도 해당 정보들을 인식할 수 있죠. 또한 혁신적인 ‘비공개 클라우드 컴퓨팅’ 덕분에 Apple Intelligence는 Apple Silicon으로 구동되는 보다 큰 규모의 서버 기반 모델을 활용해 더 복잡한 요청들도 처리할 수 있습니다. 이때도 역시 당신의 개인정보는 안전하게 보호되죠.
+
+=== <section id=None class=section section-macos section-product-stories>
+[h2.ps-headline-eyebrow typography-ps-body text-over-media-eyebr] macOS
+[h3.ps-headline-elevated ps-spacing-large-10 ps-spacing-small-8 ] 작업의 선수.
+[p.] macOS는 Mac을 Mac답게 만들어주는 강력하면서도 간편한 운영체제입니다. 게다가 이미 iPhone을 쓰고 있다면 모든 게 친숙하게 느껴질 겁니다. 간단한 탐색, 무료 자동 업데이트, 막힘없이 구동되는 앱까지. 이 모든 게 Liquid Glass 디자인 속에 담겨, 당신이 하는 모든 일에 명료함을 더해주죠.
+[h3.card-caption-heading typography-caption-tile] 손쉽게. 무엇이든.
+[p.] macOS는 간편하고 직관적인 사용성을 자랑합니다. 앱과 파일에 빠르게 접근하고, 여러 윈도우를 깔끔하게 타일로 정렬하고, Multi‑Touch 트랙패드로 탐색을 효율적으로 할 수 있죠.
+[h3.card-caption-heading typography-caption-tile] 내장된 Apple 앱.
+[p.] Safari로 웹 브라우징을 하고, Keynote로 멋진 프레젠테이션을 만들고, FaceTime으로 친구들과 통화하고.
+[a.] MacBook Neo에는 일상 업무와 여가에 바로 사용할 수 있는 앱들이 가득 담겨 있습니다.
+[h3.card-caption-heading typography-caption-tile] 당신의 필수 앱을 그대로.
+[p.] Microsoft 365 Copilot부터 Zoom에 이르기까지, 당신이 잘 알고 애용하는 앱들이 Mac에서 훌륭하게 구동됩니다. 즐겨 쓰는 앱들을 App Store에서 찾아 다운로드하기만 하면 되죠. 그 과정에서 수만 가지 다른 앱도 발견할 수 있답니다.
+[h3.card-caption-heading typography-caption-tile] 자신의 입맛에 맞게.
+[p.] 라이트 또는 다크 모드로 MacBook Neo를 사용자화하고, 아이콘에 색조를 입히고, Dock과 도구 막대를 자신에게 딱 맞는 크기로 키우거나 줄일 수도 있습니다.
+[h3.card-caption-heading typography-caption-tile] Spotlight로 잽싸게.
+[p.] MacBook Neo에서 원하는 항목을 빠르게 찾고 앱, 파일, 동작, 인터넷, 당신의 ‘클립보드’로부터의 제안도 볼 수 있습니다.
+
+=== <section id=None class=section section-continuity section-product-stories>
+[h2.ps-headline-eyebrow typography-ps-body] Mac + iPhone
+[p.ps-headline-elevated ps-spacing-large-10 ps-spacing-small-8 ] 함께, 더욱 탁월하게.
+[p.ps-header-description large-centered ric-large-8 ric-medium-] 그 자체로도 이미 대단한 Mac과 iPhone. 하지만 두 기기를 함께 사용하면 더욱 놀라운 기능의 세계가 펼쳐집니다. iPhone에서 쓰기 시작한 이메일을 Mac에서 마무리하고, 기기를 넘나들며 복붙하고, 심지어 iPhone을 Mac의 핫스팟으로 사용할 수도 있습니다. 그야말로 마법 같죠.
+[li.tabnav-item] 전화 및 문자
+[li.tabnav-item] Handoff
+[li.tabnav-item] iPhone 미러링
+[li.tabnav-item] AirDrop
+[li.tabnav-item] Instant Hotspot
+[li.tabnav-item] 공통 클립보드
+[h3.typography-fade-gallery-captions subhead] 전화와 문자를 Mac에서.
+[p.] iPhone에서처럼 MacBook Neo에서도 바로 전화를 걸거나 받을 수 있습니다. iPhone에 받은 문자 메시지가 Mac에도 표시되기 때문에 기기를 넘나들며 대화를 이어갈 수도 있죠.
+[h3.typography-fade-gallery-captions subhead] 여기서 시작하고, 저기서 끝내고.
+[p.] 기기가 서로 가까이 있을 때 Handoff 기능을 사용해서, 진행 중인 작업을 한 기기에서 다른 기기로 매끄럽게 넘겨줄 수 있습니다.
+[a.] MacBook Neo에서 쓰기 시작한 이메일이나 편집하던 메모를 iPhone에서 이어받아 마무리하는 식으로 말이죠.
+[h3.typography-fade-gallery-captions subhead] Mac에서 iPhone 사용하기.
+[p.] ‘iPhone 미러링’ 기능은 iPhone 화면을 MacBook Neo 디스플레이에서 확인하고 사용까지 할 수 있게 해줍니다.
+[a.] 그리고 음악을 재생하거나, 타이머를 실행하거나 또는 배송 상황을 확인 중일 때 관련 ‘실시간 현황’을 iPhone과 Mac에서 확인하고 조작할 수 있죠.
+[h3.typography-fade-gallery-captions subhead] 공유를 무선으로 가뿐하게.
+[p.] AirDrop으로 자신의 MacBook Neo와 iPhone 간에 대용량 파일을 빠르게 공유할 수 있습니다. Mac, iPhone 또는 iPad를 갖고 있는 주변 사람들과 공유할 수도 있죠. 그 어느 때보다 손쉽게 사진, 문서 등을 주고받을 수 있는 방법으로, Wi‑Fi 네트워크가 없는 곳에서도 이용 가능합니다.
+[h3.typography-fade-gallery-captions subhead] Wi‑Fi가 없어도 안심.
+[p.] Instant Hotspot으로 iPhone의 셀룰러 연결을 근처에 있는 MacBook Neo와 공유할 수 있습니다. 덕분에 Wi-Fi 신호가 없을 때도 인터넷을 이용할 수 있죠.
+[h3.typography-fade-gallery-captions subhead] 기기를 넘나들며 복붙.
+[p.] ‘공통 클립보드’를 통해 iPhone 앱에서 이미지, 동영상 또는 텍스트를 복사한 다음, 근처에 있는 Mac의 다른 앱에 붙여 넣을 수 있습니다. 물론 그 반대도 가능하죠.
+
+=== <section id=None class=section section-new-to-mac section-product-stories>
+[h2.ps-headline-eyebrow large-8 small-12 large-centered typograp] Mac이 처음이라면
+[p.ps-headline-elevated ps-spacing-large-10 ps-spacing-small-8 ] 직관성을 앞세운 디자인.
+[p.ps-header-description large-8 small-12 large-centered typogr] Mac을 한 번도 써본 적 없더라도 금세 편안한 기분을 줄 MacBook Neo. 처음 켜는 순간부터 친숙하고 손쉽게 사용할 수 있습니다.
+[h3.card-caption-heading typography-caption-tile] 설정을 순식간에.
+[p.] ‘설정 지원’ 기능을 통해 iPhone을 사용해서 iCloud로부터 파일, 앱 등을 가져올 수 있습니다. PC에서 갈아타는 경우라도 ‘마이그레이션 지원’ 덕분에 설정이 빠르고 간단합니다. 도움이 더 필요할 땐 온라인 채팅, 전화, 매장 방문 예약을 통해 언제든 Apple 지원의 도움을 받을 수도 있답니다.
+[h3.card-caption-heading typography-caption-tile] 파일을 어디서나.
+[p.] iCloud는 당신의 사진, 연락처, 문서를 한곳에 안전하게 보관해 줍니다. 덕분에 가지고 있는 모든 Apple 기기에서 해당 데이터에 접근할 수 있고, 기기 간 파일 공유도 간편하죠.
+[h3.card-caption-heading typography-caption-tile] 놀랍도록 든든.
+[p.] 정기적으로 제공되는 무료 소프트웨어 업데이트가 고장을 방지해 주고, 몇 년이 지나도 Mac이 한결같이 매끄럽고 안전하게 작동하도록 해줍니다. 게다가 업데이트를 하면 이미 놀랍도록 뛰어난 Mac의 성능을 한층 끌어올려 줄 신기능들도 활용할 수 있게 된답니다.
+[h3.card-caption-heading typography-caption-tile] 쏠쏠한 팁을 바로바로.
+[p.] 내장된 ‘팁’ 앱을 통해 Mac을 속속들이 활용할 수 있습니다. 사용 팁을 살펴보고, 특정 주제를 검색하고, 사용 설명서와 여러 모음을 둘러보고, 최신 제안도 받아볼 수 있죠.
+[h3.card-caption-heading typography-caption-tile] Mac은 처음이신가요? 걱정 마세요.
+[p.] Mac은 배우기 쉽고 사용하는 것도 쉽습니다. PC에서 Mac으로 갈아타는 것도 어렵게 고민할 필요 없습니다. 시작이 아주 간편하니까요.
+[span.icon-copy] 더 알아보기
+
+=== <section id=None class=section section-security section-product-stories>
+[h2.ps-headline-eyebrow large-8 small-12 large-centered typograp] 개인정보 보호 및 보안
+[p.ps-headline-elevated ps-spacing-large-10 ps-spacing-small-8 ] 타협은 없다.
+[p.ps-header-description large-8 medium-10 small-12 large-cente] MacBook Neo는 모든 Mac에 기본으로 탑재되는 각종 첨단 보안 기능이 설계 단계부터 적용되어 제작되었습니다. 자동 데이터 암호화, 무료 안티바이러스 보호 기능, 정기적인 소프트웨어 업데이트로 당신과 당신의 데이터가 온라인에서 안전하게 지켜지기 때문에 안심하고 쓸 수 있죠.
+[h3.card-caption-heading typography-caption-tile] 잠금 키 또는 Touch ID.
+[p.] 잠금 키 탑재형 MacBook Neo 모델에서는 해당 키로 Mac을 깨우고, 화면을 잠그고, 전원을 켜고 끌 수 있습니다. Touch ID 탑재형 MacBook Neo 모델에서는 당신의 지문을 사용해 Mac을 잠금 해제하고, 결제를 승인하고, 앱과 웹사이트에 로그인할 수 있죠.
+[h3.card-caption-heading typography-caption-tile] 분실 시를 위한 보호 수단.
+[p.] ‘나의 찾기’ 앱은 당신의 MacBook Neo가 어디에 있는지 빠르게 파악해서 원격으로 잠그거나 그 안에 담긴 정보를 지울 수 있도록 도와줍니다. FileVault 기능은 당신의 데이터를 자동으로 암호화해서 전혀 읽을 수 없게 합니다. 만에 하나 Mac을 분실했거나 도난당했더라도 당신의 데이터를 안전하게 지킬 수 있도록 말이죠.
+[h3.card-caption-heading typography-caption-tile] 항상 안전하게.
+[p.] MacBook Neo에는 무료 안티바이러스 보호 기능이 기본으로 탑재되어 있습니다. 또한 무료 자동 보안 업데이트가 최신 보호 수단으로 당신의 기기가 늘 안전하게 지켜지도록 도와주죠.
+[h3.card-caption-heading typography-caption-tile] 로그인을 보다 스마트하게.
+[p.] 암호, 패스키, Wi-Fi 정보 및 기타 자격 증명 모두를 한곳에 안전하게 보관해 주는 ‘암호’ 앱 그리고 ‘자동 완성’ 기능을 통해, 자주 방문하는 앱과 웹사이트에 빠르게 로그인할 수 있습니다.
+[h3.card-caption-heading typography-caption-tile] 온라인에서도 안전.
+[p.] 업계 최고 수준의 개인정보 보호 기능들이 크로스 사이트 추적을 막아주고, 제삼자에게 전달되는 데이터를 최소화합니다. 그리고 ‘개인정보 보호 브라우징’ 모드를 켜면 사용하지 않는 브라우저 탭을 잠그는 등 보안을 더욱 강화할 수 있죠.
+[h3.card-caption-heading typography-caption-tile] 당신의 개인정보 보호.
+[p.] macOS에는 어떤 데이터를 어떻게 공유할지 당신이 직접 결정할 수 있도록 해주는 혁신적인 개인정보 보호 기능이 기본 탑재되어 있습니다.
+
+=== <section id=None class=section section-incentive background-alt>
+[h2.section-header-headline typography-section-header-headline] Mac, Apple에서 사면
+[span.nowrap] 가장 좋은 이유.
+[span.icon-copy] Mac 쇼핑하기
+[h3.typography-feature-card-label feature-card-label] 할부 결제
+[p.typography-feature-card-headline feature-card-headline] 최대 18개월 무이자 할부 결제.
+[p.typography-feature-card-body feature-card-body] 제휴 신용카드를 사용해 자신에게 알맞은 결제 옵션을 선택해 보세요. 최소 결제 금액 조건 적용.
+[h2.typography-modal-header-topic-label modal-header-topic-label] 할부 결제
+[h3.typography-modal-header-headline modal-header-headline] 자신에게 알맞은 결제 옵션.
+[p.] 맘에 드는 Mac을 최대 18개월 무이자 할부로 구입할 수 있습니다. 제휴 신용카드를 사용하면, 제공되는 옵션 중에서 자신에게 알맞은 할부 기간을 선택할 수 있습니다. 최소 결제 금액 조건 적용.
+[span.visuallyhidden] 월 할부에 대해서 더 알아보기
+[h3.typography-feature-card-label feature-card-label] Apple Trade In
+[p.typography-feature-card-headline feature-card-headline] Apple Trade In으로 보다 저렴하게.
+[p.typography-feature-card-body feature-card-body] 적용 대상 기기를 보상 판매하고 새 Mac 구입에 사용할 수 있는 크레딧을 받으세요.
+[h2.typography-modal-header-topic-label modal-header-topic-label] Apple Trade In
+[h3.typography-modal-header-headline modal-header-headline] 보상 판매 크레딧으로 새 기기를 더 저렴하게.
+[p.] 기기를 수령하여 검수가 끝나면 현재 모델의 보상 판매액을 계좌 이체로 보내드립니다. 약관이 적용됩니다.
+[span.visuallyhidden] Apple Trade In에 대해 더 알아보기
+[h3.typography-feature-card-label feature-card-label] 교육
+[p.typography-feature-card-headline feature-card-headline] 교육 할인가로 Mac을 더 부담 없이.
+[p.typography-feature-card-body feature-card-body] 대학생 및 교육자는 Apple Store 할인 혜택을 받을 수 있습니다.
+[h2.typography-modal-header-topic-label modal-header-topic-label] 교육
+[h3.typography-modal-header-headline modal-header-headline] 교육 스토어에서 더 부담 없이.
+[p.] Mac, iPad, Apple Watch
+[a.] 등을 Apple 교육 할인가로 더 부담 없이 구입하세요. 대학교 재학생 및 입학 예정자, 그들을 대신하여 구매하는 학부모, 교직원에게 적용됩니다.
+[span.icon-copy] 더 알아보기
+[h3.typography-feature-card-label feature-card-label] 개인 맞춤 설정
+[p.typography-feature-card-headline feature-card-headline] 새로 산 Mac과 더 친숙해지는 법. 개인 맞춤 설정 세션.
+[p.typography-feature-card-body feature-card-body] 데이터 전송, 최신 기능 등에 대한 일대일 지원.
+[h2.typography-modal-header-topic-label modal-header-topic-label] 개인 맞춤 설정
+[h3.typography-modal-header-headline modal-header-headline] 새로 산 Mac과 더 친숙해지는 법. 개인 맞춤 설정 세션.
+[p.] Apple에서 직접 새 Mac을 구입하면 개인 맞춤 설정 세션을 이용할 수 있습니다. 이 온라인 세션에서는 스페셜리스트가 기기 설정과 데이터 전송 방법을 단계별로 자세히 안내해 주거나 Mac을 속속들이 활용할 수 있도록 각종 기능을 집중적으로 가르쳐 줍니다. 무엇보다 좋은 건 언제든 편한 시간에 어디에서든 이용할 수 있다는 점이죠.
+[span.icon-copy] 더 알아보기
+[h3.typography-feature-card-label feature-card-label] 무료 배송 및 픽업
+[p.typography-feature-card-headline feature-card-headline] 무료 배송 및 픽업.
+[p.typography-feature-card-body feature-card-body] 제품을 무료로 배송받거나 Apple Store에서 픽업할 수 있습니다.
+[h2.typography-modal-header-topic-label modal-header-topic-label] 무료 배송 및 픽업
+[h3.typography-modal-header-headline modal-header-headline] 빠르고 편리한 픽업.
+[p.] 온라인으로 주문하고 Apple Store에서 픽업하세요. 가까운 매장의 빠른 픽업 가능 여부는 매장 정보를 통해 확인해 주세요.
+[span.icon-copy] 더 알아보기
+[h3.typography-feature-card-label feature-card-label] 쇼핑 지원
+[p.typography-feature-card-headline feature-card-headline] Mac 스페셜리스트의 쇼핑 지원.
+[p.typography-feature-card-body feature-card-body] 온라인 또는 Apple Store에서 쇼핑하실 때 필요한 제품을 찾아드리고 궁금한 점도 모두 일대일로 해결해 드립니다.
+[h2.typography-modal-header-topic-label modal-header-topic-label] 쇼핑 지원
+[h3.typography-modal-header-headline modal-header-headline] 도움을 받아 알맞은 제품을 찾으세요.
+[p.] 스페셜리스트가 Apple에 관한 모든 것에 대해 궁금한 점을 해결해 드립니다. Apple Store 또는 온라인에서 Apple 스페셜리스트와 함께 하는 일대일 쇼핑 경험.
+[span.icon-copy] 스페셜리스트와 함께 하는 온라인 쇼핑
+[h3.typography-feature-card-label feature-card-label] Apple Store 앱
+[p.typography-feature-card-headline feature-card-headline] 당신을 위해 맞춤 설계된 쇼핑 경험.
+[p.typography-feature-card-body feature-card-body] Apple Store 앱에서 자신에게 더욱 꼭 맞는 방법으로 쇼핑을 즐기세요.
+
+=== <section id=None class=section section-contrast background-alt>
+
+=== <section id=None class=section section-environment background-alt no-pad-top>
+
+=== <section id=None class=section section-values background-alt>
+
+=== <section id=None class=section section-index>

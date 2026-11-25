@@ -1,0 +1,6 @@
+# 빌드 결과물 (python3 build.py / make_worklist.py 로 언제든 다시 생성)
+h6studio-page/h6studio-preview.html
+h6studio-page/h6studio-artifact.html
+h6studio-page/preview.png
+__pycache__/
+.DS_Store

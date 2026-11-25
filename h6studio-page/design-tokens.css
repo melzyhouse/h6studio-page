@@ -1,0 +1,66 @@
+/*
+ * MacBook Neo (apple.com/kr/macbook-neo) 페이지 CSS에서 추출한 디자인 토큰
+ * 출처: /v/macbook-neo/c/built/styles/overview.built.css (2026-11-25 수집)
+ * 브레이크포인트: large ≥1069px / medium 735–1068px / small ≤734px (+ xlarge ≥1441px, xsmall ≤480px)
+ */
+:root {
+  /* ── 폰트 ─────────────────────────────── */
+  --font-display: "SF Pro Display", "SF Pro KR", "Apple SD Gothic Neo", "Pretendard", "Helvetica Neue", Arial, sans-serif; /* 20px 이상 */
+  --font-text:    "SF Pro Text", "SF Pro KR", "Apple SD Gothic Neo", "Pretendard", "Helvetica Neue", Arial, sans-serif;    /* 19px 이하 */
+  /* 한국어 원본 스택: SF Pro KR, SF Pro Text, SF Pro Icons, Apple Gothic, HY Gulim, MalgunGothic, ... */
+
+  /* ── 컬러 ─────────────────────────────── */
+  --c-text:            #1d1d1f;  /* 본문/헤드라인 (순수 검정 X) */
+  --c-text-secondary:  #6e6e73;
+  --c-text-tertiary:   #86868b;
+  --c-bg:              #ffffff;
+  --c-bg-alt:          #f5f5f7;  /* .background-alt 섹션 */
+  --c-bg-alt-dark:     #1d1d1f;  /* 다크 섹션 */
+  --c-divider:         #d2d2d7;
+  --c-fill-tertiary:   #e8e8ed;
+  --c-link:            #0066cc;
+  --c-link-on-dark:    #2997ff;
+  --c-button:          #0071e3;  /* hover #0076df, active #006edb */
+  --c-badge-new:       #b64400;  /* "New" 오렌지 (다크 배경에선 #ff791b) */
+
+  /* 제품 색상 스와치 */
+  --swatch-silver: #e3e4e5;
+  --swatch-blush:  #e8d0d0;
+  --swatch-citrus: #dddc8c;
+  --swatch-indigo: #596680;
+
+  /* 그라디언트 텍스트 (헤드라인 강조용, Apple Intelligence 계열) */
+  --gt-ai: #0090f7, #ba62fc, #f2416b, #f55600;
+
+  /* ── 타이포 스케일 (large / medium / small) ── */
+  /* hero 대형 헤드라인 typography-ps-headline-standalone */
+  --t-headline-xl: 600 96px/1.0417 var(--font-display);   /* 80px / 48px, letter-spacing -0.015em */
+  /* 섹션 헤더 typography-section-header-headline ("일단 핵심부터.") */
+  --t-section:     600 48px/1.0835 var(--font-display);   /* 40px / 32px */
+  /* 카드 헤드라인 typography-media-card-gallery-headline / feature-card-headline */
+  --t-card:        600 28px/1.1429 var(--font-display);   /* 24px / 21px(17px) */
+  /* 콜아웃 typography-ps-callout */
+  --t-callout:     600 24px/1.1667 var(--font-display);   /* 21px */
+  /* 섹션 설명 typography-ps-body — 볼드 본문이 특징 */
+  --t-intro:       600 21px/1.381 var(--font-display);    /* 19px */
+  /* 캡션 타일 / 본문 */
+  --t-body:        400 17px/1.4706 var(--font-text);      /* letter-spacing -0.022em */
+  --t-caption:     600 14px/1.4286 var(--font-text);      /* letter-spacing -0.016em */
+  /* 큰 숫자 stat-super .stat-value */
+  --t-stat:        600 80px/1 var(--font-display);
+
+  /* ── 레이아웃 ─────────────────────────── */
+  --content-width: 980px;            /* 기본 콘텐츠 폭 (large) */
+  --content-width-wide: 1260px;      /* 와이드 갤러리/뷰어 */
+  --section-padding: 144px;          /* 120px / 112px → 화면 줄수록 감소 */
+  --section-padding-reduced: 80px;
+  --radius-card: 28px;               /* 미디어 카드, 비교 카드 */
+  --radius-tile: 18px;
+  --radius-pill: 999px;              /* 버튼 */
+  --gutter-small: 20px;
+
+  /* ── 모션 ─────────────────────────────── */
+  --ease-apple: cubic-bezier(0.66, 0, 0.1, 1);   /* 가장 많이 사용 */
+  --ease-out:   cubic-bezier(0, 0, 0.5, 1);
+  --ease-spring: cubic-bezier(0.34, 2.16, 0.64, 1);
+}
