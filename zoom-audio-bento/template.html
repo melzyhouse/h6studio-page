@@ -374,6 +374,20 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
   .s-card .btns { flex-direction: column; } .s-card .btn { justify-content: center; }
 }
 @media (prefers-reduced-motion: reduce) { .sheet-panel, .sheet-scrim, .u-pic img, .use-dots button { transition: none; } }
+
+/* ── 대표 제품: 두 개씩 같은 크기 + 제목 크기 통일 ── */
+:root { --t-sec: clamp(32px, 4.2vw, 44px); --t-card: 32px; }
+.sec-head h2, .uses-head h2 { font-size: var(--t-sec); line-height: 1.12; }
+.p-tile.rep2 { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 20px; min-height: 380px; padding: 36px; }
+.p-tile.rep2 h3, .u-txt h3 { font-size: var(--t-card); line-height: 1.15; letter-spacing: -0.03em; }
+.p-tile.rep2 .p-copy p:not(.price) { font-size: 16px; }
+.p-tile.rep2 .art { max-height: 280px; max-width: 100%; justify-self: center; margin: 0; }
+@media (max-width: 1068px) { .p-tile.rep2 { grid-column: span 12; } }
+@media (max-width: 734px) {
+  :root { --t-card: 26px; }
+  .p-tile.rep2 { grid-template-columns: 1fr; padding: 26px 24px; min-height: 0; }
+  .p-tile.rep2 .art { order: -1; max-height: 200px; }
+}
 </style>
 
 <header class="nav">
