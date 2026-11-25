@@ -491,6 +491,10 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
 .rep .cat-name { font-size: 20px; font-weight: 700; color: var(--ink-2); margin-bottom: 6px; letter-spacing: -0.02em; }
 .p-tile.rep2 h3 { font-size: 40px; line-height: 1.1; }
 @media (max-width: 734px) { .rep .cat-name { font-size: 18px; } .p-tile.rep2 h3 { font-size: 32px; } }
+
+/* 대표 박스 이미지: 면적 기준으로 크기 맞춤 (--w는 make_page.py가 계산) */
+.p-tile.rep2 .art { width: calc(var(--w) * 1px * var(--k, 1)); max-width: 100%; max-height: none; height: auto; }
+@media (max-width: 734px) { .p-tile.rep2 .art { --k: .8; } }
 </style>
 
 <header class="nav">
@@ -566,27 +570,27 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
     <div class="bento">
       <a class="tile p-tile rep rep2 c6 tone-1 rise" href="#handy" data-series="handy" aria-label="핸디 레코더 시리즈 보기, 대표 제품 H6studio">
         <div class="p-copy"><span class="cat-name">핸디 레코더</span><h3>H6studio</h3><p>여섯 트랙. 대구경 XY 마이크.</p><p class="price">699,000원</p><span class="see">시리즈 보기 ›</span></div>
-        <img class="art" data-src="h6studio" alt="">
+        <img class="art" data-src="h6studio" alt="" style="--w:103">
       </a>
       <a class="tile p-tile rep rep2 c6 tone-1 rise" href="#field" data-series="field" aria-label="필드 레코더 시리즈 보기, 대표 제품 F3">
         <div class="p-copy"><span class="cat-name">필드 레코더</span><h3>F3</h3><p>2채널 32비트 플로트 필드 레코더.</p><p class="price">530,000원</p><span class="see">시리즈 보기 ›</span></div>
-        <img class="art" data-src="f3" alt="">
+        <img class="art" data-src="f3" alt="" style="--w:161">
       </a>
       <a class="tile p-tile rep rep2 c6 tone-2 rise" href="#effects" data-series="effects" aria-label="이펙터 시리즈 보기, 대표 제품 NEURIG">
         <div class="p-copy"><span class="cat-name">이펙터</span><h3>NEURIG</h3><p>기타 앰프와 이펙트를, 뉴럴 모델링으로.</p><p class="price kr">가격 문의 · 국내 안전 인증 진행 중</p><span class="see">시리즈 보기 ›</span></div>
-        <img class="art" data-src="neurig" alt="">
+        <img class="art" data-src="neurig" alt="" style="--w:239">
       </a>
       <a class="tile p-tile rep rep2 c6 tone-2 rise" href="#vocal" data-series="vocal" aria-label="보컬 시리즈 보기, 대표 제품 V6-SP">
         <div class="p-copy"><span class="cat-name">보컬</span><h3>V6-SP</h3><p>보컬 이펙터·루퍼·포먼트를 발끝으로.</p><p class="price">660,000원</p><span class="see">시리즈 보기 ›</span></div>
-        <img class="art" data-src="v6sp" alt="">
+        <img class="art" data-src="v6sp" alt="" style="--w:225">
       </a>
       <a class="tile p-tile rep rep2 c6 tone-3 rise" href="#mixer" data-series="mixer" aria-label="믹서·레코더 시리즈 보기, 대표 제품 LiveTrak L12next">
         <div class="p-copy"><span class="cat-name">믹서·레코더</span><h3>LiveTrak L12next</h3><p>12채널 14트랙 디지털 믹서·레코더.</p><p class="price">1,150,000원</p><span class="see">시리즈 보기 ›</span></div>
-        <img class="art" data-src="l12next" alt="">
+        <img class="art" data-src="l12next" alt="" style="--w:211">
       </a>
       <a class="tile p-tile rep rep2 c6 tone-3 rise" href="#podcast" data-series="podcast" aria-label="팟캐스트 시리즈 보기, 대표 제품 PodTrak P4next">
         <div class="p-copy"><span class="cat-name">팟캐스트</span><h3>PodTrak P4next</h3><p>4트랙 팟캐스트 레코더. 오디오 인터페이스로도.</p><p class="price">305,000원</p><span class="see">시리즈 보기 ›</span></div>
-        <img class="art" data-src="p4next" alt="">
+        <img class="art" data-src="p4next" alt="" style="--w:172">
       </a>
     </div>
   </section>

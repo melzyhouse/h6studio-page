@@ -49,6 +49,17 @@ CATEGORIES = [
 ]
 
 
+from PIL import Image as _Img
+
+def art_width(k, area=28000, max_w=240, max_h=290):
+    """대표 박스 이미지: 제품 모양(가로세로비)이 달라도 보이는 면적이 비슷하도록 폭을 계산."""
+    w, h = _Img.open(ROOT.parent / "zoom-studio-home" / "img" / "products" / f"{k}.png").size
+    r = w / h
+    width = (area * r) ** 0.5
+    width = min(width, max_w, max_h * r)
+    return round(width)
+
+
 def rep_tile(c):
     it = next(x for x in c["items"] if x["k"] == c["rep"])
     size = c["rep_size"] + " " + ("tone-1", "tone-2", "tone-3")[CATEGORIES.index(c) // 2]
@@ -57,7 +68,7 @@ def rep_tile(c):
     head = "h3"
     return f'''      <a class="tile p-tile rep {size} rise" href="#{c["id"]}" data-series="{c["id"]}" aria-label="{e(c["title"])} 시리즈 보기, 대표 제품 {e(it["n"])}">
         <div class="p-copy">{tag}<span class="cat-name">{e(c["title"])}</span><{head}>{e(it["n"])}</{head}><p>{e(it["sub"])}</p>{specs}<p class="price{"" if it["price"][0].isdigit() else " kr"}">{e(it["price"])}</p><span class="see">시리즈 보기 ›</span></div>
-        <img class="art" data-src="{it["k"]}" alt="">
+        <img class="art" data-src="{it["k"]}" alt="" style="--w:{art_width(it["k"])}">
       </a>'''
 
 

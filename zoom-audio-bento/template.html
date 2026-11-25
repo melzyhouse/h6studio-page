@@ -491,6 +491,10 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
 .rep .cat-name { font-size: 20px; font-weight: 700; color: var(--ink-2); margin-bottom: 6px; letter-spacing: -0.02em; }
 .p-tile.rep2 h3 { font-size: 40px; line-height: 1.1; }
 @media (max-width: 734px) { .rep .cat-name { font-size: 18px; } .p-tile.rep2 h3 { font-size: 32px; } }
+
+/* 대표 박스 이미지: 면적 기준으로 크기 맞춤 (--w는 make_page.py가 계산) */
+.p-tile.rep2 .art { width: calc(var(--w) * 1px * var(--k, 1)); max-width: 100%; max-height: none; height: auto; }
+@media (max-width: 734px) { .p-tile.rep2 .art { --k: .8; } }
 </style>
 
 <header class="nav">
