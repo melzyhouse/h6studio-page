@@ -299,30 +299,104 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
   .p-tile.tall, .p-tile.small { grid-column: span 12; min-height: 0; }
   .p-tile.tall .art, .p-tile.small .art { margin-top: 18px; max-height: 200px; }
 }
+
+/* ── 대표 제품 박스 ── */
+.rep { cursor: pointer; text-align: left; border: 0; font: inherit; color: inherit; }
+.rep .cat-name { font-size: 15px; font-weight: 700; color: var(--ink-2); margin-bottom: 2px; }
+.rep.dark .cat-name { color: var(--char-ink-2); }
+.rep .see { margin-top: 16px; display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 18px; border-radius: 980px; background: var(--accent); color: #fff; font-size: 15px; font-weight: 500; align-self: flex-start; transition: background .2s; }
+.rep:hover .see { background: var(--accent-h); }
+.rep.dark .see { background: #fff; color: var(--ink); }
+.rep.dark:hover .see { background: var(--lime); }
+.rep .count { font: 600 11px/1 var(--mono); letter-spacing: .1em; color: var(--ink-2); margin-top: 10px; }
+.rep.dark .count { color: var(--char-ink-2); }
+
+/* ── 차콜 섹션: 용도별 추천 ── */
+.dark-sec { background: var(--char); color: #fff; margin-top: 96px; }
+.uses { padding: 96px 0 72px; }
+.uses-head { margin-bottom: 32px; }
+.uses-head .label { color: var(--lime); }
+.uses-head .led { box-shadow: 0 0 8px rgba(200,255,77,.7); }
+.uses-head h2 { font-size: clamp(32px, 4.4vw, 48px); line-height: 1.1; margin-top: 14px; }
+.uses-head p { margin: 10px 0 0; color: var(--char-ink-2); font-size: 17px; }
+.use-track { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 0 max(20px, calc((100% - 1200px) / 2 + 20px)) 8px; }
+.use-track::-webkit-scrollbar { display: none; }
+.use-card { flex: 0 0 min(720px, 86vw); scroll-snap-align: center; border-radius: 28px; background: #35363B; display: grid; grid-template-columns: 1.1fr 1fr; min-height: 400px; overflow: hidden; }
+.u-txt { padding: 36px 0 32px 36px; display: flex; flex-direction: column; }
+.u-txt .label { color: var(--lime); margin-bottom: 16px; }
+.u-txt h3 { font-size: 30px; line-height: 1.2; }
+.u-txt p { margin: 10px 0 0; color: var(--char-ink-2); }
+.u-txt ul { list-style: none; margin: auto 0 0; padding: 20px 0 0; }
+.u-txt li { display: grid; grid-template-columns: 1fr auto auto; gap: 14px; align-items: center; padding: 11px 0; border-top: 1px solid rgba(255,255,255,.12); }
+.u-txt li button { background: none; border: 0; padding: 0; text-align: left; cursor: pointer; font: 700 15px/1.4 var(--font); color: #fff; display: inline-flex; align-items: center; gap: 8px; }
+.u-txt li button::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.25); transition: background .2s; }
+.u-txt li.peek button { color: var(--lime); } .u-txt li.peek button::before { background: var(--lime); }
+.u-txt li span { font: 600 13.5px/1 var(--mono); color: var(--char-ink-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.u-txt li a { font-size: 13px; color: #fff; white-space: nowrap; opacity: .8; } .u-txt li a:hover { opacity: 1; text-decoration: underline; }
+.u-pic { display: flex; flex-direction: column; gap: 14px; align-items: center; justify-content: center; padding: 30px; }
+.u-pic img { max-height: 280px; width: auto; max-width: 100%; object-fit: contain; filter: drop-shadow(0 26px 30px rgba(0,0,0,.5)); transition: opacity .15s, transform .3s; }
+.u-pic img.swap { opacity: 0; transform: scale(.97); }
+.u-name { font: 600 11px/1 var(--mono); letter-spacing: .12em; color: var(--char-ink-2); text-transform: uppercase; }
+.use-ctrl { display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 24px; }
+.use-dots { display: flex; gap: 10px; background: rgba(255,255,255,.1); border-radius: 999px; padding: 10px 14px; }
+.use-dots button { width: 8px; height: 8px; border: 0; padding: 0; border-radius: 999px; background: rgba(255,255,255,.4); cursor: pointer; transition: width .4s, background .4s; }
+.use-dots button[aria-current="true"] { width: 36px; background: #fff; }
+.use-pp { width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(255,255,255,.1); color: #fff; display: grid; place-items: center; cursor: pointer; }
+.dark-sec a:focus-visible, .dark-sec button:focus-visible { outline-color: var(--lime); }
+
+/* ── 시리즈 시트 ── */
+.sheet { position: fixed; inset: 0; z-index: 80; }
+.sheet-scrim { position: absolute; inset: 0; background: rgba(0,0,0,.4); opacity: 0; transition: opacity .25s; backdrop-filter: blur(6px); }
+.sheet-panel { position: absolute; left: 50%; bottom: 0; transform: translate(-50%, 40px); width: min(1100px, 100%); max-height: calc(100% - 48px - env(safe-area-inset-top, 0px)); overflow: auto; background: var(--bg); border-radius: 28px 28px 0 0; padding: 32px max(24px, env(safe-area-inset-right, 0px)) calc(32px + env(safe-area-inset-bottom, 0px)) max(24px, env(safe-area-inset-left, 0px)); opacity: 0; transition: transform .3s cubic-bezier(.2,.7,.2,1), opacity .25s; }
+.sheet.open .sheet-scrim { opacity: 1; }
+.sheet.open .sheet-panel { transform: translate(-50%, 0); opacity: 1; }
+.sheet-head { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+.sheet-head h2 { font-size: clamp(28px, 3.6vw, 40px); margin-top: 10px; }
+.sheet-head p { margin: 6px 0 0; color: var(--ink-2); }
+.sheet-x { flex: none; width: 38px; height: 38px; border-radius: 50%; border: 0; background: var(--tile); cursor: pointer; display: grid; place-items: center; }
+.sheet-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.s-card { background: var(--tile); border-radius: 22px; padding: 20px; display: flex; flex-direction: column; position: relative; }
+.s-tag { position: absolute; top: 16px; left: 18px; font: 600 10.5px/1 var(--mono); letter-spacing: .1em; color: var(--accent); }
+.s-pic { height: 170px; display: grid; place-items: center; margin: 10px 0 14px; }
+.s-pic img { max-height: 160px; width: auto; max-width: 90%; object-fit: contain; filter: drop-shadow(0 16px 18px rgba(0,0,0,.16)); }
+.s-card h3 { font-size: 20px; }
+.s-card p { margin: 6px 0 0; color: var(--ink-2); font-size: 14px; }
+.s-card b { font: 600 14px/1 var(--mono); margin-top: 12px; font-variant-numeric: tabular-nums; }
+.s-card .btns { margin-top: 14px; }
+.s-card .btn { height: 36px; font-size: 14px; padding: 0 14px; }
+@media (max-width: 734px) {
+  .dark-sec { margin-top: 64px; } .uses { padding: 72px 0 56px; }
+  .use-card { grid-template-columns: 1fr; min-height: 0; border-radius: 22px; }
+  .u-pic { order: -1; padding: 24px 24px 0; } .u-pic img { max-height: 170px; }
+  .u-txt { padding: 20px 22px 22px; } .u-txt h3 { font-size: 24px; }
+  .sheet-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .s-card { padding: 14px; } .s-pic { height: 110px; } .s-pic img { max-height: 100px; } .s-card p { display: none; }
+  .s-card .btns { flex-direction: column; } .s-card .btn { justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) { .sheet-panel, .sheet-scrim, .u-pic img, .use-dots button { transition: none; } }
 </style>
 
 <header class="nav">
   <div class="wrap">
     <a class="wordmark" href="#top" aria-label="ZOOM AUDIO 홈"><b>ZOOM</b><span>AUDIO</span></a>
-    <nav aria-label="주 메뉴"><ul class="main"><li><a href="#handy">레코더</a></li><li><a href="#effects">이펙터</a></li><li><a href="#mixer">믹서·팟캐스트</a></li><li><a href="#finder">용도별로 찾기</a></li><li><a href="#support">정품·A/S</a></li></ul></nav>
+    <nav aria-label="주 메뉴"><ul class="main"><li><a href="#series">제품</a></li><li><a href="#finder">용도별 추천</a></li><li><a href="#support">정품·A/S</a></li></ul></nav>
     <div class="right">
       <span class="tag">OFFICIAL IMPORTER · AVX</span>
       <a class="shop" href="https://www.avx.co.kr/goods/brand?code=0004">구매하기</a>
       <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="메뉴 열기"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 5h12M2 11h12"/></svg></button>
     </div>
   </div>
-  <div class="mnav wrap" id="mnav"><ul><li><a href="#handy">레코더</a></li><li><a href="#effects">이펙터</a></li><li><a href="#mixer">믹서·팟캐스트</a></li><li><a href="#finder">용도별로 찾기</a></li><li><a href="#support">정품·A/S</a></li></ul></div>
+  <div class="mnav wrap" id="mnav"><ul><li><a href="#series">제품</a></li><li><a href="#finder">용도별 추천</a></li><li><a href="#support">정품·A/S</a></li></ul></div>
 </header>
 
 <nav class="chapter" aria-label="제품군">
   <div class="chapter-in">
-    <a href="#handy"><img data-src="h6studio" alt=""><span>핸디 레코더</span></a>
-    <a href="#field"><img data-src="f6" alt=""><span>필드 레코더</span></a>
-    <a href="#effects"><img data-src="g1four" alt=""><span>이펙터</span></a>
-    <a href="#vocal"><img data-src="v6sp" alt=""><span>보컬</span></a>
-    <a href="#mixer"><img data-src="l6max" alt=""><span>믹서·레코더</span></a>
-    <a href="#podcast"><img data-src="p4next" alt=""><span>팟캐스트</span></a>
-    <a href="#effects"><img data-src="neurig" alt=""><span>출시 예정</span><i>SOON</i></a>
+    <a href="#handy" data-series="handy"><img data-src="h6studio" alt=""><span>핸디 레코더</span></a>
+    <a href="#field" data-series="field"><img data-src="f6" alt=""><span>필드 레코더</span></a>
+    <a href="#effects" data-series="effects"><img data-src="g1four" alt=""><span>이펙터</span></a>
+    <a href="#vocal" data-series="vocal"><img data-src="v6sp" alt=""><span>보컬</span></a>
+    <a href="#mixer" data-series="mixer"><img data-src="l6max" alt=""><span>믹서·레코더</span></a>
+    <a href="#podcast" data-series="podcast"><img data-src="p4next" alt=""><span>팟캐스트</span></a>
   </div>
 </nav>
 
@@ -371,144 +445,55 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
   </div>
 </section>
 
-  <section class="sec wrap cat" id="handy" aria-labelledby="h-handy">
-    <div class="sec-head"><div><span class="label"><i class="led"></i>HANDY RECORDER</span><h2 id="h-handy">핸디 레코더</h2></div><p>손에 쥐고 바로 녹음. 합주실, 무대, 책상 위까지.</p></div>
+  <!-- 카테고리별 대표 제품 (최신 제품 하나씩) -->
+  <section class="sec wrap" id="series" aria-labelledby="h-series">
+    <div class="sec-head"><div><span class="label"><i class="led"></i>LINEUP</span><h2 id="h-series">제품 카테고리</h2></div><p>카테고리마다 최신 제품을 모았어요. 누르면 시리즈 전체를 볼 수 있어요.</p></div>
     <div class="bento">
-      <article class="tile p-tile big c8 r2 rise">
-        <div class="p-copy"><span class="label"><i class="led"></i>NEW</span><h2>H6studio</h2><p>여섯 트랙. 대구경 XY 마이크.</p><ul class="specs"><li>6 + 2 MIX</li><li>32-BIT FLOAT</li><li>XLR/TRS ×4</li><li>AA · 15H</li></ul><p class="price">699,000원</p><div class="btns"><a class="btn go" href="https://claude.ai/artifact/SCHGy9TERkg3ViwjEJdivj">자세히 보기</a><a class="btn line" href="https://www.avx.co.kr/goods/view?no=2545">구매하기</a></div></div>
-        <img class="art" data-src="h6studio" alt="H6studio">
-      </article>
-      <article class="tile p-tile tall c4 r2 rise">
-        <div class="p-copy"><h3>H5studio</h3><p>4트랙 스튜디오 핸디 레코더. 오디오 인터페이스로도.</p><p class="price">659,000원</p><div class="btns"><a class="btn go" href="https://www.avx.co.kr/goods/view?no=2277">구매하기</a></div></div>
-        <img class="art" data-src="h5studio" alt="H5studio">
-      </article>
-      <article class="tile p-tile small c3 rise">
-        <div class="p-copy"><span class="label"><i class="led"></i>FIRMWARE V4.0</span><h3>H6essential</h3><p>6트랙 32비트 플로트. 이제 멀티트랙 녹음 모드까지.</p><p class="price">559,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=1465">구매하기</a></div></div>
-        <img class="art" data-src="h6e" alt="H6essential">
-      </article>
-      <article class="tile p-tile small c3 rise">
-        <div class="p-copy"><h3>H4essential</h3><p>4트랙 32비트 플로트.</p><p class="price">399,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=1468">구매하기</a></div></div>
-        <img class="art" data-src="h4e" alt="H4essential">
-      </article>
-      <article class="tile p-tile small c3 rise">
-        <div class="p-copy"><h3>H2essential</h3><p>32비트 플로트 핸디 레코더.</p><p class="price">339,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=1919">구매하기</a></div></div>
-        <img class="art" data-src="h2e" alt="H2essential">
-      </article>
-      <article class="tile p-tile small c3 white rise">
-        <div class="p-copy"><span class="label"><i class="led"></i>START HERE</span><h3>H1essential</h3><p>처음 사는 녹음기라면. 가볍게 시작하는 32비트.</p><p class="price">199,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=1469">구매하기</a></div></div>
-        <img class="art" data-src="h1e" alt="H1essential">
-      </article>
+      <a class="tile p-tile rep big c8 r2 rise" href="#handy" data-series="handy" aria-label="핸디 레코더 시리즈 보기, 대표 제품 H6studio">
+        <div class="p-copy"><span class="label"><i class="led"></i>NEW</span><span class="cat-name">핸디 레코더</span><h2>H6studio</h2><p>여섯 트랙. 대구경 XY 마이크.</p><ul class="specs"><li>6 + 2 MIX</li><li>32-BIT FLOAT</li><li>XLR/TRS ×4</li><li>AA · 15H</li></ul><p class="price">699,000원</p><span class="see">시리즈 보기 ›</span><span class="count">6개 제품</span></div>
+        <img class="art" data-src="h6studio" alt="">
+      </a>
+      <a class="tile p-tile rep tall c4 r2 rise" href="#field" data-series="field" aria-label="필드 레코더 시리즈 보기, 대표 제품 F3">
+        <div class="p-copy"><span class="label"><i class="led"></i>FIELD RECORDER</span><span class="cat-name">필드 레코더</span><h3>F3</h3><p>2채널 32비트 플로트 필드 레코더.</p><p class="price">530,000원</p><span class="see">시리즈 보기 ›</span><span class="count">3개 제품</span></div>
+        <img class="art" data-src="f3" alt="">
+      </a>
+      <a class="tile p-tile rep wide c7 dark rise" href="#effects" data-series="effects" aria-label="이펙터 시리즈 보기, 대표 제품 NEURIG">
+        <div class="p-copy"><span class="label"><i class="led"></i>COMING SOON</span><span class="cat-name">이펙터</span><h3>NEURIG</h3><p>기타 앰프와 이펙트를, 뉴럴 모델링으로.</p><p class="price">가격 문의 · 국내 안전 인증 진행 중</p><span class="see">시리즈 보기 ›</span><span class="count">4개 제품</span></div>
+        <img class="art" data-src="neurig" alt="">
+      </a>
+      <a class="tile p-tile rep wide c5 rise" href="#vocal" data-series="vocal" aria-label="보컬 시리즈 보기, 대표 제품 V6-SP">
+        <div class="p-copy"><span class="label"><i class="led"></i>VOCAL PROCESSOR</span><span class="cat-name">보컬</span><h3>V6-SP</h3><p>보컬 이펙터·루퍼·포먼트를 발끝으로.</p><p class="price">660,000원</p><span class="see">시리즈 보기 ›</span><span class="count">2개 제품</span></div>
+        <img class="art" data-src="v6sp" alt="">
+      </a>
+      <a class="tile p-tile rep wide c8 rise" href="#mixer" data-series="mixer" aria-label="믹서·레코더 시리즈 보기, 대표 제품 LiveTrak L12next">
+        <div class="p-copy"><span class="label"><i class="led"></i>MIXER · RECORDER</span><span class="cat-name">믹서·레코더</span><h3>LiveTrak L12next</h3><p>12채널 14트랙 디지털 믹서·레코더.</p><p class="price">1,150,000원</p><span class="see">시리즈 보기 ›</span><span class="count">3개 제품</span></div>
+        <img class="art" data-src="l12next" alt="">
+      </a>
+      <a class="tile p-tile rep small c4 rise" href="#podcast" data-series="podcast" aria-label="팟캐스트 시리즈 보기, 대표 제품 PodTrak P4next">
+        <div class="p-copy"><span class="label"><i class="led"></i>PODCAST</span><span class="cat-name">팟캐스트</span><h3>PodTrak P4next</h3><p>4트랙 팟캐스트 레코더. 오디오 인터페이스로도.</p><p class="price">305,000원</p><span class="see">시리즈 보기 ›</span><span class="count">2개 제품</span></div>
+        <img class="art" data-src="p4next" alt="">
+      </a>
     </div>
   </section>
 
-  <section class="sec wrap cat" id="field" aria-labelledby="h-field">
-    <div class="sec-head"><div><span class="label"><i class="led"></i>FIELD RECORDER</span><h2 id="h-field">필드 레코더</h2></div><p>촬영장과 야외에서. 갑자기 커지는 소리에도 깨지지 않게.</p></div>
-    <div class="bento">
-      <article class="tile p-tile tall c5 r2 dark rise">
-        <div class="p-copy"><h3>F8n Pro</h3><p>8채널 필드 레코더.</p><p class="price">1,700,000원</p><div class="btns"><a class="btn go" href="https://www.avx.co.kr/goods/view?no=423">구매하기</a></div></div>
-        <img class="art" data-src="f8npro" alt="F8n Pro">
-      </article>
-      <article class="tile p-tile wide c7 rise">
-        <div class="p-copy"><h3>F6</h3><p>멀티트랙 필드 레코더. 전용 가방 PCF-6 포함.</p><p class="price">1,030,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=534">구매하기</a></div></div>
-        <img class="art" data-src="f6" alt="F6">
-      </article>
-      <article class="tile p-tile wide c7 rise">
-        <div class="p-copy"><h3>F3</h3><p>2채널 32비트 플로트 필드 레코더.</p><p class="price">530,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=922">구매하기</a></div></div>
-        <img class="art" data-src="f3" alt="F3">
-      </article>
+  <!-- 용도별 추천: 차콜 섹션 -->
+  <section class="uses dark-sec" id="finder" aria-labelledby="h-uses">
+    <div class="wrap uses-head">
+      <span class="label"><i class="led"></i>FIND BY USE</span><h2 id="h-uses">용도별 추천</h2><p>지금 하는 음악에 맞는 ZOOM을 골라 드려요.</p>
     </div>
-  </section>
-
-  <section class="sec wrap cat" id="effects" aria-labelledby="h-effects">
-    <div class="sec-head"><div><span class="label"><i class="led"></i>MULTI-EFFECTS</span><h2 id="h-effects">이펙터</h2></div><p>페달 하나로 시작해 보드 전체까지. 합주실에 들고 가는 톤.</p></div>
-    <div class="bento">
-      <article class="tile p-tile tall c6 r2 dark rise">
-        <div class="p-copy"><span class="label"><i class="led"></i>COMING SOON</span><h3>NEURIG</h3><p>기타 앰프와 이펙트를, 뉴럴 모델링으로.</p><p class="price">가격 문의 · 국내 안전 인증 진행 중</p><div class="btns"><a class="btn go" href="https://www.avx.co.kr/goods/view?no=3201">출시 문의</a></div></div>
-        <img class="art" data-src="neurig" alt="NEURIG">
-      </article>
-      <article class="tile p-tile wide c6 rise">
-        <div class="p-copy"><h3>G2 FOUR / G2X FOUR</h3><p>기타 멀티 이펙트 프로세서.</p><p class="price">357,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=3024">구매하기</a></div></div>
-        <img class="art" data-src="g1four" alt="G2 FOUR / G2X FOUR">
-      </article>
-      <article class="tile p-tile small c3 rise">
-        <div class="p-copy"><h3>B2 FOUR</h3><p>베이스 멀티 이펙트 프로세서.</p><p class="price">446,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=3023">구매하기</a></div></div>
-        <img class="art" data-src="b2four" alt="B2 FOUR">
-      </article>
-      <article class="tile p-tile small c3 rise">
-        <div class="p-copy"><h3>MS-70CDR+</h3><p>코러스·딜레이·리버브 멀티스톰프.</p><p class="price">214,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=2989">구매하기</a></div></div>
-        <img class="art" data-src="ms70cdr" alt="MS-70CDR+">
-      </article>
-    </div>
-  </section>
-
-  <section class="sec wrap cat" id="vocal" aria-labelledby="h-vocal">
-    <div class="sec-head"><div><span class="label"><i class="led"></i>VOCAL PROCESSOR</span><h2 id="h-vocal">보컬</h2></div><p>하모니, 피치, 루프. 목소리 하나로 무대를 채우는 이펙터.</p></div>
-    <div class="bento">
-      <article class="tile p-tile wide c7 rise">
-        <div class="p-copy"><h3>V6-SP</h3><p>보컬 이펙터·루퍼·포먼트를 발끝으로.</p><p class="price">660,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=2995">구매하기</a></div></div>
-        <img class="art" data-src="v6sp" alt="V6-SP">
-      </article>
-      <article class="tile p-tile wide c5 rise">
-        <div class="p-copy"><h3>V3</h3><p>하모니·피치 코렉트 보컬 프로세서. USB 오디오 인터페이스.</p><p class="price">499,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=2994">구매하기</a></div></div>
-        <img class="art" data-src="v3" alt="V3">
-      </article>
-    </div>
-  </section>
-
-  <section class="sec wrap cat" id="mixer" aria-labelledby="h-mixer">
-    <div class="sec-head"><div><span class="label"><i class="led"></i>MIXER · RECORDER</span><h2 id="h-mixer">믹서·레코더</h2></div><p>합주를 섞고, 그대로 기록하는 장비.</p></div>
-    <div class="bento">
-      <article class="tile p-tile wide c8 rise">
-        <div class="p-copy"><h3>LiveTrak L12next</h3><p>12채널 14트랙 디지털 믹서·레코더.</p><p class="price">1,150,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=2738">구매하기</a></div></div>
-        <img class="art" data-src="l12next" alt="LiveTrak L12next">
-      </article>
-      <article class="tile p-tile small c4 rise">
-        <div class="p-copy"><h3>LiveTrak L6max</h3><p>12채널 포터블 오디오 레코더.</p><p class="price">570,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=2684">구매하기</a></div></div>
-        <img class="art" data-src="l6max" alt="LiveTrak L6max">
-      </article>
-      <article class="tile p-tile wide c12 rise">
-        <div class="p-copy"><h3>R20 MultiTrak</h3><p>멀티트랙 레코더.</p><p class="price">891,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=2977">구매하기</a></div></div>
-        <img class="art" data-src="r20" alt="R20 MultiTrak">
-      </article>
-    </div>
-  </section>
-
-  <section class="sec wrap cat" id="podcast" aria-labelledby="h-podcast">
-    <div class="sec-head"><div><span class="label"><i class="led"></i>PODCAST</span><h2 id="h-podcast">팟캐스트</h2></div><p>둘이서, 넷이서. 마이크를 꽂고 버튼 몇 번이면 대화가 깨끗하게.</p></div>
-    <div class="bento">
-      <article class="tile p-tile wide c8 rise">
-        <div class="p-copy"><h3>PodTrak P4next</h3><p>4트랙 팟캐스트 레코더. 오디오 인터페이스로도.</p><p class="price">305,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=2680">구매하기</a></div></div>
-        <img class="art" data-src="p4next" alt="PodTrak P4next">
-      </article>
-      <article class="tile p-tile small c4 rise">
-        <div class="p-copy"><h3>PodTrak P2</h3><p>2트랙 팟캐스트 레코더.</p><p class="price">199,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=2282">구매하기</a></div></div>
-        <img class="art" data-src="p2" alt="PodTrak P2">
-      </article>
-    </div>
-  </section>
-
-  <!-- 용도별로 찾기: 찾기 도구 박스 하나 -->
-  <section class="sec wrap" id="finder" aria-labelledby="h-uses">
-    <div class="bento">
-      <article class="tile t-uses c12 rise">
-        <div style="display:flex;flex-direction:column;min-width:0">
-          <span class="label"><i class="led"></i>FIND BY USE</span>
-          <h2 id="h-uses">용도별로 찾기.</h2>
-          <div class="chips" id="chips" role="group" aria-label="용도"></div>
-          <p class="u-desc" id="uDesc"></p>
-          <ul class="u-list" id="uList"></ul>
-        </div>
-        <div class="u-stage" aria-live="polite"><img id="uImg" alt=""><span class="u-name" id="uName"></span></div>
-      </article>
+    <div class="use-track" id="useTrack"></div>
+    <div class="use-ctrl">
+      <div class="use-dots" id="useDots" role="group" aria-label="용도 카드 선택"></div>
+      <button class="use-pp" id="usePP" type="button" aria-label="자동 넘김 멈춤"><svg viewBox="0 0 12 12" width="12" height="12" fill="currentColor"><rect x="2" y="1" width="3" height="10" rx="1"/><rect x="7" y="1" width="3" height="10" rx="1"/></svg></button>
     </div>
   </section>
 
   <!-- 4. 정품·A/S: 단계 박스 + 연락처 박스 + FAQ 박스 -->
   <section class="sec wrap" id="support" aria-labelledby="h-support">
-    <div class="sec-head"><h2 id="h-support">사는 순간부터, 쓰는 내내.</h2><p>ZOOM 한국 공식 수입원 에이브이엑스(AVX)가 함께해요.</p></div>
+    <div class="sec-head"><h2 id="h-support">정품 구매·A/S 안내</h2><p>한국 공식 수입원 에이브이엑스(AVX)가 구매부터 A/S까지 안내해요.</p></div>
     <div class="bento">
       <article class="tile c8 rise">
-        <span class="label"><i class="led"></i>SUPPORT FLOW</span>
+        <span class="label"><i class="led"></i>이용 순서</span>
         <ol class="steps">
           <li><b>01</b><h4>구매</h4><p>AVX와 공식 판매처에서 국내 정식 수입 제품을.</p></li>
           <li><b>02</b><h4>세팅</h4><p>매뉴얼·펌웨어는 ZOOM 공식 지원 페이지에서.</p></li>
@@ -535,6 +520,18 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
   </section>
 </main>
 
+<!-- 시리즈 시트: 대표 제품을 누르면 열림 -->
+<div class="sheet" id="sheet" hidden>
+  <div class="sheet-scrim" data-close></div>
+  <div class="sheet-panel" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <div class="sheet-head">
+      <div><span class="label" id="sheetLabel"></span><h2 id="sheetTitle"></h2><p id="sheetIntro"></p></div>
+      <button class="sheet-x" type="button" data-close aria-label="닫기"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 2l10 10M12 2L2 12"/></svg></button>
+    </div>
+    <div class="sheet-grid" id="sheetGrid"></div>
+  </div>
+</div>
+
 <footer>
   <div class="wrap f-in">
     <div class="f-dir">
@@ -544,7 +541,7 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
       <div><h4>고객지원</h4><ul><li><a href="#support">정품·A/S 안내</a></li><li><a href="https://www.avx.co.kr/goods/brand?code=0004">AVX ZOOM 브랜드관</a></li><li><a href="https://zoomcorp.com/en/us/support/">매뉴얼·펌웨어</a></li></ul></div>
     </div>
     <div class="f-legal">
-      <span>가격은 에이브이엑스(AVX) 자사몰 판매가 기준(2026년 11월)이며 배송비 별도, 변동될 수 있습니다. 인기 순서는 AVX 자사몰 ZOOM 브랜드관 인기순 정렬 기준입니다.</span>
+      <span>가격은 에이브이엑스(AVX) 자사몰 판매가 기준(2026년 11월)이며 배송비 별도, 변동될 수 있습니다.</span>
       <span>에이브이엑스(주) · 서울특별시 성동구 성수이로10길 14 802·803호 · 고객센터 02-2265-0032</span>
       <span>ZOOM은 ZOOM CORPORATION의 상표입니다. 이 페이지는 ZOOM AUDIO 홈페이지 디자인 시안입니다.</span>
     </div>
@@ -581,8 +578,6 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
   const P = k => document.querySelector(`#imgsrc [data-k="${k}"]`)?.getAttribute('src') || '';
   document.querySelectorAll('img[data-src]').forEach(i => { i.src = P(i.dataset.src); });
 
-  const PRODUCTS = [{"k": "h6studio", "n": "H6studio", "p": "699,000원", "no": 2545}, {"k": "h5studio", "n": "H5studio", "p": "659,000원", "no": 2277}, {"k": "h6e", "n": "H6essential", "p": "559,000원", "no": 1465}, {"k": "h4e", "n": "H4essential", "p": "399,000원", "no": 1468}, {"k": "h2e", "n": "H2essential", "p": "339,000원", "no": 1919}, {"k": "h1e", "n": "H1essential", "p": "199,000원", "no": 1469}, {"k": "f8npro", "n": "F8n Pro", "p": "1,700,000원", "no": 423}, {"k": "f6", "n": "F6", "p": "1,030,000원", "no": 534}, {"k": "f3", "n": "F3", "p": "530,000원", "no": 922}, {"k": "neurig", "n": "NEURIG", "p": "가격 문의 · 국내 안전 인증 진행 중", "no": 3201}, {"k": "g1four", "n": "G2 FOUR / G2X FOUR", "p": "357,000원", "no": 3024}, {"k": "b2four", "n": "B2 FOUR", "p": "446,000원", "no": 3023}, {"k": "ms70cdr", "n": "MS-70CDR+", "p": "214,000원", "no": 2989}, {"k": "v6sp", "n": "V6-SP", "p": "660,000원", "no": 2995}, {"k": "v3", "n": "V3", "p": "499,000원", "no": 2994}, {"k": "l12next", "n": "LiveTrak L12next", "p": "1,150,000원", "no": 2738}, {"k": "l6max", "n": "LiveTrak L6max", "p": "570,000원", "no": 2684}, {"k": "r20", "n": "R20 MultiTrak", "p": "891,000원", "no": 2977}, {"k": "p4next", "n": "PodTrak P4next", "p": "305,000원", "no": 2680}, {"k": "p2", "n": "PodTrak P2", "p": "199,000원", "no": 2282}];
-  const by = Object.fromEntries(PRODUCTS.map(p => [p.k, p]));
   const url = no => `https://www.avx.co.kr/goods/view?no=${no}`;
 
   // 상단 히어로 슬라이드
@@ -599,35 +594,83 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
   }
 
 
-  // 용도별로 찾기
+  // 시리즈 시트
+  const CATS = [{"id": "handy", "label": "HANDY RECORDER", "title": "핸디 레코더", "intro": "손에 쥐고 바로 녹음. 합주실, 무대, 책상 위까지.", "items": [{"k": "h6studio", "n": "H6studio", "sub": "여섯 트랙. 대구경 XY 마이크.", "price": "699,000원", "no": 2545, "tag": "NEW", "more": "https://claude.ai/artifact/SCHGy9TERkg3ViwjEJdivj"}, {"k": "h5studio", "n": "H5studio", "sub": "4트랙 스튜디오 핸디 레코더. 오디오 인터페이스로도.", "price": "659,000원", "no": 2277, "tag": "", "more": ""}, {"k": "h6e", "n": "H6essential", "sub": "6트랙 32비트 플로트. 이제 멀티트랙 녹음 모드까지.", "price": "559,000원", "no": 1465, "tag": "FIRMWARE V4.0", "more": ""}, {"k": "h4e", "n": "H4essential", "sub": "4트랙 32비트 플로트.", "price": "399,000원", "no": 1468, "tag": "", "more": ""}, {"k": "h2e", "n": "H2essential", "sub": "32비트 플로트 핸디 레코더.", "price": "339,000원", "no": 1919, "tag": "", "more": ""}, {"k": "h1e", "n": "H1essential", "sub": "처음 사는 녹음기라면. 가볍게 시작하는 32비트.", "price": "199,000원", "no": 1469, "tag": "START HERE", "more": ""}]}, {"id": "field", "label": "FIELD RECORDER", "title": "필드 레코더", "intro": "촬영장과 야외에서. 갑자기 커지는 소리에도 깨지지 않게.", "items": [{"k": "f8npro", "n": "F8n Pro", "sub": "8채널 필드 레코더.", "price": "1,700,000원", "no": 423, "tag": "", "more": ""}, {"k": "f6", "n": "F6", "sub": "멀티트랙 필드 레코더. 전용 가방 PCF-6 포함.", "price": "1,030,000원", "no": 534, "tag": "", "more": ""}, {"k": "f3", "n": "F3", "sub": "2채널 32비트 플로트 필드 레코더.", "price": "530,000원", "no": 922, "tag": "", "more": ""}]}, {"id": "effects", "label": "MULTI-EFFECTS", "title": "이펙터", "intro": "페달 하나로 시작해 보드 전체까지. 합주실에 들고 가는 톤.", "items": [{"k": "neurig", "n": "NEURIG", "sub": "기타 앰프와 이펙트를, 뉴럴 모델링으로.", "price": "가격 문의 · 국내 안전 인증 진행 중", "no": 3201, "tag": "COMING SOON", "more": ""}, {"k": "g1four", "n": "G2 FOUR / G2X FOUR", "sub": "기타 멀티 이펙트 프로세서.", "price": "357,000원", "no": 3024, "tag": "", "more": ""}, {"k": "b2four", "n": "B2 FOUR", "sub": "베이스 멀티 이펙트 프로세서.", "price": "446,000원", "no": 3023, "tag": "", "more": ""}, {"k": "ms70cdr", "n": "MS-70CDR+", "sub": "코러스·딜레이·리버브 멀티스톰프.", "price": "214,000원", "no": 2989, "tag": "", "more": ""}]}, {"id": "vocal", "label": "VOCAL PROCESSOR", "title": "보컬", "intro": "하모니, 피치, 루프. 목소리 하나로 무대를 채우는 이펙터.", "items": [{"k": "v6sp", "n": "V6-SP", "sub": "보컬 이펙터·루퍼·포먼트를 발끝으로.", "price": "660,000원", "no": 2995, "tag": "", "more": ""}, {"k": "v3", "n": "V3", "sub": "하모니·피치 코렉트 보컬 프로세서. USB 오디오 인터페이스.", "price": "499,000원", "no": 2994, "tag": "", "more": ""}]}, {"id": "mixer", "label": "MIXER · RECORDER", "title": "믹서·레코더", "intro": "합주를 섞고, 그대로 기록하는 장비.", "items": [{"k": "l12next", "n": "LiveTrak L12next", "sub": "12채널 14트랙 디지털 믹서·레코더.", "price": "1,150,000원", "no": 2738, "tag": "", "more": ""}, {"k": "l6max", "n": "LiveTrak L6max", "sub": "12채널 포터블 오디오 레코더.", "price": "570,000원", "no": 2684, "tag": "", "more": ""}, {"k": "r20", "n": "R20 MultiTrak", "sub": "멀티트랙 레코더.", "price": "891,000원", "no": 2977, "tag": "", "more": ""}]}, {"id": "podcast", "label": "PODCAST", "title": "팟캐스트", "intro": "둘이서, 넷이서. 마이크를 꽂고 버튼 몇 번이면 대화가 깨끗하게.", "items": [{"k": "p4next", "n": "PodTrak P4next", "sub": "4트랙 팟캐스트 레코더. 오디오 인터페이스로도.", "price": "305,000원", "no": 2680, "tag": "", "more": ""}, {"k": "p2", "n": "PodTrak P2", "sub": "2트랙 팟캐스트 레코더.", "price": "199,000원", "no": 2282, "tag": "", "more": ""}]}];
+  const sheet = document.getElementById('sheet'), sGrid = document.getElementById('sheetGrid');
+  let lastFocus = null;
+  const openSheet = id => {
+    const c = CATS.find(x => x.id === id); if (!c) return;
+    document.getElementById('sheetLabel').innerHTML = `<i class="led"></i>${c.label} · ${c.items.length}`;
+    document.getElementById('sheetTitle').textContent = c.title + ' 시리즈';
+    document.getElementById('sheetIntro').textContent = c.intro;
+    sGrid.innerHTML = c.items.map(it => `
+      <article class="s-card">
+        ${it.tag ? `<span class="s-tag">${it.tag}</span>` : ''}
+        <div class="s-pic"><img src="${P(it.k)}" alt="${it.n}"></div>
+        <h3>${it.n}</h3><p>${it.sub}</p><b>${it.price}</b>
+        <div class="btns"><a class="btn go" href="${it.more || url(it.no)}">자세히 보기</a>${it.more ? `<a class="btn line" href="${url(it.no)}">구매</a>` : ''}</div>
+      </article>`).join('');
+    lastFocus = document.activeElement;
+    sheet.hidden = false; document.documentElement.style.overflow = 'hidden';
+    requestAnimationFrame(() => sheet.classList.add('open'));
+    sheet.querySelector('.sheet-x').focus();
+  };
+  const closeSheet = () => {
+    if (sheet.hidden) return;
+    sheet.classList.remove('open'); document.documentElement.style.overflow = '';
+    setTimeout(() => { sheet.hidden = true; }, reduce ? 0 : 260);
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    lastFocus?.focus?.();
+  };
+  sheet.addEventListener('click', e => { if (e.target.closest('[data-close]')) closeSheet(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
+  document.querySelectorAll('[data-series]').forEach(el => el.addEventListener('click', e => { e.preventDefault(); location.hash = el.dataset.series; openSheet(el.dataset.series); }));
+  const fromHash = () => { const id = location.hash.slice(1); if (CATS.some(c => c.id === id)) openSheet(id); };
+  addEventListener('hashchange', fromHash); fromHash();
+
+  // 용도별 추천: 제품 카드 갤러리 (차콜 섹션)
+  const by2 = {}; CATS.forEach(c => c.items.forEach(it => by2[it.k] = it));
   const USES = [
-    { t: '합주·공연', x: '합주실과 무대를 통째로, 또는 악기별로 나눠서.', pics: ['h6studio', 'h4e', 'l6max'] },
-    { t: '홈레코딩', x: '혼자 작업하는 뮤지션의 책상 위 스튜디오.', pics: ['r20', 'h5studio', 'l12next'] },
-    { t: '사운드 메이킹', x: '페달 하나로 시작해 보드 전체까지.', pics: ['ms70cdr', 'g1four', 'b2four'] },
-    { t: '보컬', x: '하모니, 피치, 루프. 목소리를 위한 이펙터.', pics: ['v3', 'v6sp'] },
-    { t: '팟캐스트·방송', x: '둘이서, 넷이서. 대화를 깨끗하게.', pics: ['p2', 'p4next'] },
-    { t: '영상·현장', x: '촬영장과 야외에서, 클리핑 걱정 없이.', pics: ['f3', 'f6', 'f8npro'] },
+    { tag: 'BAND', t: '합주·공연 녹음', x: '합주실과 무대를 통째로, 또는 악기별로 나눠서.', pics: ['h6studio', 'h4e', 'l6max'] },
+    { tag: 'HOME', t: '홈레코딩', x: '혼자 작업하는 뮤지션의 책상 위 스튜디오.', pics: ['r20', 'h5studio', 'l12next'] },
+    { tag: 'TONE', t: '사운드 메이킹', x: '페달 하나로 시작해 보드 전체까지.', pics: ['ms70cdr', 'g1four', 'b2four'] },
+    { tag: 'VOCAL', t: '보컬', x: '하모니, 피치, 루프. 목소리를 위한 이펙터.', pics: ['v3', 'v6sp'] },
+    { tag: 'PODCAST', t: '팟캐스트·방송', x: '둘이서, 넷이서. 대화를 깨끗하게.', pics: ['p2', 'p4next'] },
+    { tag: 'FIELD', t: '영상·현장 녹음', x: '촬영장과 야외에서, 클리핑 걱정 없이.', pics: ['f3', 'f6', 'f8npro'] },
   ];
-  const chips = document.getElementById('chips'), uDesc = document.getElementById('uDesc'), uList = document.getElementById('uList'), uImg = document.getElementById('uImg'), uName = document.getElementById('uName');
-  let cur = null;
-  const preview = k => {
-    if (uImg.dataset.k === k) return;
-    uImg.dataset.k = k; uImg.classList.add('swap');
-    setTimeout(() => { if (uImg.dataset.k !== k) return; uImg.src = P(k); uImg.alt = by[k].n; uName.textContent = by[k].n; uImg.classList.remove('swap'); }, reduce ? 0 : 150);
-    uList.querySelectorAll('li').forEach(li => li.classList.toggle('peek', li.dataset.k === k));
-  };
-  const showUse = i => {
-    [...chips.children].forEach((c, j) => c.setAttribute('aria-pressed', j === i));
-    const u = USES[i]; uDesc.textContent = u.x; cur = u.pics[0];
-    uList.innerHTML = u.pics.map(k => { const p = by[k]; return `<li data-k="${k}"><button type="button">${p.n}</button><span>${p.p}</span><a href="${url(p.no)}" aria-label="${p.n} AVX에서 구매">구매 ›</a></li>`; }).join('');
-    uList.querySelectorAll('li').forEach(li => { const b = li.querySelector('button'), k = li.dataset.k;
-      b.addEventListener('mouseenter', () => preview(k)); b.addEventListener('focus', () => preview(k));
-      b.addEventListener('click', () => { cur = k; preview(k); }); });
-    uImg.dataset.k = ''; preview(cur);
-  };
-  uList.addEventListener('mouseleave', () => cur && preview(cur));
-  USES.forEach((u, i) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = u.t; b.addEventListener('click', () => showUse(i)); chips.append(b); });
-  showUse(0);
+  const uTrack = document.getElementById('useTrack'), uDots = document.getElementById('useDots'), uPP = document.getElementById('usePP');
+  uTrack.innerHTML = USES.map(u => `
+    <article class="use-card">
+      <div class="u-txt"><span class="label"><i class="led"></i>${u.tag}</span><h3>${u.t}</h3><p>${u.x}</p>
+        <ul>${u.pics.map((k, j) => { const p = by2[k]; return `<li class="${j === 0 ? 'sel peek' : ''}"><button type="button" data-k="${k}">${p.n}</button><span>${p.price}</span><a href="${p.more || url(p.no)}" aria-label="${p.n} 자세히 보기">보기 ›</a></li>`; }).join('')}</ul></div>
+      <div class="u-pic"><img src="${P(u.pics[0])}" alt="${by2[u.pics[0]].n}" data-k="${u.pics[0]}" loading="lazy"><span class="u-name">${by2[u.pics[0]].n}</span></div>
+    </article>`).join('');
+  const uCards = [...uTrack.children];
+  let ui = 0, ut = null, uPlay = !reduce;
+  const uStop = () => { clearInterval(ut); ut = null; uPlay = false; uPP.innerHTML = '<svg viewBox="0 0 12 12" width="12" height="12" fill="currentColor"><path d="M3 1.5v9l7-4.5z"/></svg>'; uPP.setAttribute('aria-label', '자동 넘김 재생'); };
+  uCards.forEach(card => {
+    const img = card.querySelector('.u-pic img'), name = card.querySelector('.u-name');
+    const pick = (btn, keep) => {
+      const k = btn.dataset.k, p = by2[k];
+      card.querySelectorAll('li').forEach(li => li.classList.toggle('peek', li.contains(btn)));
+      if (keep) card.querySelectorAll('li').forEach(li => li.classList.toggle('sel', li.contains(btn)));
+      if (img.dataset.k === k) return;
+      img.dataset.k = k; img.classList.add('swap');
+      setTimeout(() => { if (img.dataset.k !== k) return; img.src = P(k); img.alt = p.n; name.textContent = p.n; img.classList.remove('swap'); }, reduce ? 0 : 150);
+    };
+    card.querySelectorAll('li button').forEach(b => { b.addEventListener('mouseenter', () => pick(b, false)); b.addEventListener('focus', () => pick(b, false)); b.addEventListener('click', () => { pick(b, true); uStop(); }); });
+    card.querySelector('ul').addEventListener('mouseleave', () => { const b = card.querySelector('li.sel button'); if (b) pick(b, false); });
+  });
+  uCards.forEach((c, i) => { const d = document.createElement('button'); d.type = 'button'; d.setAttribute('aria-label', USES[i].t); d.addEventListener('click', () => { uGo(i); uStop(); }); uDots.append(d); });
+  const uMark = i => [...uDots.children].forEach((d, k) => d.setAttribute('aria-current', k === i));
+  const uGo = i => { ui = (i + uCards.length) % uCards.length; const c = uCards[ui]; uTrack.scrollTo({ left: c.offsetLeft - (uTrack.clientWidth - c.clientWidth) / 2, behavior: reduce ? 'auto' : 'smooth' }); uMark(ui); };
+  const U_PAUSE = uPP.innerHTML;
+  const uStart = () => { clearInterval(ut); ut = setInterval(() => uGo(ui + 1), 5000); uPlay = true; uPP.innerHTML = U_PAUSE; uPP.setAttribute('aria-label', '자동 넘김 멈춤'); };
+  uPP.addEventListener('click', () => uPlay ? uStop() : uStart());
+  let uScr; uTrack.addEventListener('scroll', () => { clearTimeout(uScr); uScr = setTimeout(() => { const mid = uTrack.scrollLeft + uTrack.clientWidth / 2; let best = 0, bd = 1e9; uCards.forEach((c, i) => { const d = Math.abs(c.offsetLeft + c.clientWidth / 2 - mid); if (d < bd) { bd = d; best = i; } }); ui = best; uMark(ui); }, 80); }, { passive: true });
+  uMark(0);
+  new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && uPlay) uStart(); else if (!e.isIntersecting) clearInterval(ut); }), { threshold: .4 }).observe(uTrack);
+  if (!uPlay) uStop();
 
   // 모바일 메뉴
   const mb = document.getElementById('menuBtn'), mn = document.getElementById('mnav');
