@@ -52,7 +52,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 26px; font-size: 13px; }
 .nav ul a { opacity: .78; } .nav ul a:hover { opacity: 1; }
 .nav .right { margin-left: auto; display: flex; align-items: center; gap: 14px; }
-.nav .tag { font: 600 10.5px/1 var(--mono); letter-spacing: .12em; color: var(--ink-2); }
+.nav .tag { font-size: 12px; color: var(--ink-2); }
 .nav .shop { height: 30px; padding: 0 14px; border-radius: 980px; background: var(--accent); color: #fff; font: 500 13px/30px var(--font); }
 .menu-btn { display: none; width: 36px; height: 32px; border-radius: 8px; border: 1px solid var(--line); background: none; cursor: pointer; place-items: center; }
 .nav .mnav { display: none; border-top: 1px solid var(--line); }
@@ -179,7 +179,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .faq details[open] summary::after { content: "−"; }
 .faq details p { margin: -4px 0 18px; color: var(--ink-2); font-size: 15px; }
 .kv { display: grid; grid-template-columns: 76px 1fr; gap: 8px 12px; margin-top: 18px; font-size: 14px; }
-.kv dt { font: 600 10.5px/1.9 var(--mono); letter-spacing: .12em; color: var(--char-ink-2); }
+.kv dt { font-size: 13px; line-height: 1.6; color: var(--char-ink-2); }
 .kv dd { margin: 0; }
 .kv a { text-decoration: underline; text-underline-offset: 3px; }
 
@@ -388,6 +388,22 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
   .p-tile.rep2 { grid-template-columns: 1fr; padding: 26px 24px; min-height: 0; }
   .p-tile.rep2 .art { order: -1; max-height: 200px; }
 }
+
+/* 영문 라벨 제거 후 간격 */
+.sec-head h2, .uses-head h2 { margin-top: 0; }
+.s-copy h1, .s-copy h2 { margin-top: 0; }
+.sheet-head h2 { margin-top: 0; }
+.s-pic { margin-top: 0; }
+.price.kr, .s-card b.kr { font-family: var(--font); font-weight: 500; letter-spacing: -0.01em; }
+
+/* 상단: 텍스트만 있는 제품군 줄 + 매뉴얼·펌웨어 */
+.chapter-in { gap: 4px; padding-top: 10px; padding-bottom: 10px; }
+.chapter a { width: auto; padding: 8px 16px; border-radius: 980px; flex-direction: row; }
+.chapter a span { font-size: 14px; font-weight: 500; }
+.chapter a:hover { background: var(--tile); }
+.nav .dl { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; border-radius: 980px; border: 1px solid var(--ink); font-size: 13px; font-weight: 500; white-space: nowrap; transition: background .2s, color .2s; }
+.nav .dl:hover { background: var(--ink); color: #fff; }
+@media (max-width: 734px) { .nav .dl { padding: 0 10px; font-size: 12px; } .nav .shop { display: none; } }
 </style>
 
 <header class="nav">
@@ -395,12 +411,13 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
     <a class="wordmark" href="#top" aria-label="ZOOM AUDIO 홈"><b>ZOOM</b><span>AUDIO</span></a>
     <nav aria-label="주 메뉴"><ul class="main"><li><a href="#series">제품</a></li><li><a href="#finder">용도별 추천</a></li><li><a href="#support">정품·A/S</a></li></ul></nav>
     <div class="right">
-      <span class="tag">OFFICIAL IMPORTER · AVX</span>
+      <span class="tag">한국 공식 수입원 AVX</span>
       <a class="shop" href="https://www.avx.co.kr/goods/brand?code=0004">구매하기</a>
+      <a class="dl" href="https://zoomcorp.com/en/us/support/"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 1.5v7.5M3.8 6.2L7 9.4l3.2-3.2M2 12.5h10"/></svg>매뉴얼·펌웨어</a>
       <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="메뉴 열기"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 5h12M2 11h12"/></svg></button>
     </div>
   </div>
-  <div class="mnav wrap" id="mnav"><ul><li><a href="#series">제품</a></li><li><a href="#finder">용도별 추천</a></li><li><a href="#support">정품·A/S</a></li></ul></div>
+  <div class="mnav wrap" id="mnav"><ul><li><a href="#series">제품</a></li><li><a href="#finder">용도별 추천</a></li><li><a href="#support">정품·A/S</a></li><li><a href="https://www.avx.co.kr/goods/brand?code=0004">구매하기</a></li><li><a href="https://zoomcorp.com/en/us/support/">매뉴얼·펌웨어</a></li></ul></div>
 </header>
 
 <nav class="chapter" aria-label="제품군">
@@ -415,7 +432,6 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
   <div class="slides">
     <article class="slide on" aria-roledescription="slide" aria-label="1 / 3">
       <div class="s-copy">
-        <span class="label"><i class="led"></i>NEW · HANDY RECORDER</span>
         <h1>H6studio</h1>
         <p class="s-sub">여섯 트랙. 대구경 XY 마이크.</p>
         <div class="btns"><a class="btn go" href="#handy">자세히 보기</a><a class="btn ghost" href="https://www.avx.co.kr/goods/view?no=2545">구매하기</a></div>
@@ -425,7 +441,6 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
     </article>
     <article class="slide" aria-roledescription="slide" aria-label="2 / 3">
       <div class="s-copy">
-        <span class="label"><i class="led"></i>FIELD RECORDER · 32-BIT FLOAT</span>
         <h2>F 시리즈</h2>
         <p class="s-sub">촬영장의 모든 소리를, 깨짐 없이.</p>
         <div class="btns"><a class="btn go" href="https://www.avx.co.kr/goods/view?no=534">F6 보기</a><a class="btn ghost" href="https://www.avx.co.kr/goods/view?no=922">F3 보기</a></div>
@@ -435,7 +450,6 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
     </article>
     <article class="slide" aria-roledescription="slide" aria-label="3 / 3">
       <div class="s-copy">
-        <span class="label"><i class="led"></i>LIVETRAK · PORTABLE MIXER</span>
         <h2>LiveTrak L6max</h2>
         <p class="s-sub">합주를 섞고, 그대로 기록한다.</p>
         <div class="btns"><a class="btn go" href="https://www.avx.co.kr/goods/view?no=2684">자세히 보기</a><a class="btn ghost" href="#finder">합주 장비 찾기</a></div>
@@ -456,7 +470,7 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
 
   <!-- 카테고리별 대표 제품 (최신 제품 하나씩) -->
   <section class="sec wrap" id="series" aria-labelledby="h-series">
-    <div class="sec-head"><div><span class="label"><i class="led"></i>LINEUP</span><h2 id="h-series">제품 카테고리</h2></div><p>카테고리마다 최신 제품을 모았어요. 누르면 시리즈 전체를 볼 수 있어요.</p></div>
+    <div class="sec-head"><div><h2 id="h-series">제품 카테고리</h2></div><p>카테고리마다 최신 제품을 모았어요. 누르면 시리즈 전체를 볼 수 있어요.</p></div>
     <div class="bento">
 <!--REPS-->
     </div>
@@ -464,8 +478,7 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
 
   <!-- 용도별 추천: 차콜 섹션 -->
   <section class="uses dark-sec" id="finder" aria-labelledby="h-uses">
-    <div class="wrap uses-head">
-      <span class="label"><i class="led"></i>FIND BY USE</span><h2 id="h-uses">용도별 추천</h2><p>지금 하는 음악에 맞는 ZOOM을 골라 드려요.</p>
+    <div class="wrap uses-head"><h2 id="h-uses">용도별 추천</h2><p>지금 하는 음악에 맞는 ZOOM을 골라 드려요.</p>
     </div>
     <div class="use-track" id="useTrack"></div>
     <div class="use-ctrl">
@@ -479,7 +492,6 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
     <div class="sec-head"><h2 id="h-support">정품 구매·A/S 안내</h2><p>한국 공식 수입원 에이브이엑스(AVX)가 구매부터 A/S까지 안내해요.</p></div>
     <div class="bento">
       <article class="tile c8 rise">
-        <span class="label"><i class="led"></i>이용 순서</span>
         <ol class="steps">
           <li><b>01</b><h4>구매</h4><p>AVX와 공식 판매처에서 국내 정식 수입 제품을.</p></li>
           <li><b>02</b><h4>세팅</h4><p>매뉴얼·펌웨어는 ZOOM 공식 지원 페이지에서.</p></li>
@@ -488,12 +500,11 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
         </ol>
       </article>
       <article class="tile dark c4 rise">
-        <span class="label"><i class="led"></i>AVX CUSTOMER CENTER</span>
         <div class="num" style="font:600 32px/1 var(--mono);color:var(--lime);margin-top:18px">02-2265-0032</div>
         <dl class="kv">
-          <dt>HOURS</dt><dd>평일 9:30 – 18:30</dd>
-          <dt>KAKAO</dt><dd>카카오톡 채널 '에이브이엑스'</dd>
-          <dt>MANUAL</dt><dd><a href="https://zoomcorp.com/en/us/support/">zoomcorp.com 지원</a></dd>
+          <dt>운영 시간</dt><dd>평일 9:30 – 18:30</dd>
+          <dt>카카오톡</dt><dd>카카오톡 채널 '에이브이엑스'</dd>
+          <dt>매뉴얼</dt><dd><a href="https://zoomcorp.com/en/us/support/">zoomcorp.com 지원</a></dd>
         </dl>
       </article>
       <article class="tile white c12 faq rise">
@@ -511,7 +522,7 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
   <div class="sheet-scrim" data-close></div>
   <div class="sheet-panel" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
     <div class="sheet-head">
-      <div><span class="label" id="sheetLabel"></span><h2 id="sheetTitle"></h2><p id="sheetIntro"></p></div>
+      <div><h2 id="sheetTitle"></h2><p id="sheetIntro"></p></div>
       <button class="sheet-x" type="button" data-close aria-label="닫기"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 2l10 10M12 2L2 12"/></svg></button>
     </div>
     <div class="sheet-grid" id="sheetGrid"></div>
@@ -567,14 +578,14 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
   let lastFocus = null;
   const openSheet = id => {
     const c = CATS.find(x => x.id === id); if (!c) return;
-    document.getElementById('sheetLabel').innerHTML = `<i class="led"></i>${c.label} · ${c.items.length}`;
+    
     document.getElementById('sheetTitle').textContent = c.title + ' 시리즈';
     document.getElementById('sheetIntro').textContent = c.intro;
     sGrid.innerHTML = c.items.map(it => `
       <article class="s-card">
-        ${it.tag ? `<span class="s-tag">${it.tag}</span>` : ''}
+        
         <div class="s-pic"><img src="${P(it.k)}" alt="${it.n}"></div>
-        <h3>${it.n}</h3><p>${it.sub}</p><b>${it.price}</b>
+        <h3>${it.n}</h3><p>${it.sub}</p><b class="${/^\d/.test(it.price) ? '' : 'kr'}">${it.price}</b>
         <div class="btns"><a class="btn go" href="${it.more || url(it.no)}">자세히 보기</a>${it.more ? `<a class="btn line" href="${url(it.no)}">구매</a>` : ''}</div>
       </article>`).join('');
     lastFocus = document.activeElement;
@@ -608,7 +619,7 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
   const uTrack = document.getElementById('useTrack'), uDots = document.getElementById('useDots'), uPP = document.getElementById('usePP');
   uTrack.innerHTML = USES.map(u => `
     <article class="use-card">
-      <div class="u-txt"><span class="label"><i class="led"></i>${u.tag}</span><h3>${u.t}</h3><p>${u.x}</p>
+      <div class="u-txt"><h3>${u.t}</h3><p>${u.x}</p>
         <ul>${u.pics.map((k, j) => { const p = by2[k]; return `<li class="${j === 0 ? 'sel peek' : ''}"><button type="button" data-k="${k}">${p.n}</button><span>${p.price}</span><a href="${p.more || url(p.no)}" aria-label="${p.n} 자세히 보기">보기 ›</a></li>`; }).join('')}</ul></div>
       <div class="u-pic"><img src="${P(u.pics[0])}" alt="${by2[u.pics[0]].n}" data-k="${u.pics[0]}" loading="lazy"><span class="u-name">${by2[u.pics[0]].n}</span></div>
     </article>`).join('');

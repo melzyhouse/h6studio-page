@@ -52,17 +52,17 @@ CATEGORIES = [
 def rep_tile(c):
     it = next(x for x in c["items"] if x["k"] == c["rep"])
     size = c["rep_size"]
-    tag = f'<span class="label"><i class="led"></i>{e(it["tag"])}</span>' if it.get("tag") else f'<span class="label"><i class="led"></i>{e(c["label"])}</span>'
+    tag = ""
     specs = ""
     head = "h3"
     return f'''      <a class="tile p-tile rep {size} rise" href="#{c["id"]}" data-series="{c["id"]}" aria-label="{e(c["title"])} 시리즈 보기, 대표 제품 {e(it["n"])}">
-        <div class="p-copy">{tag}<span class="cat-name">{e(c["title"])}</span><{head}>{e(it["n"])}</{head}><p>{e(it["sub"])}</p>{specs}<p class="price">{e(it["price"])}</p><span class="see">시리즈 보기 ›</span><span class="count">{len(c["items"])}개 제품</span></div>
+        <div class="p-copy">{tag}<span class="cat-name">{e(c["title"])}</span><{head}>{e(it["n"])}</{head}><p>{e(it["sub"])}</p>{specs}<p class="price{"" if it["price"][0].isdigit() else " kr"}">{e(it["price"])}</p><span class="see">시리즈 보기 ›</span><span class="count">{len(c["items"])}개 제품</span></div>
         <img class="art" data-src="{it["k"]}" alt="">
       </a>'''
 
 
 src = (ROOT / "template.html").read_text(encoding="utf-8")
-chapter = "\n".join(f'    <a href="#{c["id"]}" data-series="{c["id"]}"><img data-src="{c["icon"]}" alt=""><span>{e(c["title"])}</span></a>' for c in CATEGORIES)
+chapter = "\n".join(f'    <a href="#{c["id"]}" data-series="{c["id"]}"><span>{e(c["title"])}</span></a>' for c in CATEGORIES)
 keys = [it["k"] for c in CATEGORIES for it in c["items"]]
 imgs = "\n".join(f'  <img data-k="{k}" src="../zoom-studio-home/img/products/{k}.png" alt="">' for k in dict.fromkeys(keys))
 cats = [dict(id=c["id"], label=c["label"], title=c["title"], intro=c["intro"],
