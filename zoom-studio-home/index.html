@@ -1,0 +1,452 @@
+<title>ZOOM STUDIO</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Apple 홈페이지 구조(전폭 히어로 타일 → 2열 프로모 타일 → 가로 갤러리 → 디렉터리 푸터)에
+   ZOOM STUDIO 브랜드 컬러(노션 디자인 지침 2026-11-16: 차콜 네이비 + 하단 블루 그라데이션 + 라임 포인트)를 입힘 */
+:root {
+  --navy: #1B2545;        /* 기본 바탕 */
+  --navy-in: #15244F;     /* 한 단계 밝은 안쪽 판 */
+  --blue-1: #1D3B8E; --blue-2: #204DC1; --blue-3: #215AE6;   /* 하단 블루 그라데이션 */
+  --lime: #C8FF4D;        /* 찾아 읽는 정보에만 */
+  --mist: #C9D3F0;        /* 다크 위 설명 글자 */
+  --paper: #F5F5F7; --white: #FFFFFF; --ink: #1D1D1F; --ink-2: #6E6E73; --line: #D2D2D7;
+  --cta: #215AE6; --cta-hover: #2F68F2;
+  --font: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --gap: 12px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { overflow-x: clip; scroll-behavior: smooth; }
+body { margin: 0; background: var(--white); color: var(--ink); font: 400 17px/1.47 var(--font); letter-spacing: -0.01em; word-break: keep-all; -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--navy); }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+.label { font: 600 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+.led { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 8px var(--lime); margin-right: 8px; vertical-align: 1px; }
+
+/* ── 글로벌 내비 ── */
+.gnav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: rgba(27,37,69,.86); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); color: #E8ECF8; }
+.gnav-in { max-width: 1024px; margin: 0 auto; height: 48px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wordmark { display: flex; flex-direction: column; line-height: 1; gap: 3px; }
+.wordmark b { font: 900 17px/1 var(--font); letter-spacing: .06em; }
+.wordmark span { font: 600 7.5px/1 var(--mono); letter-spacing: .62em; color: var(--lime); }
+.gnav ul { list-style: none; display: flex; gap: 26px; margin: 0; padding: 0; font-size: 12.5px; }
+.gnav ul a { opacity: .82; transition: opacity .2s; }
+.gnav ul a:hover, .gnav ul a:focus-visible { opacity: 1; }
+.gnav-icons { display: flex; gap: 18px; align-items: center; }
+.icon-btn { background: none; border: 0; color: inherit; padding: 4px; cursor: pointer; opacity: .85; display: grid; place-items: center; }
+.icon-btn svg { width: 17px; height: 17px; }
+.menu-btn { display: none; }
+.mnav { display: none; }
+.ribbon { background: var(--paper); text-align: center; font-size: 14px; padding: 14px 16px; color: var(--ink); }
+.ribbon a { color: var(--cta); }
+.ribbon a::after, .link::after { content: " ›"; }
+
+/* ── 타일 공통 ── */
+main { display: flex; flex-direction: column; gap: var(--gap); padding-bottom: var(--gap); }
+.tile { position: relative; overflow: hidden; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.tile.dark { background: var(--navy); color: #fff; }
+.tile.dark::after { content: ""; position: absolute; inset: auto 0 0 0; height: 62%; pointer-events: none; opacity: .7;
+  background: linear-gradient(180deg, rgba(27,37,69,0) 0%, var(--blue-1) 33%, var(--blue-2) 71%, var(--blue-3) 100%); }
+.tile.light { background: var(--paper); }
+.tile > * { position: relative; z-index: 1; }
+.tile-copy { padding-inline: 24px; }
+.tile .label { display: block; margin-bottom: 14px; color: var(--cta); }
+.tile.dark .label { color: var(--lime); }
+.tile h2, .tile h3 { margin: 0; font-weight: 700; letter-spacing: -0.02em; }
+.tile .sub { margin: 6px 0 0; font-weight: 400; }
+.tile.dark .sub { color: var(--mist); }
+.tile .price { margin: 10px 0 0; font-size: 14px; color: var(--ink-2); }
+.tile.dark .price { color: var(--mist); opacity: .85; }
+.ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 18px; }
+.btn { display: inline-block; border-radius: 980px; padding: 10px 21px; font-size: 16px; font-weight: 500; border: 1px solid var(--cta); transition: background .2s, color .2s; }
+.btn.fill { background: var(--cta); color: #fff; }
+.btn.fill:hover { background: var(--cta-hover); border-color: var(--cta-hover); }
+.btn.line { color: var(--cta); }
+.btn.line:hover { background: var(--cta); color: #fff; }
+.tile.dark .btn.line { color: #fff; border-color: #fff; }
+.tile.dark .btn.line:hover { background: #fff; color: var(--navy); }
+.btn:focus-visible, .icon-btn:focus-visible, .gal-ctrl button:focus-visible, .gnav a:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
+.tile .art { margin-top: auto; transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+.tile:hover .art { transform: translateY(-6px) scale(1.015); }
+
+/* 히어로 타일 (Apple 692px 기준) */
+.hero { min-height: 692px; padding-top: 56px; }
+.hero h2 { font-size: 56px; line-height: 1.07; }
+.hero .sub { font-size: 28px; line-height: 1.14; }
+.hero .art { max-height: 430px; width: auto; margin-top: 36px; filter: drop-shadow(0 30px 40px rgba(0,0,0,.35)); }
+.hero.light .art { filter: drop-shadow(0 24px 30px rgba(0,0,0,.18)); }
+.hero .art { margin-bottom: 44px; max-width: 88%; }
+.art-pair img { max-width: 46%; height: auto; object-fit: contain; }
+.hero .art-pair { margin-bottom: 44px; }
+.art-pair { display: flex; gap: 28px; align-items: flex-end; justify-content: center; margin-top: auto; padding-top: 36px; }
+.art-pair img { max-height: 340px; width: auto; filter: drop-shadow(0 26px 34px rgba(0,0,0,.4)); }
+.art-pair img + img { max-height: 280px; }
+
+/* 프로모 그리드 (Apple 2열, 580px) */
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); padding-inline: var(--gap); }
+.promo { min-height: 580px; padding-top: 48px; }
+.promo h3 { font-size: 40px; line-height: 1.1; }
+.promo .sub { font-size: 21px; line-height: 1.38; }
+.promo .art { max-height: 300px; width: auto; max-width: 78%; margin-top: 28px; margin-bottom: 36px; filter: drop-shadow(0 22px 26px rgba(0,0,0,.22)); }
+.promo.dark .art { filter: drop-shadow(0 24px 30px rgba(0,0,0,.45)); }
+.promo .art.wide { max-width: 86%; max-height: 240px; margin-bottom: 64px; }
+
+/* 서비스 타일 그래픽 */
+.panel { margin-top: auto; margin-bottom: 44px; width: min(420px, 82%); border-radius: 18px; background: var(--navy-in); color: #fff; padding: 22px 24px; text-align: left; font: 500 14px/1.5 var(--font); }
+.panel .row { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(201,211,240,.18); }
+.panel .row:last-child { border-bottom: 0; }
+.panel .row b { font: 600 12px/1.5 var(--mono); letter-spacing: .1em; color: var(--lime); }
+.panel .row span { color: var(--mist); }
+.feed { margin-top: auto; margin-bottom: 44px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: min(330px, 76%); }
+.feed div { aspect-ratio: 4/5; background: var(--navy); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: 8px; color: #fff; text-align: left; }
+.feed div::after { content: ""; position: absolute; inset: 55% 0 0; background: linear-gradient(180deg, transparent, var(--blue-3)); opacity: .7; }
+.feed i { font: 600 8px/1 var(--mono); letter-spacing: .08em; color: var(--lime); font-style: normal; position: relative; z-index: 1; }
+.feed img { position: relative; z-index: 1; max-height: 58%; width: auto; align-self: center; }
+
+/* ── 갤러리: 용도별로 찾기 (Apple TV+ 갤러리 자리) ── */
+.gallery-sec { padding: 72px 0 56px; background: var(--white); }
+.gallery-head { max-width: 1024px; margin: 0 auto 28px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; }
+.gallery-head h2 { margin: 0; font-size: 40px; line-height: 1.1; letter-spacing: -0.02em; }
+.gallery-head p { margin: 8px 0 0; color: var(--ink-2); }
+.track { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 0 max(16px, calc((100% - 1024px) / 2)) 8px; }
+.track::-webkit-scrollbar { display: none; }
+.card { flex: 0 0 min(680px, 86vw); scroll-snap-align: center; border-radius: 24px; background: var(--navy); color: #fff; position: relative; overflow: hidden; display: grid; grid-template-columns: 1.1fr 1fr; min-height: 380px; }
+.card::after { content: ""; position: absolute; inset: auto 0 0 0; height: 55%; background: linear-gradient(180deg, transparent, var(--blue-1) 40%, var(--blue-3)); opacity: .7; }
+.card > * { position: relative; z-index: 1; }
+.card .txt { padding: 34px 0 30px 34px; display: flex; flex-direction: column; }
+.card .label { color: var(--lime); margin-bottom: 16px; }
+.card h3 { margin: 0; font-size: 30px; line-height: 1.2; letter-spacing: -0.02em; }
+.card p { margin: 10px 0 0; color: var(--mist); font-size: 15px; line-height: 1.55; }
+.card ul { list-style: none; margin: auto 0 0; padding: 18px 0 0; display: grid; gap: 8px; }
+.card li { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; border-top: 1px solid rgba(201,211,240,.2); padding-top: 8px; }
+.card li a:hover { color: var(--lime); }
+.card li span { font-variant-numeric: tabular-nums; color: var(--mist); white-space: nowrap; }
+.card .pic { display: flex; align-items: center; justify-content: center; padding: 28px; }
+.card .pic img { max-height: 280px; width: auto; filter: drop-shadow(0 24px 30px rgba(0,0,0,.45)); }
+.gal-ctrl { max-width: 1024px; margin: 20px auto 0; display: flex; justify-content: center; align-items: center; gap: 14px; }
+.dots { display: flex; gap: 10px; background: #E8E8ED; border-radius: 999px; padding: 10px 14px; }
+.dots button { width: 8px; height: 8px; border-radius: 999px; border: 0; padding: 0; background: #86868B; cursor: pointer; transition: width .4s, background .4s; }
+.dots button[aria-current="true"] { width: 40px; background: var(--ink); }
+.gal-ctrl .pp { width: 36px; height: 36px; border-radius: 50%; border: 0; background: #E8E8ED; color: var(--ink); cursor: pointer; display: grid; place-items: center; }
+.gal-ctrl .pp svg { width: 12px; height: 12px; }
+
+/* ── 푸터 ── */
+footer { background: var(--paper); color: var(--ink-2); font-size: 12px; line-height: 1.5; }
+.foot-in { max-width: 1024px; margin: 0 auto; padding-block: 20px 36px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.foot-notes { border-bottom: 1px solid var(--line); padding-bottom: 14px; margin: 0; padding-left: 0; list-style: none; display: grid; gap: 6px; }
+.dir { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+.dir h4 { margin: 0 0 8px; color: var(--ink); font-size: 12px; font-weight: 700; }
+.dir ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; }
+.dir a:hover { text-decoration: underline; color: var(--ink); }
+.corp { padding-top: 14px; display: grid; gap: 4px; }
+.corp strong { color: var(--ink); font-weight: 500; }
+
+/* 등장 모션: 보이는 상태에서 살짝 떠오르기만 */
+.rise { transform: translateY(24px); transition: transform 1s cubic-bezier(.2,.7,.2,1); }
+.rise.in { transform: none; }
+
+/* ── 반응형 (Apple: 1068 / 734) ── */
+@media (max-width: 1068px) {
+  .hero { min-height: 620px; } .hero h2 { font-size: 48px; } .hero .sub { font-size: 24px; } .hero .art { max-height: 380px; }
+  .promo { min-height: 500px; } .promo h3 { font-size: 32px; } .promo .sub { font-size: 19px; }
+  .gnav ul { gap: 18px; font-size: 12px; }
+  .dir { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 834px) { .gnav ul { display: none; } .menu-btn { display: grid; } }
+@media (max-width: 734px) {
+  .hero { min-height: 560px; padding-top: 44px; } .hero h2 { font-size: 40px; } .hero .sub { font-size: 21px; } .hero .art { max-height: 320px; }
+  .art-pair img { max-height: 240px; } .art-pair img + img { max-height: 200px; }
+  .grid { grid-template-columns: 1fr; padding-inline: 0; }
+  .promo { min-height: 480px; padding-top: 40px; } .promo h3 { font-size: 30px; } .promo .sub { font-size: 17px; }
+  .btn { font-size: 14px; padding: 8px 16px; }
+  .gallery-head h2 { font-size: 30px; }
+  .card { grid-template-columns: 1fr; min-height: 0; }
+  .card .pic { order: -1; padding: 24px 24px 0; } .card .pic img { max-height: 180px; }
+  .card .txt { padding: 20px 22px 24px; }
+  .card h3 { font-size: 24px; }
+  .dir { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.mnav.open { display: block; background: var(--navy); color: #fff; }
+.mnav ul { list-style: none; margin: 0; padding: 8px 0 20px; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
+.mnav li a { display: block; padding: 12px 0; font-size: 24px; font-weight: 700; border-bottom: 1px solid rgba(201,211,240,.12); }
+@media (prefers-reduced-motion: reduce) { .rise, .tile .art, .dots button { transition: none; transform: none; } }
+</style>
+
+<header class="gnav">
+  <div class="gnav-in">
+    <a class="wordmark" href="#top" aria-label="ZOOM STUDIO 홈"><b>ZOOM</b><span>STUDIO</span></a>
+    <nav aria-label="제품">
+      <ul>
+        <li><a href="#handy">핸디 레코더</a></li>
+        <li><a href="#field">필드 레코더</a></li>
+        <li><a href="#effects">이펙터</a></li>
+        <li><a href="#vocal">보컬</a></li>
+        <li><a href="#mixer">믹서·레코더</a></li>
+        <li><a href="#podcast">팟캐스트</a></li>
+        <li><a href="#guide">용도별 찾기</a></li>
+        <li><a href="#support">고객지원</a></li>
+      </ul>
+    </nav>
+    <div class="gnav-icons">
+      <a class="icon-btn" href="https://www.avx.co.kr/goods/search?search_text=ZOOM" aria-label="AVX에서 ZOOM 제품 검색"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8.5" cy="8.5" r="6"/><path d="M13 13l5 5"/></svg></a>
+      <a class="icon-btn" href="https://www.avx.co.kr/goods/brand?code=0004" aria-label="AVX ZOOM 브랜드관"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h12l-1 11H5z"/><path d="M7.5 7V5.5a2.5 2.5 0 015 0V7"/></svg></a>
+      <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="메뉴 열기"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h14M3 13h14"/></svg></button>
+    </div>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="모바일 메뉴">
+    <ul>
+      <li><a href="#handy">핸디 레코더</a></li><li><a href="#field">필드 레코더</a></li><li><a href="#effects">이펙터</a></li>
+      <li><a href="#vocal">보컬</a></li><li><a href="#mixer">믹서·레코더</a></li><li><a href="#podcast">팟캐스트</a></li>
+      <li><a href="#guide">용도별 찾기</a></li><li><a href="#support">고객지원</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="ribbon" id="top">ZOOM 정품은 한국 공식 수입원 AVX에서. 구매부터 A/S, 1:1 기술 상담까지. <a href="#support">자세히 보기</a></div>
+
+<main>
+  <!-- 히어로 1 -->
+  <section class="tile dark hero" id="handy" aria-labelledby="h-h6s">
+    <div class="tile-copy rise">
+      <span class="label"><i class="led"></i>NEW · HANDY RECORDER</span>
+      <h2 id="h-h6s">H6studio</h2>
+      <p class="sub">여섯 트랙. 무한한 영감.</p>
+      <div class="ctas">
+        <a class="btn fill" href="https://claude.ai/artifact/SCHGy9TERkg3ViwjEJdivj">더 알아보기</a>
+        <a class="btn line" href="https://www.avx.co.kr/goods/view?no=2545">구입하기</a>
+      </div>
+      <p class="price">699,000원</p>
+    </div>
+    <img class="art" src="img/products/h6studio.png" alt="H6studio 핸디 레코더 정면">
+  </section>
+
+  <!-- 히어로 2 -->
+  <section class="tile light hero" id="effects" aria-labelledby="h-neurig">
+    <div class="tile-copy rise">
+      <span class="label">COMING SOON · AMP &amp; EFFECTS</span>
+      <h2 id="h-neurig">NEURIG</h2>
+      <p class="sub">기타 앰프와 이펙트를, 뉴럴 모델링으로.</p>
+      <div class="ctas">
+        <a class="btn fill" href="https://www.avx.co.kr/goods/view?no=3201">출시 소식 받기</a>
+        <a class="btn line" href="https://zoomcorp.com/en/us/multi-effects/">제품 살펴보기</a>
+      </div>
+      <p class="price">국내 안전 인증 진행 중 · 가격 문의</p>
+    </div>
+    <img class="art" src="img/products/neurig.png" alt="NEURIG 앰프·이펙트 모델러" style="max-height:300px;margin-bottom:64px">
+  </section>
+
+  <!-- 히어로 3 -->
+  <section class="tile dark hero" id="field" aria-labelledby="h-fseries">
+    <div class="tile-copy rise">
+      <span class="label"><i class="led"></i>FIELD RECORDER · 32-BIT FLOAT</span>
+      <h2 id="h-fseries">F 시리즈</h2>
+      <p class="sub">현장의 모든 소리를, 놓치지 않게.</p>
+      <div class="ctas">
+        <a class="btn fill" href="https://www.avx.co.kr/goods/view?no=534">F6 살펴보기</a>
+        <a class="btn line" href="https://www.avx.co.kr/goods/view?no=922">F3 살펴보기</a>
+      </div>
+      <p class="price">F6 1,030,000원 · F3 530,000원</p>
+    </div>
+    <div class="art-pair art"><img src="img/products/f6.png" alt="F6 멀티트랙 필드 레코더"><img src="img/products/f3.png" alt="F3 2채널 필드 레코더"></div>
+  </section>
+
+  <!-- 프로모 그리드 -->
+  <div class="grid">
+    <section class="tile light promo" aria-labelledby="h-h5s">
+      <div class="tile-copy rise">
+        <span class="label">HANDY RECORDER</span>
+        <h3 id="h-h5s">H5studio</h3>
+        <p class="sub">4트랙. 스튜디오급 녹음을 손안에.</p>
+        <div class="ctas"><a class="btn fill" href="https://www.avx.co.kr/goods/view?no=2277">더 알아보기</a><a class="btn line" href="https://www.avx.co.kr/goods/view?no=2277">구입하기</a></div>
+        <p class="price">659,000원</p>
+      </div>
+      <img class="art" src="img/products/h5studio.png" alt="H5studio 핸디 레코더">
+    </section>
+
+    <section class="tile dark promo" aria-labelledby="h-h6e">
+      <div class="tile-copy rise">
+        <span class="label"><i class="led"></i>FIRMWARE V4.0</span>
+        <h3 id="h-h6e">H6essential</h3>
+        <p class="sub">6트랙 32비트 플로트. 이제 멀티트랙 녹음 모드까지.</p>
+        <div class="ctas"><a class="btn fill" href="https://www.avx.co.kr/goods/view?no=1465">더 알아보기</a><a class="btn line" href="https://www.avx.co.kr/goods/view?no=1465">구입하기</a></div>
+        <p class="price">559,000원</p>
+      </div>
+      <img class="art" src="img/products/h6e.png" alt="H6essential 핸디 레코더">
+    </section>
+
+    <section class="tile dark promo" id="vocal" aria-labelledby="h-v6">
+      <div class="tile-copy rise">
+        <span class="label"><i class="led"></i>VOCAL PROCESSOR</span>
+        <h3 id="h-v6">V6-SP</h3>
+        <p class="sub">보컬 이펙트, 루퍼, 포먼트를 발끝으로.</p>
+        <div class="ctas"><a class="btn fill" href="https://www.avx.co.kr/goods/view?no=2995">더 알아보기</a><a class="btn line" href="https://www.avx.co.kr/goods/view?no=2995">구입하기</a></div>
+        <p class="price">660,000원</p>
+      </div>
+      <img class="art wide" src="img/products/v6sp.png" alt="V6-SP 보컬 프로세서">
+    </section>
+
+    <section class="tile light promo" aria-labelledby="h-g2">
+      <div class="tile-copy rise">
+        <span class="label">MULTI-EFFECTS</span>
+        <h3 id="h-g2">G2 FOUR</h3>
+        <p class="sub">합주실로 들고 가는 기타 사운드.</p>
+        <div class="ctas"><a class="btn fill" href="https://www.avx.co.kr/goods/view?no=3024">더 알아보기</a><a class="btn line" href="https://www.avx.co.kr/goods/view?no=3024">구입하기</a></div>
+        <p class="price">G2 FOUR / G2X FOUR 357,000원</p>
+      </div>
+      <img class="art wide" src="img/products/g1four.png" alt="G2 FOUR, G2X FOUR 멀티 이펙터">
+    </section>
+
+    <section class="tile light promo" id="podcast" aria-labelledby="h-p4">
+      <div class="tile-copy rise">
+        <span class="label">PODCAST RECORDER</span>
+        <h3 id="h-p4">PodTrak P4next</h3>
+        <p class="sub">마이크 넷, 버튼 몇 번. 바로 녹음.</p>
+        <div class="ctas"><a class="btn fill" href="https://www.avx.co.kr/goods/view?no=2680">더 알아보기</a><a class="btn line" href="https://www.avx.co.kr/goods/view?no=2680">구입하기</a></div>
+        <p class="price">305,000원</p>
+      </div>
+      <img class="art" src="img/products/p4next.png" alt="PodTrak P4next 팟캐스트 레코더" style="max-height:260px">
+    </section>
+
+    <section class="tile dark promo" id="mixer" aria-labelledby="h-l6">
+      <div class="tile-copy rise">
+        <span class="label"><i class="led"></i>LIVETRAK</span>
+        <h3 id="h-l6">LiveTrak L6max</h3>
+        <p class="sub">합주를 섞고, 그대로 기록하는 12채널.</p>
+        <div class="ctas"><a class="btn fill" href="https://www.avx.co.kr/goods/view?no=2684">더 알아보기</a><a class="btn line" href="https://www.avx.co.kr/goods/view?no=2684">구입하기</a></div>
+        <p class="price">570,000원</p>
+      </div>
+      <img class="art wide" src="img/products/l6max.png" alt="LiveTrak L6max 포터블 믹서 레코더">
+    </section>
+
+    <section class="tile light promo" id="support" aria-labelledby="h-official">
+      <div class="tile-copy rise">
+        <span class="label">OFFICIAL KOREA</span>
+        <h3 id="h-official">정품은 AVX에서.</h3>
+        <p class="sub">한국 공식 수입원이 구매부터 A/S까지 책임집니다.</p>
+        <div class="ctas"><a class="btn fill" href="https://www.avx.co.kr/goods/brand?code=0004">ZOOM 브랜드관</a></div>
+      </div>
+      <div class="panel" aria-label="AVX 지원 안내">
+        <div class="row"><b>CH 01</b><span>국내 정식 판매 제품</span></div>
+        <div class="row"><b>CH 02</b><span>A/S·기술 상담 02-2265-0032</span></div>
+        <div class="row"><b>CH 03</b><span>평일 9:30 – 18:30</span></div>
+      </div>
+    </section>
+
+    <section class="tile dark promo" aria-labelledby="h-insta">
+      <div class="tile-copy rise">
+        <span class="label"><i class="led"></i>INSTAGRAM · OPENING SOON</span>
+        <h3 id="h-insta">ZOOM STUDIO<br>인스타그램</h3>
+        <p class="sub">세팅법부터 사운드 체크까지, 연재로 만나요.</p>
+      </div>
+      <div class="feed" aria-hidden="true">
+        <div><i>HOW TO USE</i><img src="img/products/h6studio.png" alt=""></div>
+        <div><i>SOUND CHECK</i><img src="img/products/ms70cdr.png" alt=""></div>
+        <div><i>SETUP</i><img src="img/products/l12next.png" alt=""></div>
+        <div><i>PRODUCT GUIDE</i><img src="img/products/h4e.png" alt=""></div>
+        <div><i>Q&amp;A</i><img src="img/products/p2.png" alt=""></div>
+        <div><i>NEWS</i><img src="img/products/neurig.png" alt=""></div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- 갤러리: 용도별로 찾기 -->
+<section class="gallery-sec" id="guide" aria-labelledby="h-guide">
+  <div class="gallery-head">
+    <div><h2 id="h-guide">용도별로 찾기.</h2><p>지금 하는 음악에 맞는 ZOOM을 골라 드려요.</p></div>
+  </div>
+  <div class="track" id="track">
+    <article class="card">
+      <div class="txt"><span class="label">CH 01 · BAND</span><h3>합주·공연 녹음</h3><p>합주실과 무대를 통째로, 또는 악기별로 나눠서.</p>
+        <ul><li><a href="https://www.avx.co.kr/goods/view?no=2545">H6studio</a><span>699,000원</span></li><li><a href="https://www.avx.co.kr/goods/view?no=1468">H4essential</a><span>399,000원</span></li><li><a href="https://www.avx.co.kr/goods/view?no=2684">LiveTrak L6max</a><span>570,000원</span></li></ul></div>
+      <div class="pic"><img src="img/products/h4e.png" alt="H4essential" loading="lazy"></div>
+    </article>
+    <article class="card">
+      <div class="txt"><span class="label">CH 02 · HOME</span><h3>홈레코딩</h3><p>혼자 작업하는 뮤지션의 책상 위 스튜디오.</p>
+        <ul><li><a href="https://www.avx.co.kr/goods/view?no=2977">R20 MultiTrak</a><span>891,000원</span></li><li><a href="https://www.avx.co.kr/goods/view?no=1436">UAC-232</a><span>295,000원</span></li><li><a href="https://www.avx.co.kr/goods/view?no=993">AMS-44</a><span>242,000원</span></li></ul></div>
+      <div class="pic"><img src="img/products/r20.png" alt="R20 MultiTrak" loading="lazy"></div>
+    </article>
+    <article class="card">
+      <div class="txt"><span class="label">CH 03 · TONE</span><h3>사운드 메이킹</h3><p>페달 하나로 시작해 보드 전체까지.</p>
+        <ul><li><a href="https://www.avx.co.kr/goods/view?no=2989">MS-70CDR+</a><span>214,000원</span></li><li><a href="https://www.avx.co.kr/goods/view?no=3024">G2 FOUR</a><span>357,000원</span></li><li><a href="https://www.avx.co.kr/goods/view?no=3023">B2 FOUR</a><span>446,000원</span></li></ul></div>
+      <div class="pic"><img src="img/products/ms70cdr.png" alt="MS-70CDR+" loading="lazy"></div>
+    </article>
+    <article class="card">
+      <div class="txt"><span class="label">CH 04 · VOCAL</span><h3>보컬</h3><p>하모니, 피치, 루프. 목소리를 위한 이펙터.</p>
+        <ul><li><a href="https://www.avx.co.kr/goods/view?no=2994">V3</a><span>499,000원</span></li><li><a href="https://www.avx.co.kr/goods/view?no=2995">V6-SP</a><span>660,000원</span></li></ul></div>
+      <div class="pic"><img src="img/products/v3.png" alt="V3 보컬 프로세서" loading="lazy"></div>
+    </article>
+    <article class="card">
+      <div class="txt"><span class="label">CH 05 · PODCAST</span><h3>팟캐스트·방송</h3><p>둘이서, 넷이서. 대화를 깨끗하게.</p>
+        <ul><li><a href="https://www.avx.co.kr/goods/view?no=2282">PodTrak P2</a><span>199,000원</span></li><li><a href="https://www.avx.co.kr/goods/view?no=2680">PodTrak P4next</a><span>305,000원</span></li><li><a href="https://www.avx.co.kr/goods/view?no=598">L-8</a><span>599,000원</span></li></ul></div>
+      <div class="pic"><img src="img/products/p2.png" alt="PodTrak P2" loading="lazy"></div>
+    </article>
+    <article class="card">
+      <div class="txt"><span class="label">CH 06 · FIELD</span><h3>영상·현장 녹음</h3><p>촬영장과 야외에서, 클리핑 걱정 없이.</p>
+        <ul><li><a href="https://www.avx.co.kr/goods/view?no=922">F3</a><span>530,000원</span></li><li><a href="https://www.avx.co.kr/goods/view?no=534">F6</a><span>1,030,000원</span></li><li><a href="https://www.avx.co.kr/goods/view?no=423">F8n Pro</a><span>1,700,000원</span></li></ul></div>
+      <div class="pic"><img src="img/products/f8npro.png" alt="F8n Pro" loading="lazy"></div>
+    </article>
+  </div>
+  <div class="gal-ctrl">
+    <div class="dots" id="dots" role="group" aria-label="카드 선택"></div>
+    <button class="pp" id="pp" type="button" aria-label="자동 넘김 멈춤"><svg viewBox="0 0 12 12" fill="currentColor"><rect x="2" y="1" width="3" height="10" rx="1"/><rect x="7" y="1" width="3" height="10" rx="1"/></svg></button>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-in">
+    <ul class="foot-notes">
+      <li>가격은 한국 공식 수입원 에이브이엑스(AVX) 자사몰 판매가 기준이며(2026년 11월), 배송비 별도입니다. 판매가는 변동될 수 있습니다.</li>
+      <li>NEURIG는 국내 안전 인증 진행 중으로, 출시 일정과 가격은 AVX로 문의해 주세요.</li>
+    </ul>
+    <div class="dir">
+      <div><h4>레코더</h4><ul><li><a href="https://www.avx.co.kr/goods/view?no=2545">H6studio</a></li><li><a href="https://www.avx.co.kr/goods/view?no=2277">H5studio</a></li><li><a href="https://www.avx.co.kr/goods/view?no=1465">H6essential</a></li><li><a href="https://www.avx.co.kr/goods/view?no=1468">H4essential</a></li><li><a href="https://www.avx.co.kr/goods/view?no=1919">H2essential</a></li><li><a href="https://www.avx.co.kr/goods/view?no=1469">H1essential</a></li></ul></div>
+      <div><h4>필드·영상</h4><ul><li><a href="https://www.avx.co.kr/goods/view?no=423">F8n Pro</a></li><li><a href="https://www.avx.co.kr/goods/view?no=534">F6</a></li><li><a href="https://www.avx.co.kr/goods/view?no=922">F3</a></li><li><a href="https://www.avx.co.kr/goods/view?no=997">Q8n-4K</a></li><li><a href="https://www.avx.co.kr/goods/view?no=3226">TCA-1</a></li></ul></div>
+      <div><h4>이펙터·보컬</h4><ul><li><a href="https://www.avx.co.kr/goods/view?no=3201">NEURIG</a></li><li><a href="https://www.avx.co.kr/goods/view?no=3024">G2 FOUR</a></li><li><a href="https://www.avx.co.kr/goods/view?no=3022">B6</a></li><li><a href="https://www.avx.co.kr/goods/view?no=2995">V6-SP</a></li><li><a href="https://www.avx.co.kr/goods/view?no=2994">V3</a></li></ul></div>
+      <div><h4>믹서·인터페이스</h4><ul><li><a href="https://www.avx.co.kr/goods/view?no=2738">LiveTrak L12next</a></li><li><a href="https://www.avx.co.kr/goods/view?no=2684">LiveTrak L6max</a></li><li><a href="https://www.avx.co.kr/goods/view?no=2977">R20</a></li><li><a href="https://www.avx.co.kr/goods/view?no=1436">UAC-232</a></li><li><a href="https://www.avx.co.kr/goods/view?no=2680">PodTrak P4next</a></li></ul></div>
+      <div><h4>고객지원</h4><ul><li><a href="https://www.avx.co.kr/">AVX 자사몰</a></li><li><a href="https://www.avx.co.kr/goods/brand?code=0004">ZOOM 브랜드관</a></li><li><a href="https://zoomcorp.com/en/us/support/">ZOOM 매뉴얼·펌웨어</a></li></ul></div>
+    </div>
+    <div class="corp">
+      <span><strong>ZOOM STUDIO</strong> · 한국 공식 수입원 에이브이엑스(주) · 고객센터 02-2265-0032 (평일 9:30 – 18:30)</span>
+      <span>서울특별시 성동구 성수이로10길 14 802·803호</span>
+      <span>ZOOM은 ZOOM CORPORATION의 상표입니다. 이 페이지는 ZOOM STUDIO 홈페이지 디자인 시안입니다.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // 등장 모션
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .2 });
+  document.querySelectorAll('.rise').forEach(el => io.observe(el));
+
+  // 모바일 메뉴
+  const mb = document.getElementById('menuBtn'), mn = document.getElementById('mnav');
+  mb.addEventListener('click', () => { const o = mn.classList.toggle('open'); mb.setAttribute('aria-expanded', o); mb.setAttribute('aria-label', o ? '메뉴 닫기' : '메뉴 열기'); });
+  mn.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mn.classList.remove('open'); mb.setAttribute('aria-expanded', false); }));
+
+  // 갤러리: 점 내비 + 자동 넘김 (Apple TV+ 갤러리 방식)
+  const track = document.getElementById('track'), cards = [...track.querySelectorAll('.card')], dots = document.getElementById('dots'), pp = document.getElementById('pp');
+  cards.forEach((c, i) => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', (i + 1) + '번째 카드'); b.addEventListener('click', () => { go(i); stop(); }); dots.append(b); });
+  let cur = 0, timer = null, playing = !reduce;
+  const mark = i => [...dots.children].forEach((d, k) => d.setAttribute('aria-current', k === i));
+  const go = i => { cur = (i + cards.length) % cards.length; const c = cards[cur]; track.scrollTo({ left: c.offsetLeft - (track.clientWidth - c.clientWidth) / 2, behavior: reduce ? 'auto' : 'smooth' }); mark(cur); };
+  const PLAY = '<svg viewBox="0 0 12 12" fill="currentColor"><path d="M3 1.5v9l7-4.5z"/></svg>', PAUSE = pp.innerHTML;
+  const start = () => { clearInterval(timer); timer = setInterval(() => go(cur + 1), 5000); playing = true; pp.innerHTML = PAUSE; pp.setAttribute('aria-label', '자동 넘김 멈춤'); };
+  const stop = () => { clearInterval(timer); timer = null; playing = false; pp.innerHTML = PLAY; pp.setAttribute('aria-label', '자동 넘김 재생'); };
+  pp.addEventListener('click', () => playing ? stop() : start());
+  let st; track.addEventListener('scroll', () => { clearTimeout(st); st = setTimeout(() => {
+    const mid = track.scrollLeft + track.clientWidth / 2; let best = 0, bd = 1e9;
+    cards.forEach((c, i) => { const d = Math.abs(c.offsetLeft + c.clientWidth / 2 - mid); if (d < bd) { bd = d; best = i; } }); cur = best; mark(cur); }, 80); }, { passive: true });
+  mark(0);
+  new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && playing) start(); else if (!e.isIntersecting) clearInterval(timer); }), { threshold: .4 }).observe(track);
+  if (!playing) stop();
+})();
+</script>

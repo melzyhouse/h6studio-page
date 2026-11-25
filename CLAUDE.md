@@ -4,6 +4,12 @@ ZOOM H6studio 핸디 레코더 상세페이지를 Apple MacBook Neo 페이지 �
 사용자는 한국어로 대화한다. 답변도 한국어로.
 
 ## 폴더
+- `zoom-studio-home/` : **ZOOM STUDIO 홈페이지 시안** (apple.com/kr 홈페이지 구성)
+  - `index.html` 원본 → `python3 build.py` → `zoom-studio.html`(게시용, 이미지 내장) / `zoom-studio-preview.html`(로컬 미리보기)
+  - `img/products/` : zoomcorp.com 공식 목록용 투명 PNG(정면 컷, 1000px로 정리)
+  - 게시 링크: https://claude.ai/artifact/3RPxPbxKGWfGUaGpFeWBak
+  - 브랜드 기준: 노션 'AVX ZOOM 인스타 디자인 지침 (2026-11-16 최신)' — 차콜 네이비 #1B2545, 하단 블루 그라데이션 #1D3B8E→#204DC1→#215AE6(불투명도 0.7), 라임 #C8FF4D는 라벨·LED 등 찾아 읽는 정보에만
+  - 가격·링크는 AVX 자사몰 ZOOM 브랜드관(https://www.avx.co.kr/goods/brand?code=0004) 기준
 - `macbook-neo-study/` : apple.com/kr/macbook-neo 페이지를 코드로 분석한 학습 자료
   - `README.md` 구조·카피 톤·디자인 원칙, `design-tokens.css` 색·폰트·간격 토큰, `raw/` 원본 HTML/CSS
 - `h6studio-page/` : 상세페이지 시안
