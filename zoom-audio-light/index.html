@@ -403,13 +403,45 @@ footer { background: var(--bg-2); color: var(--ink-2); border-top: 1px solid var
   .s-art.pair img { max-height: 210px; } .s-art.pair img + img { max-height: 170px; }
 }
 @media (prefers-reduced-motion: reduce) { .slide, .s-art, .s-dots button { transition: none; } .s-art { transform: none; } }
+
+/* ── 용도별로 찾기: 제품 카드 갤러리 (밝은 톤) ── */
+.uses { background: var(--bg); padding: 120px 0 72px; }
+.uses-head { margin-bottom: 32px; }
+.uses-head h2 { font-size: clamp(36px, 5vw, 56px); line-height: 1.08; font-weight: 900; margin-top: 16px; }
+.uses-head p { margin: 10px 0 0; color: var(--ink-2); font-size: 18px; }
+.use-track { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 0 max(20px, calc((100% - 1240px) / 2 + 20px)) 8px; }
+.use-track::-webkit-scrollbar { display: none; }
+.use-card { flex: 0 0 min(720px, 86vw); scroll-snap-align: center; border-radius: 28px; background: var(--bg-2); display: grid; grid-template-columns: 1.1fr 1fr; min-height: 400px; overflow: hidden; }
+.u-txt { padding: 36px 0 32px 36px; display: flex; flex-direction: column; }
+.u-txt .label { margin-bottom: 16px; }
+.u-txt h3 { font-size: 32px; line-height: 1.2; font-weight: 900; letter-spacing: -0.03em; }
+.u-txt p { margin: 10px 0 0; color: var(--ink-2); font-size: 16px; }
+.u-txt ul { list-style: none; margin: auto 0 0; padding: 20px 0 0; display: grid; gap: 0; }
+.u-txt li { display: flex; justify-content: space-between; gap: 12px; padding: 11px 0; border-top: 1px solid var(--line); font-size: 15px; }
+.u-txt li a { font-weight: 700; transition: color .2s; }
+.u-txt li a:hover { color: var(--accent); }
+.u-txt li span { font: 600 14px/1.4 var(--mono); font-variant-numeric: tabular-nums; color: var(--ink); white-space: nowrap; }
+.u-pic { display: flex; align-items: center; justify-content: center; padding: 32px; }
+.u-pic img { max-height: 290px; width: auto; max-width: 100%; object-fit: contain; filter: drop-shadow(0 24px 28px rgba(0,0,0,.2)); }
+.use-ctrl { display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 24px; }
+.use-dots { display: flex; gap: 10px; background: var(--bg-3); border-radius: 999px; padding: 10px 14px; }
+.use-dots button { width: 8px; height: 8px; border: 0; padding: 0; border-radius: 999px; background: #86868B; cursor: pointer; transition: width .4s, background .4s; }
+.use-dots button[aria-current="true"] { width: 36px; background: var(--ink); }
+.use-pp { width: 36px; height: 36px; border-radius: 50%; border: 0; background: var(--bg-3); color: var(--ink); display: grid; place-items: center; cursor: pointer; }
+@media (max-width: 640px) {
+  .uses { padding: 80px 0 56px; }
+  .use-card { grid-template-columns: 1fr; min-height: 0; border-radius: 22px; }
+  .u-pic { order: -1; padding: 26px 24px 0; } .u-pic img { max-height: 170px; }
+  .u-txt { padding: 20px 22px 22px; } .u-txt h3 { font-size: 24px; }
+}
+@media (prefers-reduced-motion: reduce) { .use-dots button { transition: none; } }
 </style>
 
 <header class="nav">
   <div class="wrap">
     <a class="wordmark" href="#top" aria-label="ZOOM AUDIO 홈"><b>ZOOM</b><span>AUDIO</span></a>
     <nav aria-label="주 메뉴"><ul class="main">
-      <li><a href="#new">신제품</a></li><li><a href="#console">용도별 찾기</a></li><li><a href="#lineup">전체 라인업</a></li><li><a href="#soon">출시 예정</a></li><li><a href="#support">정품·A/S</a></li>
+      <li><a href="#new">신제품</a></li><li><a href="#console">용도별로 찾기</a></li><li><a href="#lineup">전체 라인업</a></li><li><a href="#soon">출시 예정</a></li><li><a href="#support">정품·A/S</a></li>
     </ul></nav>
     <div class="right">
       <span class="tag">OFFICIAL IMPORTER · AVX</span>
@@ -418,7 +450,7 @@ footer { background: var(--bg-2); color: var(--ink-2); border-top: 1px solid var
     </div>
   </div>
   <div class="mnav wrap" id="mnav"><ul>
-    <li><a href="#new">신제품</a></li><li><a href="#console">용도별 찾기</a></li><li><a href="#lineup">전체 라인업</a></li><li><a href="#soon">출시 예정</a></li><li><a href="#support">정품·A/S</a></li>
+    <li><a href="#new">신제품</a></li><li><a href="#console">용도별로 찾기</a></li><li><a href="#lineup">전체 라인업</a></li><li><a href="#soon">출시 예정</a></li><li><a href="#support">정품·A/S</a></li>
   </ul></div>
 </header>
 
@@ -500,30 +532,15 @@ footer { background: var(--bg-2); color: var(--ink-2); border-top: 1px solid var
   </div>
 </section>
 
-<!-- 용도별: 채널 스트립 -->
-<section class="strip-sec" id="console" aria-labelledby="h-console">
-  <div class="wrap">
-    <div class="sec-head">
-      <div><span class="label"><i class="led"></i>CHANNEL SELECT</span><h2 id="h-console">어디서 연주하나요?</h2></div>
-      <p>채널을 고르면 그 현장에 맞는 장비를 골라 드려요.</p>
-    </div>
-    <div class="console" role="tablist" aria-label="용도">
-      <button class="ch" role="tab" type="button" aria-selected="true" aria-controls="detail" data-i="0"><div class="thumb"><img src="../zoom-audio-home/img/scenes/band-drums.jpg" alt=""></div><div class="meta"><b>CH 01</b><span>합주·공연</span><div class="meter"></div></div></button>
-      <button class="ch" role="tab" type="button" aria-selected="false" aria-controls="detail" data-i="1"><div class="thumb"><img src="../zoom-audio-home/img/scenes/home-desk.jpg" alt=""></div><div class="meta"><b>CH 02</b><span>홈레코딩</span><div class="meter"></div></div></button>
-      <button class="ch" role="tab" type="button" aria-selected="false" aria-controls="detail" data-i="2"><div class="thumb"><img src="../zoom-audio-home/img/scenes/street-guitar.jpg" alt=""></div><div class="meta"><b>CH 03</b><span>사운드 메이킹</span><div class="meter"></div></div></button>
-      <button class="ch" role="tab" type="button" aria-selected="false" aria-controls="detail" data-i="3"><div class="thumb"><img src="../zoom-audio-home/img/scenes/vocal-stage.jpg" alt=""></div><div class="meta"><b>CH 04</b><span>보컬</span><div class="meter"></div></div></button>
-      <button class="ch" role="tab" type="button" aria-selected="false" aria-controls="detail" data-i="4"><div class="thumb"><img src="../zoom-audio-home/img/scenes/podcast-desk.jpg" alt=""></div><div class="meta"><b>CH 05</b><span>팟캐스트·방송</span><div class="meter"></div></div></button>
-      <button class="ch" role="tab" type="button" aria-selected="false" aria-controls="detail" data-i="5"><div class="thumb"><img src="../zoom-audio-home/img/scenes/film-crew.jpg" alt=""></div><div class="meta"><b>CH 06</b><span>영상·현장</span><div class="meter"></div></div></button>
-    </div>
-    <div class="detail" id="detail" role="tabpanel" aria-live="polite">
-      <div class="d-photo"><img id="dPhoto" src="../zoom-audio-home/img/scenes/band-drums.jpg" alt=""></div>
-      <div class="d-body">
-        <span class="label" id="dLabel"><i class="led"></i>CH 01 · BAND</span>
-        <h3 id="dTitle">합주·공연</h3>
-        <p id="dText">합주실과 무대를 통째로, 또는 악기별로 나눠서. 녹음 버튼 하나로 오늘의 합주를 남겨요.</p>
-        <ul class="picks" id="dPicks"></ul>
-      </div>
-    </div>
+<!-- 용도별로 찾기: 제품 카드 갤러리 (1안 구성, 밝은 톤) -->
+<section class="uses" id="console" aria-labelledby="h-uses">
+  <div class="wrap uses-head">
+    <div><span class="label"><i class="led"></i>FIND BY USE</span><h2 id="h-uses">용도별로 찾기.</h2><p>지금 하는 음악에 맞는 ZOOM을 골라 드려요.</p></div>
+  </div>
+  <div class="use-track" id="useTrack"></div>
+  <div class="use-ctrl">
+    <div class="use-dots" id="useDots" role="group" aria-label="용도 카드 선택"></div>
+    <button class="use-pp" id="usePP" type="button" aria-label="자동 넘김 멈춤"><svg viewBox="0 0 12 12" width="12" height="12" fill="currentColor"><rect x="2" y="1" width="3" height="10" rx="1"/><rect x="7" y="1" width="3" height="10" rx="1"/></svg></button>
   </div>
 </section>
 
@@ -589,7 +606,7 @@ footer { background: var(--bg-2); color: var(--ink-2); border-top: 1px solid var
         <details open><summary><b>Q.01</b>정품인지 어떻게 확인하나요?</summary><p>한국 공식 수입원 AVX와 공식 판매처에서 판매하는 제품이 국내 정식 수입 제품이에요. 구매처가 확실하지 않으면 고객센터로 문의해 주세요.</p></details>
         <details><summary><b>Q.02</b>A/S는 어디로 접수하나요?</summary><p>AVX 고객센터(02-2265-0032, 평일 9:30 – 18:30)로 연락하시면 접수 방법을 안내해 드려요.</p></details>
         <details><summary><b>Q.03</b>펌웨어 업데이트는 어디서 하나요?</summary><p>ZOOM 공식 지원 페이지에서 제품별 펌웨어와 매뉴얼을 받을 수 있어요. 업데이트가 처음이면 기술 상담으로 물어보세요.</p></details>
-        <details><summary><b>Q.04</b>어떤 제품이 맞을지 모르겠어요.</summary><p>위의 '어디서 연주하나요?'에서 현장을 골라 보세요. 그래도 고민되면 연주하는 장르와 인원을 알려 주시면 맞는 구성을 추천해 드려요.</p></details>
+        <details><summary><b>Q.04</b>어떤 제품이 맞을지 모르겠어요.</summary><p>위의 '용도별로 찾기'에서 하는 음악을 골라 보세요. 그래도 고민되면 연주하는 장르와 인원을 알려 주시면 맞는 구성을 추천해 드려요.</p></details>
       </div>
     </div>
   </div>
@@ -685,30 +702,37 @@ footer { background: var(--bg-2); color: var(--ink-2); border-top: 1px solid var
   tabs.forEach(t => t.addEventListener('click', () => filter(t.dataset.f)));
   document.querySelectorAll('[data-jump]').forEach(a => a.addEventListener('click', () => filter(a.dataset.jump)));
 
-  // 채널 스트립
-  const CH = [
-    { tag: 'CH 01 · BAND', t: '합주·공연', x: '합주실과 무대를 통째로, 또는 악기별로 나눠서. 녹음 버튼 하나로 오늘의 합주를 남겨요.', pics: ['h6studio', 'h4e', 'l6max'], lv: 9 },
-    { tag: 'CH 02 · HOME', t: '홈레코딩', x: '혼자 작업하는 뮤지션의 책상 위 스튜디오. 녹음하고, 섞고, 그대로 컴퓨터로.', pics: ['r20', 'h5studio', 'l12next'], lv: 6 },
-    { tag: 'CH 03 · TONE', t: '사운드 메이킹', x: '페달 하나로 시작해 보드 전체까지. 합주실에 들고 가는 나만의 톤.', pics: ['g1four', 'ms70cdr', 'b2four'], lv: 8 },
-    { tag: 'CH 04 · VOCAL', t: '보컬', x: '하모니, 피치, 루프. 목소리 하나로 무대를 채우는 보컬 이펙터.', pics: ['v3', 'v6sp'], lv: 7 },
-    { tag: 'CH 05 · PODCAST', t: '팟캐스트·방송', x: '둘이서, 넷이서. 마이크를 꽂고 버튼 몇 번이면 대화가 깨끗하게.', pics: ['p2', 'p4next'], lv: 5 },
-    { tag: 'CH 06 · FIELD', t: '영상·현장', x: '촬영장과 야외에서. 갑자기 커지는 소리에도 깨지지 않는 32비트 플로트.', pics: ['f3', 'f6', 'f8npro'], lv: 10 },
+  // 용도별로 찾기: 제품 카드 갤러리
+  const USES = [
+    { tag: 'CH 01 · BAND', t: '합주·공연 녹음', x: '합주실과 무대를 통째로, 또는 악기별로 나눠서.', img: 'h4e', pics: ['h6studio', 'h4e', 'l6max'] },
+    { tag: 'CH 02 · HOME', t: '홈레코딩', x: '혼자 작업하는 뮤지션의 책상 위 스튜디오.', img: 'r20', pics: ['r20', 'h5studio', 'l12next'] },
+    { tag: 'CH 03 · TONE', t: '사운드 메이킹', x: '페달 하나로 시작해 보드 전체까지.', img: 'ms70cdr', pics: ['ms70cdr', 'g1four', 'b2four'] },
+    { tag: 'CH 04 · VOCAL', t: '보컬', x: '하모니, 피치, 루프. 목소리를 위한 이펙터.', img: 'v3', pics: ['v3', 'v6sp'] },
+    { tag: 'CH 05 · PODCAST', t: '팟캐스트·방송', x: '둘이서, 넷이서. 대화를 깨끗하게.', img: 'p2', pics: ['p2', 'p4next'] },
+    { tag: 'CH 06 · FIELD', t: '영상·현장 녹음', x: '촬영장과 야외에서, 클리핑 걱정 없이.', img: 'f8npro', pics: ['f3', 'f6', 'f8npro'] },
   ];
-  const chs = [...document.querySelectorAll('.ch')];
-  chs.forEach((b, i) => { const m = b.querySelector('.meter'); m.innerHTML = Array.from({ length: 10 }, (_, k) => `<i class="${k < CH[i].lv ? 'on' : ''}${k >= 8 ? ' hot' : ''}"></i>`).join(''); });
-  const dPhoto = document.getElementById('dPhoto'), dLabel = document.getElementById('dLabel'), dTitle = document.getElementById('dTitle'), dText = document.getElementById('dText'), dPicks = document.getElementById('dPicks');
-  const show = i => {
-    chs.forEach((b, k) => b.setAttribute('aria-selected', k === i));
-    const c = CH[i];
-    dPhoto.src = chs[i].querySelector('img').src;
-    dLabel.innerHTML = `<i class="led"></i>${c.tag}`; dTitle.textContent = c.t; dText.textContent = c.x;
-    dPicks.innerHTML = c.pics.map(k => { const p = byKey[k]; return `<li><a href="${url(p.no)}"><img src="${P(k)}" alt=""><span><strong>${p.n}</strong><small>${p.d}</small></span><em>${p.p}</em></a></li>`; }).join('');
-  };
-  chs.forEach((b, i) => b.addEventListener('click', () => show(i)));
-  chs.forEach((b, i) => b.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { const j = (i + (e.key === 'ArrowRight' ? 1 : -1) + chs.length) % chs.length; chs[j].focus(); show(j); e.preventDefault(); }
-  }));
-  show(0);
+  const uTrack = document.getElementById('useTrack'), uDots = document.getElementById('useDots'), uPP = document.getElementById('usePP');
+  uTrack.innerHTML = USES.map(u => `
+    <article class="use-card">
+      <div class="u-txt"><span class="label"><i class="led"></i>${u.tag}</span><h3>${u.t}</h3><p>${u.x}</p>
+        <ul>${u.pics.map(k => { const p = byKey[k]; return `<li><a href="${url(p.no)}">${p.n}</a><span>${p.p}</span></li>`; }).join('')}</ul></div>
+      <div class="u-pic"><img src="${P(u.img)}" alt="${byKey[u.img].n}" loading="lazy"></div>
+    </article>`).join('');
+  const uCards = [...uTrack.children];
+  uCards.forEach((c, i) => { const d = document.createElement('button'); d.type = 'button'; d.setAttribute('aria-label', USES[i].t); d.addEventListener('click', () => { uGo(i); uStop(); }); uDots.append(d); });
+  let ui = 0, ut = null, uPlay = !reduce;
+  const uMark = i => [...uDots.children].forEach((d, k) => d.setAttribute('aria-current', k === i));
+  const uGo = i => { ui = (i + uCards.length) % uCards.length; const c = uCards[ui]; uTrack.scrollTo({ left: c.offsetLeft - (uTrack.clientWidth - c.clientWidth) / 2, behavior: reduce ? 'auto' : 'smooth' }); uMark(ui); };
+  const U_PAUSE = uPP.innerHTML, U_PLAY = '<svg viewBox="0 0 12 12" width="12" height="12" fill="currentColor"><path d="M3 1.5v9l7-4.5z"/></svg>';
+  const uStart = () => { clearInterval(ut); ut = setInterval(() => uGo(ui + 1), 5000); uPlay = true; uPP.innerHTML = U_PAUSE; uPP.setAttribute('aria-label', '자동 넘김 멈춤'); };
+  const uStop = () => { clearInterval(ut); ut = null; uPlay = false; uPP.innerHTML = U_PLAY; uPP.setAttribute('aria-label', '자동 넘김 재생'); };
+  uPP.addEventListener('click', () => uPlay ? uStop() : uStart());
+  let uScr; uTrack.addEventListener('scroll', () => { clearTimeout(uScr); uScr = setTimeout(() => {
+    const mid = uTrack.scrollLeft + uTrack.clientWidth / 2; let best = 0, bd = 1e9;
+    uCards.forEach((c, i) => { const d = Math.abs(c.offsetLeft + c.clientWidth / 2 - mid); if (d < bd) { bd = d; best = i; } }); ui = best; uMark(ui); }, 80); }, { passive: true });
+  uMark(0);
+  new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && uPlay) uStart(); else if (!e.isIntersecting) clearInterval(ut); }), { threshold: .4 }).observe(uTrack);
+  if (!uPlay) uStop();
 
 
   // 상단 히어로 슬라이드
