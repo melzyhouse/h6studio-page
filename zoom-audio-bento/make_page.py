@@ -27,7 +27,7 @@ CATEGORIES = [
         dict(k="f6", n="F6", size="wide c7", sub="멀티트랙 필드 레코더. 전용 가방 PCF-6 포함.", price="1,030,000원", no=534),
         dict(k="f3", n="F3", size="wide c7", sub="2채널 32비트 플로트 필드 레코더.", price="530,000원", no=922),
     ]),
-    dict(id="effects", rep="neurig", rep_size="rep2 c6 dark", label="MULTI-EFFECTS", title="이펙터", intro="페달 하나로 시작해 보드 전체까지. 합주실에 들고 가는 톤.", icon="g1four", items=[
+    dict(id="effects", rep="neurig", rep_size="rep2 c6", label="MULTI-EFFECTS", title="이펙터", intro="페달 하나로 시작해 보드 전체까지. 합주실에 들고 가는 톤.", icon="g1four", items=[
         dict(k="neurig", n="NEURIG", size="tall c6 r2 dark", tag="COMING SOON", sub="기타 앰프와 이펙트를, 뉴럴 모델링으로.", price="가격 문의 · 국내 안전 인증 진행 중", no=3201, cta="출시 문의"),
         dict(k="g1four", n="G2 FOUR / G2X FOUR", size="wide c6", sub="기타 멀티 이펙트 프로세서.", price="357,000원", no=3024),
         dict(k="b2four", n="B2 FOUR", size="small c3", sub="베이스 멀티 이펙트 프로세서.", price="446,000원", no=3023),
@@ -51,7 +51,7 @@ CATEGORIES = [
 
 def rep_tile(c):
     it = next(x for x in c["items"] if x["k"] == c["rep"])
-    size = c["rep_size"]
+    size = c["rep_size"] + " " + ("tone-1", "tone-2", "tone-3")[CATEGORIES.index(c) // 2]
     tag = ""
     specs = ""
     head = "h3"

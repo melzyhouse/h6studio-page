@@ -404,6 +404,48 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
 .nav .dl { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; border-radius: 980px; border: 1px solid var(--ink); font-size: 13px; font-weight: 500; white-space: nowrap; transition: background .2s, color .2s; }
 .nav .dl:hover { background: var(--ink); color: #fff; }
 @media (max-width: 734px) { .nav .dl { padding: 0 10px; font-size: 12px; } .nav .shop { display: none; } }
+
+/* ════ 회색 톤 단계로 명암 (차콜 덩어리 대신) ════ */
+:root { --g1: #FFFFFF; --g2: #F5F5F7; --g3: #EEEFF2; --g4: #E6E7EB; --g5: #DCDDE2; }
+.p-tile.rep2.tone-1 { background: var(--g2); }
+.p-tile.rep2.tone-2 { background: var(--g3); }
+.p-tile.rep2.tone-3 { background: var(--g4); }
+.p-tile.rep2 .see { background: var(--accent); color: #fff; }
+
+/* 용도별 추천: 한 단계 진한 회색 띠 + 흰 카드, 카드 크기는 카테고리 박스와 같게 */
+.dark-sec { background: var(--g4); color: var(--ink); margin-top: 88px; }
+.uses { padding: 72px 0 56px; }
+.uses-head p { color: var(--ink-2); }
+.use-track { gap: 16px; padding: 0 max(20px, calc((100% - 1200px) / 2 + 20px)) 8px; }
+.use-card { flex: 0 0 calc((min(1200px, 100vw) - 40px - 16px) / 2); min-height: 380px; background: var(--g1); border-radius: 28px; }
+.u-txt h3 { color: var(--ink); }
+.u-txt p { color: var(--ink-2); }
+.u-txt li { border-top-color: var(--line); }
+.u-txt li button { color: var(--ink); }
+.u-txt li button::before { background: var(--line); }
+.u-txt li.peek button { color: var(--accent); } .u-txt li.peek button::before { background: var(--accent); }
+.u-txt li span { color: var(--ink-2); }
+.u-txt li a { color: var(--accent); opacity: 1; }
+.u-pic img { max-height: 250px; filter: drop-shadow(0 22px 24px rgba(0,0,0,.18)); }
+.u-name { color: var(--ink-2); }
+.use-dots { background: var(--g5); }
+.use-dots button { background: #9A9BA1; }
+.use-dots button[aria-current="true"] { background: var(--ink); }
+.use-pp { background: var(--g5); color: var(--ink); }
+.dark-sec a:focus-visible, .dark-sec button:focus-visible { outline-color: var(--accent); }
+
+/* A/S: 단계 박스 연하게, 연락처 박스 한 단계 진하게 */
+#support .bento > .tile:first-child { background: var(--g2); }
+.tile-call { background: var(--g4); }
+.tile-call .num { color: var(--accent) !important; }
+.tile-call .kv dt { color: var(--ink-2); }
+.tile-call .kv a { color: var(--accent); }
+@media (max-width: 734px) { .use-card { flex-basis: 86vw; min-height: 0; } .dark-sec { margin-top: 64px; } }
+.use-card { grid-template-columns: 1.35fr 1fr; }
+.u-txt { padding: 32px 0 28px 32px; }
+.u-txt li { gap: 10px; }
+.u-txt li button { white-space: nowrap; }
+@media (max-width: 734px) { .use-card { grid-template-columns: 1fr; } .u-txt { padding: 20px 22px 22px; } }
 </style>
 
 <header class="nav">
@@ -477,27 +519,27 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
   <section class="sec wrap" id="series" aria-labelledby="h-series">
     <div class="sec-head"><div><h2 id="h-series">제품 카테고리</h2></div><p>카테고리마다 최신 제품을 모았어요. 누르면 시리즈 전체를 볼 수 있어요.</p></div>
     <div class="bento">
-      <a class="tile p-tile rep rep2 c6 rise" href="#handy" data-series="handy" aria-label="핸디 레코더 시리즈 보기, 대표 제품 H6studio">
+      <a class="tile p-tile rep rep2 c6 tone-1 rise" href="#handy" data-series="handy" aria-label="핸디 레코더 시리즈 보기, 대표 제품 H6studio">
         <div class="p-copy"><span class="cat-name">핸디 레코더</span><h3>H6studio</h3><p>여섯 트랙. 대구경 XY 마이크.</p><p class="price">699,000원</p><span class="see">시리즈 보기 ›</span><span class="count">6개 제품</span></div>
         <img class="art" data-src="h6studio" alt="">
       </a>
-      <a class="tile p-tile rep rep2 c6 rise" href="#field" data-series="field" aria-label="필드 레코더 시리즈 보기, 대표 제품 F3">
+      <a class="tile p-tile rep rep2 c6 tone-1 rise" href="#field" data-series="field" aria-label="필드 레코더 시리즈 보기, 대표 제품 F3">
         <div class="p-copy"><span class="cat-name">필드 레코더</span><h3>F3</h3><p>2채널 32비트 플로트 필드 레코더.</p><p class="price">530,000원</p><span class="see">시리즈 보기 ›</span><span class="count">3개 제품</span></div>
         <img class="art" data-src="f3" alt="">
       </a>
-      <a class="tile p-tile rep rep2 c6 dark rise" href="#effects" data-series="effects" aria-label="이펙터 시리즈 보기, 대표 제품 NEURIG">
+      <a class="tile p-tile rep rep2 c6 tone-2 rise" href="#effects" data-series="effects" aria-label="이펙터 시리즈 보기, 대표 제품 NEURIG">
         <div class="p-copy"><span class="cat-name">이펙터</span><h3>NEURIG</h3><p>기타 앰프와 이펙트를, 뉴럴 모델링으로.</p><p class="price kr">가격 문의 · 국내 안전 인증 진행 중</p><span class="see">시리즈 보기 ›</span><span class="count">4개 제품</span></div>
         <img class="art" data-src="neurig" alt="">
       </a>
-      <a class="tile p-tile rep rep2 c6 rise" href="#vocal" data-series="vocal" aria-label="보컬 시리즈 보기, 대표 제품 V6-SP">
+      <a class="tile p-tile rep rep2 c6 tone-2 rise" href="#vocal" data-series="vocal" aria-label="보컬 시리즈 보기, 대표 제품 V6-SP">
         <div class="p-copy"><span class="cat-name">보컬</span><h3>V6-SP</h3><p>보컬 이펙터·루퍼·포먼트를 발끝으로.</p><p class="price">660,000원</p><span class="see">시리즈 보기 ›</span><span class="count">2개 제품</span></div>
         <img class="art" data-src="v6sp" alt="">
       </a>
-      <a class="tile p-tile rep rep2 c6 rise" href="#mixer" data-series="mixer" aria-label="믹서·레코더 시리즈 보기, 대표 제품 LiveTrak L12next">
+      <a class="tile p-tile rep rep2 c6 tone-3 rise" href="#mixer" data-series="mixer" aria-label="믹서·레코더 시리즈 보기, 대표 제품 LiveTrak L12next">
         <div class="p-copy"><span class="cat-name">믹서·레코더</span><h3>LiveTrak L12next</h3><p>12채널 14트랙 디지털 믹서·레코더.</p><p class="price">1,150,000원</p><span class="see">시리즈 보기 ›</span><span class="count">3개 제품</span></div>
         <img class="art" data-src="l12next" alt="">
       </a>
-      <a class="tile p-tile rep rep2 c6 rise" href="#podcast" data-series="podcast" aria-label="팟캐스트 시리즈 보기, 대표 제품 PodTrak P4next">
+      <a class="tile p-tile rep rep2 c6 tone-3 rise" href="#podcast" data-series="podcast" aria-label="팟캐스트 시리즈 보기, 대표 제품 PodTrak P4next">
         <div class="p-copy"><span class="cat-name">팟캐스트</span><h3>PodTrak P4next</h3><p>4트랙 팟캐스트 레코더. 오디오 인터페이스로도.</p><p class="price">305,000원</p><span class="see">시리즈 보기 ›</span><span class="count">2개 제품</span></div>
         <img class="art" data-src="p4next" alt="">
       </a>
@@ -527,7 +569,7 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
           <li><b>04</b><h4>A/S</h4><p>고장·점검은 AVX 고객센터로 접수.</p></li>
         </ol>
       </article>
-      <article class="tile dark c4 rise">
+      <article class="tile c4 tile-call rise">
         <div class="num" style="font:600 32px/1 var(--mono);color:var(--lime);margin-top:18px">02-2265-0032</div>
         <dl class="kv">
           <dt>운영 시간</dt><dd>평일 9:30 – 18:30</dd>
