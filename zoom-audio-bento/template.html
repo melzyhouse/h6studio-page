@@ -500,6 +500,67 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
 .use-card .u-pic { padding: 24px 14px; }
 .u-pic img { width: calc(var(--w) * 1px * var(--k, 1)); max-width: 100%; max-height: none; height: auto; }
 @media (max-width: 734px) { .u-pic img { --k: .75; } }
+
+/* ════ Apple 메인 기준 반응형 (apple.com/kr 실측) ════
+   메인 배너 692(데스크톱·높은 화면)/580/650·570(태블릿)/500(모바일)
+   2열 배너 580/490(태블릿)/500(모바일 1열), 배너 사이 12px, 바탕 #f5f5f7 공유 */
+:root { --hero-h: 580px; --promo-h: 580px; --tile-gap: 12px; --t-sec: clamp(28px, 2.6vw, 34px); }
+@media (min-width: 1069px) and (min-height: 776px) { :root { --hero-h: 692px; } }
+@media (max-width: 1068px) { :root { --hero-h: 570px; --promo-h: 490px; } }
+@media (min-width: 735px) and (max-width: 1068px) and (min-height: 734px) { :root { --hero-h: 650px; } }
+@media (max-width: 734px) { :root { --hero-h: 500px; --promo-h: 500px; } }
+
+/* 메인 배너(슬라이드) */
+.stage { background: var(--g2); }
+.slides { min-height: var(--hero-h); }
+.slide { padding: clamp(40px, 5vw, 56px) 20px 64px; }
+.slide h1, .slide h2 { font-size: clamp(40px, 4.4vw, 56px); line-height: 1.07; font-weight: 700; }
+.s-sub { font-size: clamp(21px, 2.2vw, 28px); margin: 6px 0 18px; }
+.s-art { max-height: calc(var(--hero-h) * .5); }
+.s-art.wide { max-height: calc(var(--hero-h) * .36); }
+.s-art.pair img { max-height: calc(var(--hero-h) * .44); }
+.s-art.pair img + img { max-height: calc(var(--hero-h) * .37); }
+
+/* 카테고리 배너: 화면 끝까지 2열, 12px 틈, 같은 바탕 */
+.promo { display: grid; grid-template-columns: 1fr 1fr; gap: var(--tile-gap); padding: var(--tile-gap) max(var(--tile-gap), env(safe-area-inset-right, 0px)) 0 max(var(--tile-gap), env(safe-area-inset-left, 0px)); }
+.ptile { position: relative; overflow: hidden; background: var(--g2); min-height: var(--promo-h); display: flex; flex-direction: column; align-items: center; text-align: center; padding: clamp(40px, 4.2vw, 53px) 24px 0; color: var(--ink); }
+.ptile .cat-name { font-size: clamp(17px, 1.5vw, 20px); font-weight: 700; color: var(--ink-2); letter-spacing: -0.02em; }
+.ptile h3 { font-size: clamp(32px, 3.1vw, 40px); line-height: 1.1; margin-top: 4px; }
+.ptile .sub { margin: 6px 0 0; font-size: clamp(17px, 1.65vw, 21px); line-height: 1.3; color: var(--ink); max-width: 22em; }
+.ptile .price { margin: 10px 0 0; font: 500 14px/1 var(--font); color: var(--ink-2); }
+.ptile .see { margin-top: 18px; display: inline-flex; align-items: center; height: 40px; padding: 0 20px; border-radius: 980px; background: var(--accent); color: #fff; font-size: 16px; font-weight: 500; transition: background .2s; }
+.ptile:hover .see { background: var(--accent-h); }
+.ptile .art { margin: auto 0 0; padding-bottom: clamp(28px, 3vw, 44px); width: calc(var(--w) * 1px * var(--k, 1)); max-width: 86%; height: auto; filter: drop-shadow(0 26px 28px rgba(0,0,0,.2)); transition: transform .9s cubic-bezier(.2,.7,.2,1); }
+.ptile:hover .art { transform: translateY(-6px); }
+.ptile:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+@media (max-width: 1068px) { .ptile .art { --k: .82; } }
+@media (max-width: 734px) { .promo { grid-template-columns: 1fr; } .ptile .art { --k: .78; } }
+
+/* 섹션 제목 크기 낮춤 */
+.sec-head h2, .uses-top h2 { font-size: var(--t-sec); line-height: 1.15; }
+
+/* 용도별 추천: 가로 폭 안에 3개 */
+.dark-sec { margin-top: 0; background: var(--g4); }
+.uses { padding: 72px 0 56px; margin-top: var(--tile-gap); }
+.uses-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 24px; }
+.u-arrows { display: flex; gap: 10px; }
+.u-arrow { width: 40px; height: 40px; border-radius: 50%; border: 0; background: var(--g1); color: var(--ink); display: grid; place-items: center; cursor: pointer; transition: background .2s; }
+.u-arrow:hover { background: var(--g2); }
+.use-viewport { overflow: hidden; }
+.use-track { display: flex; gap: 16px; padding: 0; overflow: visible; scroll-snap-type: none; transition: transform .6s cubic-bezier(.2,.7,.2,1); will-change: transform; }
+.use-card { flex: 0 0 calc((100% - 32px) / 3); min-height: 0; display: flex; flex-direction: column; grid-template-columns: none; background: var(--g1); border-radius: 24px; overflow: hidden; }
+.use-card .u-pic { order: 0; height: 250px; padding: 24px; display: flex; align-items: center; justify-content: center; background: var(--g2); }
+.use-card .u-pic img { width: calc(var(--w) * 1px * var(--k, .95)); max-width: 100%; max-height: 210px; }
+.use-card .u-txt { padding: 24px 24px 22px; }
+.use-card .u-txt h3 { font-size: 24px; }
+.use-card .u-txt p { font-size: 15px; min-height: 3em; }
+.use-card .u-txt ul { padding-top: 14px; }
+.use-card .u-txt li { grid-template-columns: 1fr auto auto; gap: 10px; padding: 10px 0; }
+.use-card .u-txt li button { font-size: 15px; }
+.use-card .u-txt li span { font-size: 13px; }
+@media (max-width: 1068px) { .use-card { flex-basis: calc((100% - 16px) / 2); } }
+@media (max-width: 734px) { .use-card { flex-basis: 100%; } .use-card .u-pic { height: 210px; } .uses { padding: 56px 0 44px; } }
+@media (prefers-reduced-motion: reduce) { .use-track { transition: none; } }
 </style>
 
 <header class="nav">
@@ -564,22 +625,22 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
   </div>
 </section>
 
-  <!-- 카테고리별 대표 제품 (최신 제품 하나씩) -->
-  <section class="sec wrap" id="series" aria-labelledby="h-series">
-    <div class="sec-head"><div><h2 id="h-series">제품 카테고리</h2></div></div>
-    <div class="bento">
+  <!-- 카테고리 배너: 상단 배너와 같은 형식, 화면 끝까지 2열 -->
+  <section class="promo" id="series" aria-label="제품 카테고리">
 <!--REPS-->
-    </div>
   </section>
 
-  <!-- 용도별 추천: 차콜 섹션 -->
+  <!-- 용도별 추천: 가로 폭 안에 3개씩, 옆으로 순환 -->
   <section class="uses dark-sec" id="finder" aria-labelledby="h-uses">
-    <div class="wrap uses-head"><h2 id="h-uses">용도별 추천</h2>
-    </div>
-    <div class="use-track" id="useTrack"></div>
-    <div class="use-ctrl">
-      <div class="use-dots" id="useDots" role="group" aria-label="용도 카드 선택"></div>
-      <button class="use-pp" id="usePP" type="button" aria-label="자동 넘김 멈춤"><svg viewBox="0 0 12 12" width="12" height="12" fill="currentColor"><rect x="2" y="1" width="3" height="10" rx="1"/><rect x="7" y="1" width="3" height="10" rx="1"/></svg></button>
+    <div class="wrap">
+      <div class="uses-top"><h2 id="h-uses">용도별 추천</h2>
+        <div class="u-arrows"><button type="button" class="u-arrow" id="uPrev" aria-label="이전"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 2L4 7l5 5"/></svg></button><button type="button" class="u-arrow" id="uNext" aria-label="다음"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 2l5 5-5 5"/></svg></button></div>
+      </div>
+      <div class="use-viewport"><div class="use-track" id="useTrack"></div></div>
+      <div class="use-ctrl">
+        <div class="use-dots" id="useDots" role="group" aria-label="용도 카드 위치"></div>
+        <button class="use-pp" id="usePP" type="button" aria-label="자동 넘김 멈춤"><svg viewBox="0 0 12 12" width="12" height="12" fill="currentColor"><rect x="2" y="1" width="3" height="10" rx="1"/><rect x="7" y="1" width="3" height="10" rx="1"/></svg></button>
+      </div>
     </div>
   </section>
 
@@ -735,48 +796,59 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
   const fromHash = () => { const id = location.hash.slice(1); if (CATS.some(c => c.id === id)) openSheet(id); };
   addEventListener('hashchange', fromHash); fromHash();
 
-  // 용도별 추천: 제품 카드 갤러리 (차콜 섹션)
+  // 용도별 추천: 가로 폭 안에 n개(데스크톱 3·태블릿 2·모바일 1) 보이고 옆으로 순환
   const by2 = {}; CATS.forEach(c => c.items.forEach(it => by2[it.k] = it));
   const USES = [
-    { tag: 'BAND', t: '합주·공연 녹음', x: '합주실과 무대를 통째로, 또는 악기별로 나눠서.', pics: ['h6studio', 'h4e', 'l6max'] },
-    { tag: 'HOME', t: '홈레코딩', x: '혼자 작업하는 뮤지션의 책상 위 스튜디오.', pics: ['r20', 'h5studio', 'l12next'] },
-    { tag: 'TONE', t: '사운드 메이킹', x: '페달 하나로 시작해 보드 전체까지.', pics: ['ms70cdr', 'g1four', 'b2four'] },
-    { tag: 'VOCAL', t: '보컬', x: '하모니, 피치, 루프. 목소리를 위한 이펙터.', pics: ['v3', 'v6sp'] },
-    { tag: 'PODCAST', t: '팟캐스트·방송', x: '둘이서, 넷이서. 대화를 깨끗하게.', pics: ['p2', 'p4next'] },
-    { tag: 'FIELD', t: '영상·현장 녹음', x: '촬영장과 야외에서, 클리핑 걱정 없이.', pics: ['f3', 'f6', 'f8npro'] },
+    { t: '합주·공연 녹음', x: '합주실과 무대를 통째로, 또는 악기별로 나눠서.', pics: ['h6studio', 'h4e', 'l6max'] },
+    { t: '홈레코딩', x: '혼자 작업하는 뮤지션의 책상 위 스튜디오.', pics: ['r20', 'h5studio', 'l12next'] },
+    { t: '사운드 메이킹', x: '페달 하나로 시작해 보드 전체까지.', pics: ['ms70cdr', 'g1four', 'b2four'] },
+    { t: '보컬', x: '하모니, 피치, 루프. 목소리를 위한 이펙터.', pics: ['v3', 'v6sp'] },
+    { t: '팟캐스트·방송', x: '둘이서, 넷이서. 대화를 깨끗하게.', pics: ['p2', 'p4next'] },
+    { t: '영상·현장 녹음', x: '촬영장과 야외에서, 클리핑 걱정 없이.', pics: ['f3', 'f6', 'f8npro'] },
   ];
   const uTrack = document.getElementById('useTrack'), uDots = document.getElementById('useDots'), uPP = document.getElementById('usePP');
   uTrack.innerHTML = USES.map(u => `
     <article class="use-card">
+      <div class="u-pic"><img src="${P(u.pics[0])}" alt="${by2[u.pics[0]].n}" data-k="${u.pics[0]}" style="--w:${by2[u.pics[0]].aw}" loading="lazy"></div>
       <div class="u-txt"><h3>${u.t}</h3><p>${u.x}</p>
         <ul>${u.pics.map((k, j) => { const p = by2[k]; return `<li class="${j === 0 ? 'sel peek' : ''}"><button type="button" data-k="${k}">${p.n}</button><span>${p.price}</span><a href="${p.more || url(p.no)}" aria-label="${p.n} 자세히 보기">보기 ›</a></li>`; }).join('')}</ul></div>
-      <div class="u-pic"><img src="${P(u.pics[0])}" alt="${by2[u.pics[0]].n}" data-k="${u.pics[0]}" style="--w:${by2[u.pics[0]].aw}" loading="lazy"><span class="u-name">${by2[u.pics[0]].n}</span></div>
     </article>`).join('');
   const uCards = [...uTrack.children];
   let ui = 0, ut = null, uPlay = !reduce;
-  const uStop = () => { clearInterval(ut); ut = null; uPlay = false; uPP.innerHTML = '<svg viewBox="0 0 12 12" width="12" height="12" fill="currentColor"><path d="M3 1.5v9l7-4.5z"/></svg>'; uPP.setAttribute('aria-label', '자동 넘김 재생'); };
+  const perView = () => innerWidth <= 734 ? 1 : innerWidth <= 1068 ? 2 : 3;
+  const maxIndex = () => Math.max(0, uCards.length - perView());
+  const uRender = () => {
+    const step = uCards[0].getBoundingClientRect().width + parseFloat(getComputedStyle(uTrack).columnGap || 16);
+    uTrack.style.transform = `translateX(${-ui * step}px)`;
+    uCards.forEach((c, i) => { const vis = i >= ui && i < ui + perView(); c.inert = !vis; c.setAttribute('aria-hidden', !vis); });
+    uDots.innerHTML = Array.from({ length: maxIndex() + 1 }, (_, i) => `<button type="button" aria-label="${i + 1}번째 위치" aria-current="${i === ui}"></button>`).join('');
+    [...uDots.children].forEach((d, i) => d.addEventListener('click', () => { uGo(i); uStop(); }));
+  };
+  const uGo = i => { const m = maxIndex(); ui = i > m ? 0 : i < 0 ? m : i; uRender(); };
+  const PLAY_SVG = '<svg viewBox="0 0 12 12" width="12" height="12" fill="currentColor"><path d="M3 1.5v9l7-4.5z"/></svg>', PAUSE_SVG = uPP.innerHTML;
+  const uStop = () => { clearInterval(ut); ut = null; uPlay = false; uPP.innerHTML = PLAY_SVG; uPP.setAttribute('aria-label', '자동 넘김 재생'); };
+  const uStart = () => { clearInterval(ut); ut = setInterval(() => uGo(ui + 1), 4500); uPlay = true; uPP.innerHTML = PAUSE_SVG; uPP.setAttribute('aria-label', '자동 넘김 멈춤'); };
+  uPP.addEventListener('click', () => uPlay ? uStop() : uStart());
+  document.getElementById('uPrev').addEventListener('click', () => { uGo(ui - 1); uStop(); });
+  document.getElementById('uNext').addEventListener('click', () => { uGo(ui + 1); uStop(); });
+  let tx = null; uTrack.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+  uTrack.addEventListener('touchend', e => { if (tx === null) return; const d = e.changedTouches[0].clientX - tx; if (Math.abs(d) > 40) { uGo(ui + (d < 0 ? 1 : -1)); uStop(); } tx = null; });
+  addEventListener('resize', () => { if (ui > maxIndex()) ui = maxIndex(); uRender(); });
   uCards.forEach(card => {
-    const img = card.querySelector('.u-pic img'), name = card.querySelector('.u-name');
+    const img = card.querySelector('.u-pic img');
     const pick = (btn, keep) => {
       const k = btn.dataset.k, p = by2[k];
       card.querySelectorAll('li').forEach(li => li.classList.toggle('peek', li.contains(btn)));
       if (keep) card.querySelectorAll('li').forEach(li => li.classList.toggle('sel', li.contains(btn)));
       if (img.dataset.k === k) return;
       img.dataset.k = k; img.classList.add('swap');
-      setTimeout(() => { if (img.dataset.k !== k) return; img.src = P(k); img.alt = p.n; img.style.setProperty('--w', p.aw); name.textContent = p.n; img.classList.remove('swap'); }, reduce ? 0 : 150);
+      setTimeout(() => { if (img.dataset.k !== k) return; img.src = P(k); img.alt = p.n; img.style.setProperty('--w', p.aw); img.classList.remove('swap'); }, reduce ? 0 : 150);
     };
     card.querySelectorAll('li button').forEach(b => { b.addEventListener('mouseenter', () => pick(b, false)); b.addEventListener('focus', () => pick(b, false)); b.addEventListener('click', () => { pick(b, true); uStop(); }); });
     card.querySelector('ul').addEventListener('mouseleave', () => { const b = card.querySelector('li.sel button'); if (b) pick(b, false); });
   });
-  uCards.forEach((c, i) => { const d = document.createElement('button'); d.type = 'button'; d.setAttribute('aria-label', USES[i].t); d.addEventListener('click', () => { uGo(i); uStop(); }); uDots.append(d); });
-  const uMark = i => [...uDots.children].forEach((d, k) => d.setAttribute('aria-current', k === i));
-  const uGo = i => { ui = (i + uCards.length) % uCards.length; const c = uCards[ui]; uTrack.scrollTo({ left: c.offsetLeft - (uTrack.clientWidth - c.clientWidth) / 2, behavior: reduce ? 'auto' : 'smooth' }); uMark(ui); };
-  const U_PAUSE = uPP.innerHTML;
-  const uStart = () => { clearInterval(ut); ut = setInterval(() => uGo(ui + 1), 5000); uPlay = true; uPP.innerHTML = U_PAUSE; uPP.setAttribute('aria-label', '자동 넘김 멈춤'); };
-  uPP.addEventListener('click', () => uPlay ? uStop() : uStart());
-  let uScr; uTrack.addEventListener('scroll', () => { clearTimeout(uScr); uScr = setTimeout(() => { const mid = uTrack.scrollLeft + uTrack.clientWidth / 2; let best = 0, bd = 1e9; uCards.forEach((c, i) => { const d = Math.abs(c.offsetLeft + c.clientWidth / 2 - mid); if (d < bd) { bd = d; best = i; } }); ui = best; uMark(ui); }, 80); }, { passive: true });
-  uMark(0);
-  new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && uPlay) uStart(); else if (!e.isIntersecting) clearInterval(ut); }), { threshold: .4 }).observe(uTrack);
+  uRender();
+  new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && uPlay) uStart(); else if (!e.isIntersecting) clearInterval(ut); }), { threshold: .3 }).observe(uTrack);
   if (!uPlay) uStop();
 
   // 고객 지원 탭: 자료실 / 기술 상담 / A/S

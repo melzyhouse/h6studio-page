@@ -61,15 +61,17 @@ def art_width(k, area=28000, max_w=240, max_h=290):
 
 
 def rep_tile(c):
+    """카테고리 배너: Apple 메인 2열 배너 형식(가운데 정렬 + 아래 큰 제품)."""
     it = next(x for x in c["items"] if x["k"] == c["rep"])
-    size = c["rep_size"] + " " + ("tone-1", "tone-2", "tone-3")[CATEGORIES.index(c) // 2]
-    tag = ""
-    specs = ""
-    head = "h3"
-    return f'''      <a class="tile p-tile rep {size} rise" href="#{c["id"]}" data-series="{c["id"]}" aria-label="{e(c["title"])} 시리즈 보기, 대표 제품 {e(it["n"])}">
-        <div class="p-copy">{tag}<span class="cat-name">{e(c["title"])}</span><{head}>{e(it["n"])}</{head}><p>{e(it["sub"])}</p>{specs}<p class="price{"" if it["price"][0].isdigit() else " kr"}">{e(it["price"])}</p><span class="see">시리즈 보기 ›</span></div>
-        <img class="art" data-src="{it["k"]}" alt="" style="--w:{art_width(it["k"])}">
-      </a>'''
+    price_cls = "price" if it["price"][0].isdigit() else "price kr"
+    return f'''    <a class="ptile rise" href="#{c["id"]}" data-series="{c["id"]}" aria-label="{e(c["title"])} 시리즈 보기, 대표 제품 {e(it["n"])}">
+      <span class="cat-name">{e(c["title"])}</span>
+      <h3>{e(it["n"])}</h3>
+      <p class="sub">{e(it["sub"])}</p>
+      <span class="see">시리즈 보기</span>
+      <p class="{price_cls}">{e(it["price"])}</p>
+      <img class="art" data-src="{it["k"]}" alt="" style="--w:{art_width(it["k"], area=62000, max_w=440, max_h=300)}">
+    </a>'''
 
 
 src = (ROOT / "template.html").read_text(encoding="utf-8")
