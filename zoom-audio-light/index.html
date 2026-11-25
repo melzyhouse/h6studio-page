@@ -361,6 +361,48 @@ footer { background: var(--bg-2); color: var(--ink-2); border-top: 1px solid var
 .soon .status { color: var(--char-ink-2); border-color: var(--char-line); }
 .soon img.prod { filter: drop-shadow(0 40px 50px rgba(0,0,0,.55)); }
 .feature .body a:focus-visible, .soon a:focus-visible { outline-color: var(--lime); }
+
+/* ── 상단: 제품군 아이콘 줄 + 제품 히어로 슬라이드 (홈페이지다운 첫 화면) ── */
+.chapter { background: var(--bg); border-bottom: 1px solid var(--bg-3); }
+.chapter-in { max-width: 1040px; margin: 0 auto; display: flex; justify-content: center; gap: 8px; overflow-x: auto; scrollbar-width: none; padding: 16px max(16px, env(safe-area-inset-right, 0px)) 12px max(16px, env(safe-area-inset-left, 0px)); }
+.chapter-in::-webkit-scrollbar { display: none; }
+.chapter a { flex: 0 0 auto; width: 104px; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 6px 4px; border-radius: 14px; position: relative; transition: background .2s; }
+.chapter a:hover { background: var(--bg-2); }
+.chapter img { height: 54px; width: auto; max-width: 84px; object-fit: contain; }
+.chapter span { font-size: 12.5px; font-weight: 500; color: var(--ink); white-space: nowrap; }
+.chapter i { position: absolute; top: 2px; right: 8px; font: 600 9px/1 var(--mono); letter-spacing: .1em; color: #FF9F0A; font-style: normal; }
+
+.stage { position: relative; background: var(--bg-2); overflow: hidden; }
+.slides { position: relative; min-height: 780px; }
+.slide { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 64px 20px 72px; opacity: 0; visibility: hidden; transition: opacity .8s ease, visibility 0s linear .8s; }
+.slide.on { opacity: 1; visibility: visible; transition: opacity .8s ease; }
+.slide:nth-child(2) { background: linear-gradient(180deg, #FFFFFF 0%, var(--bg-2) 100%); }
+.s-copy .label { justify-content: center; margin-bottom: 14px; }
+.slide h1, .slide h2 { font-size: clamp(44px, 6vw, 72px); line-height: 1.05; font-weight: 900; color: var(--ink); }
+.s-sub { margin: 10px 0 22px; font-size: clamp(19px, 2.2vw, 26px); color: var(--ink); }
+.slide .btns { justify-content: center; }
+.s-price { margin: 14px 0 0; font-size: 14px; color: var(--ink-2); }
+.s-art { margin-top: auto; max-height: 330px; width: auto; max-width: 88%; object-fit: contain; filter: drop-shadow(0 28px 30px rgba(0,0,0,.18)); transform: translateY(16px); transition: transform 1s cubic-bezier(.2,.7,.2,1); }
+.slide.on .s-art { transform: none; }
+.slide > .s-art { margin-bottom: 44px; }
+.s-art.wide { max-height: 250px; margin-bottom: 64px; }
+.s-art.pair { display: flex; gap: 28px; align-items: flex-end; justify-content: center; filter: none; }
+.s-art.pair img { max-height: 300px; max-width: 44%; width: auto; filter: drop-shadow(0 28px 30px rgba(0,0,0,.2)); }
+.s-art.pair img + img { max-height: 250px; }
+.s-ctrl { position: absolute; left: 0; right: 0; bottom: 22px; display: flex; justify-content: center; align-items: center; gap: 12px; z-index: 2; }
+.s-dots { display: flex; gap: 10px; background: rgba(255,255,255,.75); backdrop-filter: blur(10px); border-radius: 999px; padding: 10px 14px; }
+.s-dots button { width: 8px; height: 8px; border: 0; padding: 0; border-radius: 999px; background: #86868B; cursor: pointer; transition: width .4s, background .4s; }
+.s-dots button[aria-current="true"] { width: 36px; background: var(--ink); }
+.s-pp { width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(255,255,255,.75); backdrop-filter: blur(10px); color: var(--ink); display: grid; place-items: center; cursor: pointer; }
+@media (max-width: 640px) {
+  .chapter-in { justify-content: flex-start; }
+  .chapter a { width: 84px; } .chapter img { height: 42px; }
+  .slides { min-height: 640px; }
+  .slide { padding: 44px 16px 72px; }
+  .s-art { max-height: 250px; } .s-art.wide { max-height: 150px; margin-bottom: 60px; }
+  .s-art.pair img { max-height: 210px; } .s-art.pair img + img { max-height: 170px; }
+}
+@media (prefers-reduced-motion: reduce) { .slide, .s-art, .s-dots button { transition: none; } .s-art { transform: none; } }
 </style>
 
 <header class="nav">
@@ -380,25 +422,61 @@ footer { background: var(--bg-2); color: var(--ink-2); border-top: 1px solid var
   </ul></div>
 </header>
 
-<!-- 히어로 -->
-<section class="hero" id="top" aria-labelledby="h-hero">
-  <div class="wrap">
-    <span class="label rise"><i class="led"></i>ZOOM AUDIO · KOREA</span>
-    <h1 id="h-hero" class="rise">연주하고, 기록하고,<br>다시 <em>연주한다.</em></h1>
-    <p class="rise">합주실에서 무대까지, 뮤지션의 소리를 담는 ZOOM. 레코더와 이펙터, 믹서까지 한국 공식 수입원 AVX가 소개합니다.</p>
-    <div class="btns rise">
-      <a class="btn go" href="#console"><span class="k">CH</span>용도별로 찾기</a>
-      <a class="btn ghost" href="#lineup">전체 라인업</a>
-    </div>
-    <nav class="cats" aria-label="제품군">
-      <a href="#lineup" data-jump="rec"><b>01 · HANDY</b><span>핸디 레코더</span></a>
-      <a href="#lineup" data-jump="field"><b>02 · FIELD</b><span>필드 레코더</span></a>
-      <a href="#lineup" data-jump="fx"><b>03 · EFFECTS</b><span>이펙터·보컬</span></a>
-      <a href="#lineup" data-jump="mix"><b>04 · MIXER</b><span>믹서·레코더</span></a>
-      <a href="#lineup" data-jump="pod"><b>05 · PODCAST</b><span>팟캐스트</span></a>
-    </nav>
+<!-- 제품군 아이콘 줄 -->
+<nav class="chapter" aria-label="제품군">
+  <div class="chapter-in">
+    <a href="#lineup" data-jump="rec"><img src="../zoom-studio-home/img/products/h6studio.png" alt=""><span>핸디 레코더</span></a>
+    <a href="#lineup" data-jump="field"><img src="../zoom-studio-home/img/products/f6.png" alt=""><span>필드 레코더</span></a>
+    <a href="#lineup" data-jump="fx"><img src="../zoom-studio-home/img/products/g1four.png" alt=""><span>이펙터</span></a>
+    <a href="#lineup" data-jump="fx"><img src="../zoom-studio-home/img/products/v6sp.png" alt=""><span>보컬</span></a>
+    <a href="#lineup" data-jump="mix"><img src="../zoom-studio-home/img/products/l6max.png" alt=""><span>믹서·레코더</span></a>
+    <a href="#lineup" data-jump="pod"><img src="../zoom-studio-home/img/products/p4next.png" alt=""><span>팟캐스트</span></a>
+    <a href="#soon"><img src="../zoom-studio-home/img/products/neurig.png" alt=""><span>출시 예정</span><i>SOON</i></a>
   </div>
-  <img src="../zoom-audio-home/img/scenes/hero-guitar.jpg" alt="낡은 연습실에서 기타리스트가 바닥의 ZOOM 멀티 이펙터를 조작하는 모습">
+</nav>
+
+<!-- 제품 히어로 슬라이드 -->
+<section class="stage" id="top" aria-roledescription="carousel" aria-label="주요 제품">
+  <div class="slides">
+    <article class="slide on" aria-roledescription="slide" aria-label="1 / 3">
+      <div class="s-copy">
+        <span class="label"><i class="led"></i>NEW · HANDY RECORDER</span>
+        <h1>H6studio</h1>
+        <p class="s-sub">여섯 트랙. 대구경 XY 마이크.</p>
+        <div class="btns"><a class="btn go" href="#new">자세히 보기</a><a class="btn ghost" href="https://www.avx.co.kr/goods/view?no=2545">구매하기</a></div>
+        <p class="s-price">699,000원</p>
+      </div>
+      <img class="s-art" src="../zoom-studio-home/img/products/h6studio.png" alt="H6studio 핸디 레코더">
+    </article>
+    <article class="slide" aria-roledescription="slide" aria-label="2 / 3">
+      <div class="s-copy">
+        <span class="label"><i class="led"></i>FIELD RECORDER · 32-BIT FLOAT</span>
+        <h2>F 시리즈</h2>
+        <p class="s-sub">촬영장의 모든 소리를, 깨짐 없이.</p>
+        <div class="btns"><a class="btn go" href="https://www.avx.co.kr/goods/view?no=534">F6 보기</a><a class="btn ghost" href="https://www.avx.co.kr/goods/view?no=922">F3 보기</a></div>
+        <p class="s-price">F6 1,030,000원 · F3 530,000원</p>
+      </div>
+      <div class="s-art pair"><img src="../zoom-studio-home/img/products/f6.png" alt="F6 필드 레코더"><img src="../zoom-studio-home/img/products/f3.png" alt="F3 필드 레코더"></div>
+    </article>
+    <article class="slide" aria-roledescription="slide" aria-label="3 / 3">
+      <div class="s-copy">
+        <span class="label"><i class="led"></i>LIVETRAK · PORTABLE MIXER</span>
+        <h2>LiveTrak L6max</h2>
+        <p class="s-sub">합주를 섞고, 그대로 기록한다.</p>
+        <div class="btns"><a class="btn go" href="https://www.avx.co.kr/goods/view?no=2684">자세히 보기</a><a class="btn ghost" href="#console">합주 장비 찾기</a></div>
+        <p class="s-price">570,000원</p>
+      </div>
+      <img class="s-art wide" src="../zoom-studio-home/img/products/l6max.png" alt="LiveTrak L6max">
+    </article>
+  </div>
+  <div class="s-ctrl">
+    <div class="s-dots" role="group" aria-label="슬라이드 선택">
+      <button type="button" aria-current="true" aria-label="H6studio"></button>
+      <button type="button" aria-current="false" aria-label="F 시리즈"></button>
+      <button type="button" aria-current="false" aria-label="LiveTrak L6max"></button>
+    </div>
+    <button class="s-pp" id="sPP" type="button" aria-label="자동 넘김 멈춤"><svg viewBox="0 0 12 12" width="12" height="12" fill="currentColor"><rect x="2" y="1" width="3" height="10" rx="1"/><rect x="7" y="1" width="3" height="10" rx="1"/></svg></button>
+  </div>
 </section>
 
 <!-- 신제품 -->
@@ -631,6 +709,20 @@ footer { background: var(--bg-2); color: var(--ink-2); border-top: 1px solid var
     if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { const j = (i + (e.key === 'ArrowRight' ? 1 : -1) + chs.length) % chs.length; chs[j].focus(); show(j); e.preventDefault(); }
   }));
   show(0);
+
+
+  // 상단 히어로 슬라이드
+  const slides = [...document.querySelectorAll('.slide')], sd = [...document.querySelectorAll('.s-dots button')], spp = document.getElementById('sPP');
+  if (slides.length) {
+    let si = 0, st = null, sPlay = !reduce;
+    const PAUSE_I = spp.innerHTML, PLAY_I = '<svg viewBox="0 0 12 12" width="12" height="12" fill="currentColor"><path d="M3 1.5v9l7-4.5z"/></svg>';
+    const sGo = i => { si = (i + slides.length) % slides.length; slides.forEach((s, k) => { s.classList.toggle('on', k === si); s.inert = k !== si; }); sd.forEach((d, k) => d.setAttribute('aria-current', k === si)); };
+    const sStart = () => { clearInterval(st); st = setInterval(() => sGo(si + 1), 6000); sPlay = true; spp.innerHTML = PAUSE_I; spp.setAttribute('aria-label', '자동 넘김 멈춤'); };
+    const sStop = () => { clearInterval(st); sPlay = false; spp.innerHTML = PLAY_I; spp.setAttribute('aria-label', '자동 넘김 재생'); };
+    sd.forEach((d, k) => d.addEventListener('click', () => { sGo(k); sStop(); }));
+    spp.addEventListener('click', () => sPlay ? sStop() : sStart());
+    sGo(0); sPlay ? sStart() : sStop();
+  }
 
   // 모바일 메뉴
   const mb = document.getElementById('menuBtn'), mn = document.getElementById('mnav');

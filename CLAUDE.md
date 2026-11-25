@@ -5,6 +5,7 @@ ZOOM H6studio 핸디 레코더 상세페이지를 Apple MacBook Neo 페이지 �
 
 ## 폴더
 - `zoom-audio-light/` : **ZOOM AUDIO 홈페이지 3안 (사용자 선호 방향: Apple 톤)** — 2안 구성 그대로, 흰색 #FFFFFF·연회색 #F5F5F7 바탕 + 검정 글자 + ZOOM 블루 #2362FF 포인트. 네이비는 쓰지 않음. 어두운 구간(신제품 패널, 출시 예정)은 회색 차콜 #2A2B2F, 그 안에서만 라임 포인트
+  - 상단: 제품군 아이콘 줄(`.chapter`) + 제품 히어로 슬라이드 3장(`.stage`: H6studio / F 시리즈 / LiveTrak L6max, 6초 자동 넘김). 큰 문장+사진 히어로는 '홈페이지 같지 않다'는 피드백으로 제거
   - 2안 index.html을 복사해 `<style>` 끝에 라이트·차콜 덮어쓰기 CSS를 붙인 구조. 이미지는 ../zoom-audio-home, ../zoom-studio-home 공유
   - `python3 build.py` → `zoom-audio-light.html`(게시용)
   - 게시 링크: https://claude.ai/artifact/WUzJV9XzhrBfjd4oZ3chSu
