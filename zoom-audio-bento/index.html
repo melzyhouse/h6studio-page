@@ -446,20 +446,60 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
 .u-txt li { gap: 10px; }
 .u-txt li button { white-space: nowrap; }
 @media (max-width: 734px) { .use-card { grid-template-columns: 1fr; } .u-txt { padding: 20px 22px 22px; } }
+
+/* ── 고객 지원 탭 ── */
+.sup-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.sup-tab { text-align: left; border: 2px solid transparent; background: var(--g2); border-radius: 24px; padding: 26px 26px 24px; cursor: pointer; display: flex; flex-direction: column; gap: 6px; transition: background .2s, border-color .2s; }
+.sup-tab svg { color: var(--accent); margin-bottom: 10px; }
+.sup-tab strong { font-size: 24px; letter-spacing: -0.02em; }
+.sup-tab span { color: var(--ink-2); font-size: 15px; }
+.sup-tab:hover { background: var(--g3); }
+.sup-tab[aria-selected="true"] { background: var(--g1); border-color: var(--accent); }
+.sup-pane { margin-top: 16px; background: var(--g4); border-radius: 28px; padding: 36px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 28px; }
+.sup-pane[hidden] { display: none; }
+.pane-main h3 { font-size: 28px; margin-bottom: 10px; }
+.pane-main > p { margin: 0 0 22px; color: var(--ink-2); max-width: 36em; }
+.pane-side { background: var(--g1); border-radius: 20px; padding: 24px; }
+.pane-side h4 { margin: 0 0 12px; font-size: 16px; }
+.doc-list { list-style: none; margin: 0; padding: 0; }
+.doc-list a { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; padding: 11px 0; border-top: 1px solid var(--line); font-size: 14.5px; }
+.doc-list li:first-child a { border-top: 0; }
+.doc-list em { font-style: normal; font-size: 12px; font-weight: 700; color: var(--accent); background: rgba(35,98,255,.08); padding: 3px 8px; border-radius: 6px; }
+.doc-list time { font: 500 12.5px/1 var(--mono); color: var(--ink-2); }
+.doc-list a:hover span { color: var(--accent); }
+.tel { font: 600 30px/1 var(--mono); color: var(--accent); margin: 0 0 16px; font-variant-numeric: tabular-nums; }
+.hours { display: grid; grid-template-columns: 80px 1fr; gap: 8px 12px; margin: 0; font-size: 14.5px; }
+.hours dt { color: var(--ink-2); } .hours dd { margin: 0; }
+.fine { margin: 14px 0 0; font-size: 13px; color: var(--ink-2); }
+.btn.kakao { background: #FEE500; border-color: #FEE500; color: #191919; }
+.btn.kakao:hover { background: #F2D900; border-color: #F2D900; }
+.as-steps { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 14px; }
+.as-steps li { display: grid; grid-template-columns: 34px 1fr; gap: 14px; background: var(--g1); border-radius: 18px; padding: 18px; }
+.as-steps b { width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font: 600 15px/1 var(--mono); }
+.as-steps strong { display: block; font-size: 16px; margin-bottom: 4px; }
+.as-steps p { margin: 0; color: var(--ink-2); font-size: 14.5px; }
+.pane-side .btns { margin-top: 4px; }
+@media (max-width: 834px) { .sup-pane { grid-template-columns: 1fr; padding: 24px; } }
+@media (max-width: 734px) {
+  .sup-tabs { grid-template-columns: 1fr; gap: 10px; }
+  .sup-tab { flex-direction: row; flex-wrap: wrap; align-items: center; column-gap: 12px; padding: 18px 20px; }
+  .sup-tab svg { margin: 0; } .sup-tab strong { font-size: 20px; } .sup-tab span { width: 100%; padding-left: 38px; margin-top: -4px; }
+  .tel { font-size: 26px; }
+}
 </style>
 
 <header class="nav">
   <div class="wrap">
     <a class="wordmark" href="#top" aria-label="ZOOM AUDIO 홈"><b>ZOOM</b><span>AUDIO</span></a>
-    <nav aria-label="주 메뉴"><ul class="main"><li><a href="#series">제품</a></li><li><a href="#finder">용도별 추천</a></li><li><a href="#support">정품·A/S</a></li></ul></nav>
+    <nav aria-label="주 메뉴"><ul class="main"><li><a href="#series">제품</a></li><li><a href="#finder">용도별 추천</a></li><li><a href="#support">고객 지원</a></li></ul></nav>
     <div class="right">
       <span class="tag">한국 공식 수입원 AVX</span>
       <a class="shop" href="https://www.avx.co.kr/goods/brand?code=0004">구매하기</a>
-      <a class="dl" href="https://zoomcorp.com/en/us/support/"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 1.5v7.5M3.8 6.2L7 9.4l3.2-3.2M2 12.5h10"/></svg>매뉴얼·펌웨어</a>
+      <a class="dl" href="#docs"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 1.5v7.5M3.8 6.2L7 9.4l3.2-3.2M2 12.5h10"/></svg>매뉴얼·펌웨어</a>
       <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="메뉴 열기"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 5h12M2 11h12"/></svg></button>
     </div>
   </div>
-  <div class="mnav wrap" id="mnav"><ul><li><a href="#series">제품</a></li><li><a href="#finder">용도별 추천</a></li><li><a href="#support">정품·A/S</a></li><li><a href="https://www.avx.co.kr/goods/brand?code=0004">구매하기</a></li><li><a href="https://zoomcorp.com/en/us/support/">매뉴얼·펌웨어</a></li></ul></div>
+  <div class="mnav wrap" id="mnav"><ul><li><a href="#series">제품</a></li><li><a href="#finder">용도별 추천</a></li><li><a href="#support">고객 지원</a></li><li><a href="https://www.avx.co.kr/goods/brand?code=0004">구매하기</a></li><li><a href="#docs">매뉴얼·펌웨어</a></li></ul></div>
 </header>
 
 <nav class="chapter" aria-label="제품군">
@@ -557,32 +597,67 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
     </div>
   </section>
 
-  <!-- 4. 정품·A/S: 단계 박스 + 연락처 박스 + FAQ 박스 -->
+  <!-- 고객 지원: 자료실 / 기술 상담 / A/S (누르면 아래에 내용) -->
   <section class="sec wrap" id="support" aria-labelledby="h-support">
-    <div class="sec-head"><h2 id="h-support">정품 구매·A/S 안내</h2><p>한국 공식 수입원 에이브이엑스(AVX)가 구매부터 A/S까지 안내해요.</p></div>
-    <div class="bento">
-      <article class="tile c8 rise">
-        <ol class="steps">
-          <li><b>01</b><h4>구매</h4><p>AVX와 공식 판매처에서 국내 정식 수입 제품을.</p></li>
-          <li><b>02</b><h4>세팅</h4><p>매뉴얼·펌웨어는 ZOOM 공식 지원 페이지에서.</p></li>
-          <li><b>03</b><h4>기술 상담</h4><p>연결·세팅·장비 선택은 전화나 카카오톡으로.</p></li>
-          <li><b>04</b><h4>A/S</h4><p>고장·점검은 AVX 고객센터로 접수.</p></li>
+    <div class="sec-head"><h2 id="h-support">고객 지원</h2><p>매뉴얼·펌웨어, 기술 상담, A/S를 한 곳에서.</p></div>
+    <div class="sup-tabs" role="tablist" aria-label="고객 지원">
+      <button class="sup-tab" role="tab" type="button" id="tab-docs" aria-selected="true" aria-controls="pane-docs" data-pane="docs">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg>
+        <strong>자료실</strong><span>매뉴얼·펌웨어 받기</span></button>
+      <button class="sup-tab" role="tab" type="button" id="tab-talk" aria-selected="false" aria-controls="pane-talk" data-pane="talk">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 4c-4.7 0-8.5 3-8.5 6.7 0 2.4 1.6 4.5 4 5.7L6.6 20l4-2.5c.5.1.9.1 1.4.1 4.7 0 8.5-3 8.5-6.9S16.7 4 12 4z"/></svg>
+        <strong>기술 상담</strong><span>카카오톡으로 물어보기</span></button>
+      <button class="sup-tab" role="tab" type="button" id="tab-as" aria-selected="false" aria-controls="pane-as" data-pane="as">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14.5 5.5a4 4 0 00-5.2 5.2L4 16l4 4 5.3-5.3a4 4 0 005.2-5.2l-2.6 2.6-2.8-.6-.6-2.8z"/></svg>
+        <strong>A/S</strong><span>수리 접수 방법</span></button>
+    </div>
+
+    <div class="sup-pane" id="pane-docs" role="tabpanel" aria-labelledby="tab-docs">
+      <div class="pane-main">
+        <h3>매뉴얼·펌웨어 받기</h3>
+        <p>ZOOM 제품의 한국어 매뉴얼과 펌웨어 업데이트 공지는 AVX 자료실에 모아 두었어요. 자료실에 없는 제품은 ZOOM 공식 지원 페이지에서 받을 수 있어요.</p>
+        <div class="btns"><a class="btn go" href="https://www.avx.co.kr/board/?id=notice">AVX 자료실 바로가기</a><a class="btn line" href="https://zoomcorp.com/en/us/support/">ZOOM 공식 다운로드</a></div>
+      </div>
+      <div class="pane-side">
+        <h4>최근 올라온 ZOOM 자료</h4>
+        <ul class="doc-list">
+          <li><a href="https://www.avx.co.kr/board/?id=notice"><em>펌웨어</em><span>H6essential 펌웨어 V4.0 업데이트</span><time>2026.11.16</time></a></li>
+          <li><a href="https://www.avx.co.kr/board/?id=notice"><em>매뉴얼</em><span>G1 FOUR / G1X FOUR 한국어 매뉴얼</span><time>2026.11.03</time></a></li>
+          <li><a href="https://www.avx.co.kr/board/?id=notice"><em>매뉴얼</em><span>B1 FOUR / B1X FOUR 한국어 매뉴얼</span><time>2026.11.03</time></a></li>
+          <li><a href="https://www.avx.co.kr/board/?id=notice"><em>매뉴얼</em><span>G2 FOUR / G2X FOUR 한국어 매뉴얼</span><time>2026.11.03</time></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sup-pane" id="pane-talk" role="tabpanel" aria-labelledby="tab-talk" hidden>
+      <div class="pane-main">
+        <h3>카카오톡으로 기술 상담</h3>
+        <p>연결, 세팅, 장비 선택이 막히면 AVX 카카오톡 채널로 물어보세요. 사진이나 영상을 함께 보내 주시면 더 빠르게 안내해 드려요.</p>
+        <div class="btns"><a class="btn go kakao" href="https://pf.kakao.com/_vXeNxj/chat">카카오톡 상담하기</a></div>
+        <p class="fine">카카오톡이 열리지 않으면 카카오톡에서 '에이브이엑스' 채널을 검색해 주세요.</p>
+      </div>
+      <div class="pane-side">
+        <h4>전화 상담</h4>
+        <p class="tel">02-2265-0032</p>
+        <dl class="hours"><dt>운영 시간</dt><dd>평일 09:30 – 18:30</dd><dt>점심 시간</dt><dd>12:30 – 13:30</dd><dt>휴무</dt><dd>토·일·공휴일</dd></dl>
+      </div>
+    </div>
+
+    <div class="sup-pane" id="pane-as" role="tabpanel" aria-labelledby="tab-as" hidden>
+      <div class="pane-main">
+        <h3>A/S 접수 방법</h3>
+        <ol class="as-steps">
+          <li><b>1</b><div><strong>아래 정보를 준비해 주세요</strong><p>제품명과 시리얼 번호, 증상, 정품확인 스티커 부착 여부, 구매 일시, 구매처, 구매 증빙(카드 승인 영수증이나 쇼핑몰 구매 내역), 성함과 연락처</p></div></li>
+          <li><b>2</b><div><strong>제품을 보내기 전에 먼저 연락해 주세요</strong><p>문의 내용을 확인한 뒤 서비스 담당자가 간단히 점검할 방법을 안내해 드려요. 기본 점검만으로 해결되는 경우가 많아요.</p></div></li>
+          <li><b>3</b><div><strong>수리가 필요하면 제품을 보내 주세요</strong><p>구입 후 7일 이내에 생긴 제품 하자가 아니라면 보내실 때 택배비는 고객 부담이에요. 수리가 끝난 제품은 AVX가 택배비를 내고 보내 드려요.</p></div></li>
         </ol>
-      </article>
-      <article class="tile c4 tile-call rise">
-        <div class="num" style="font:600 32px/1 var(--mono);color:var(--lime);margin-top:18px">02-2265-0032</div>
-        <dl class="kv">
-          <dt>운영 시간</dt><dd>평일 9:30 – 18:30</dd>
-          <dt>카카오톡</dt><dd>카카오톡 채널 '에이브이엑스'</dd>
-          <dt>매뉴얼</dt><dd><a href="https://zoomcorp.com/en/us/support/">zoomcorp.com 지원</a></dd>
-        </dl>
-      </article>
-      <article class="tile white c12 faq rise">
-        <details open><summary>정품인지 어떻게 확인하나요?</summary><p>한국 공식 수입원 AVX와 공식 판매처에서 판매하는 제품이 국내 정식 수입 제품이에요. 구매처가 확실하지 않으면 고객센터로 문의해 주세요.</p></details>
-        <details><summary>A/S는 어디로 접수하나요?</summary><p>AVX 고객센터(02-2265-0032, 평일 9:30 – 18:30)로 연락하시면 접수 방법을 안내해 드려요.</p></details>
-        <details><summary>펌웨어 업데이트는 어디서 하나요?</summary><p>ZOOM 공식 지원 페이지에서 제품별 펌웨어와 매뉴얼을 받을 수 있어요. 처음이라면 기술 상담으로 물어보세요.</p></details>
-        <details><summary>어떤 제품이 맞을지 모르겠어요.</summary><p>위의 '용도별로 찾기'에서 하는 음악을 골라 보세요. 그래도 고민되면 장르와 인원을 알려 주시면 맞는 구성을 추천해 드려요.</p></details>
-      </article>
+      </div>
+      <div class="pane-side">
+        <h4>A/S 문의</h4>
+        <p class="tel">02-2265-0032</p>
+        <div class="btns"><a class="btn line" href="https://pf.kakao.com/_vXeNxj/chat">카카오톡 문의</a><a class="btn line" href="https://www.avx.co.kr/board/?id=faq">자주 묻는 질문</a></div>
+        <p class="fine">AVX 고객센터 자주 묻는 질문 기준이에요.</p>
+      </div>
     </div>
   </section>
 </main>
@@ -605,7 +680,7 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
       <div><h4>레코더</h4><ul><li><a href="https://www.avx.co.kr/goods/view?no=2545">H6studio</a></li><li><a href="https://www.avx.co.kr/goods/view?no=2277">H5studio</a></li><li><a href="https://www.avx.co.kr/goods/view?no=1465">H6essential</a></li><li><a href="https://www.avx.co.kr/goods/view?no=922">F3</a></li><li><a href="https://www.avx.co.kr/goods/view?no=534">F6</a></li></ul></div>
       <div><h4>이펙터·보컬</h4><ul><li><a href="https://www.avx.co.kr/goods/view?no=3201">NEURIG</a></li><li><a href="https://www.avx.co.kr/goods/view?no=3024">G2 FOUR</a></li><li><a href="https://www.avx.co.kr/goods/view?no=2989">MS-70CDR+</a></li><li><a href="https://www.avx.co.kr/goods/view?no=2995">V6-SP</a></li></ul></div>
       <div><h4>믹서·팟캐스트</h4><ul><li><a href="https://www.avx.co.kr/goods/view?no=2738">LiveTrak L12next</a></li><li><a href="https://www.avx.co.kr/goods/view?no=2684">LiveTrak L6max</a></li><li><a href="https://www.avx.co.kr/goods/view?no=2977">R20</a></li><li><a href="https://www.avx.co.kr/goods/view?no=2680">PodTrak P4next</a></li></ul></div>
-      <div><h4>고객지원</h4><ul><li><a href="#support">정품·A/S 안내</a></li><li><a href="https://www.avx.co.kr/goods/brand?code=0004">AVX ZOOM 브랜드관</a></li><li><a href="https://zoomcorp.com/en/us/support/">매뉴얼·펌웨어</a></li></ul></div>
+      <div><h4>고객지원</h4><ul><li><a href="#support">고객 지원</a></li><li><a href="https://www.avx.co.kr/goods/brand?code=0004">AVX ZOOM 브랜드관</a></li><li><a href="#docs">매뉴얼·펌웨어</a></li></ul></div>
     </div>
     <div class="f-legal">
       <span>가격은 에이브이엑스(AVX) 자사몰 판매가 기준(2026년 11월)이며 배송비 별도, 변동될 수 있습니다.</span>
@@ -738,6 +813,19 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
   uMark(0);
   new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && uPlay) uStart(); else if (!e.isIntersecting) clearInterval(ut); }), { threshold: .4 }).observe(uTrack);
   if (!uPlay) uStop();
+
+  // 고객 지원 탭: 자료실 / 기술 상담 / A/S
+  const supTabs = [...document.querySelectorAll('.sup-tab')];
+  const showPane = (key, scroll) => {
+    supTabs.forEach(t => { const on = t.dataset.pane === key; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; document.getElementById('pane-' + t.dataset.pane).hidden = !on; });
+    if (scroll) document.getElementById('support').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  };
+  supTabs.forEach((t, i) => {
+    t.addEventListener('click', () => showPane(t.dataset.pane));
+    t.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { const j = (i + (e.key === 'ArrowRight' ? 1 : -1) + supTabs.length) % supTabs.length; supTabs[j].focus(); showPane(supTabs[j].dataset.pane); e.preventDefault(); } });
+  });
+  const supHash = () => { const h = location.hash.slice(1); if (['docs', 'talk', 'as'].includes(h)) showPane(h, true); };
+  addEventListener('hashchange', supHash); supHash();
 
   // 모바일 메뉴
   const mb = document.getElementById('menuBtn'), mn = document.getElementById('mnav');
