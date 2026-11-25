@@ -4,7 +4,11 @@ ZOOM H6studio 핸디 레코더 상세페이지를 Apple MacBook Neo 페이지 �
 사용자는 한국어로 대화한다. 답변도 한국어로.
 
 ## 폴더
-- `zoom-audio-light/` : **ZOOM AUDIO 홈페이지 3안 (사용자 선호 방향: Apple 톤)** — 2안 구성 그대로, 흰색 #FFFFFF·연회색 #F5F5F7 바탕 + 검정 글자 + ZOOM 블루 #2362FF 포인트. 네이비는 쓰지 않음. 어두운 구간(신제품 패널, 출시 예정)은 회색 차콜 #2A2B2F, 그 안에서만 라임 포인트
+- `zoom-audio-bento/` : **ZOOM AUDIO 홈페이지 4안 (현재 진행안)** — 3안 상단(제품군 아이콘 줄 + 제품 슬라이드) 유지 + 본문은 ZOOM 카테고리별 벤토 그리드(핸디 레코더 / 필드 레코더 / 이펙터 / 보컬 / 믹서·레코더 / 팟캐스트). 제품 카드는 본문에 한 번씩만. 박스 크기는 제품 무게·모양에 따라(big/tall/wide/small). 그 아래 용도별로 찾기 도구 박스, 정품·A/S
+  - **수정 순서:** 제품·카테고리·박스 크기는 `make_page.py`의 `CATEGORIES` → 레이아웃·스타일·스크립트는 `template.html` → `python3 make_page.py && python3 build.py`. `index.html`은 생성물이라 직접 고치지 말 것
+  - 사용자 피드백: Apple처럼 깔끔·둥근 박스·밝은 톤 선호, 네이비 싫음(어두운 곳은 회색 차콜), 박스가 규칙적으로 반복되는 배열은 싫음, 사진 대신 제품으로 정리, 제품 중복 노출 싫음, 타이틀 굵기 700
+  - 게시 링크: https://claude.ai/artifact/G3aF9EpYdTGGzjzsSeoiG9
+- `zoom-audio-light/` : **ZOOM AUDIO 홈페이지 3안 (Apple 톤, 4안의 바탕)** — 2안 구성 그대로, 흰색 #FFFFFF·연회색 #F5F5F7 바탕 + 검정 글자 + ZOOM 블루 #2362FF 포인트. 네이비는 쓰지 않음. 어두운 구간(신제품 패널, 출시 예정)은 회색 차콜 #2A2B2F, 그 안에서만 라임 포인트
   - 상단: 제품군 아이콘 줄(`.chapter`) + 제품 히어로 슬라이드 3장(`.stage`: H6studio / F 시리즈 / LiveTrak L6max, 6초 자동 넘김). 큰 문장+사진 히어로는 '홈페이지 같지 않다'는 피드백으로 제거
   - 용도별로 찾기: 1안처럼 제품 카드 가로 갤러리(연회색 카드, 자동 넘김+점). 데이터는 스크립트의 `USES` 배열. 사진형 채널 스트립은 피드백으로 제거
   - 2안 index.html을 복사해 `<style>` 끝에 라이트·차콜 덮어쓰기 CSS를 붙인 구조. 이미지는 ../zoom-audio-home, ../zoom-studio-home 공유

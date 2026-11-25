@@ -1,0 +1,641 @@
+<title>ZOOM AUDIO</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* 4안: Apple식 깔끔한 둥근 박스 + 내용 무게에 따라 크기가 다른 벤토 그리드.
+   밝은 톤(흰색·연회색) + 회색 차콜 포인트 + ZOOM 블루. 네이비 없음. */
+:root {
+  --bg: #FFFFFF; --tile: #F5F5F7; --tile-2: #E8E8ED; --ink: #1D1D1F; --ink-2: #6E6E73; --line: #D2D2D7;
+  --char: #2A2B2F; --char-2: #1E1F22; --char-ink-2: #A1A1A6;
+  --accent: #2362FF; --accent-h: #1A4FE0; --lime: #C8FF4D; --amber: #FF9F0A;
+  --font: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --r: 28px; --gap: 16px; --max: 1200px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { overflow-x: clip; scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.55 var(--font); letter-spacing: -0.01em; word-break: keep-all; -webkit-font-smoothing: antialiased; }
+.stage { margin-top: 0; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: rgba(251,251,253,.92); }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.03em; text-wrap: balance; }
+.wrap { max-width: var(--max); margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.label { font: 600 11.5px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); display: inline-flex; align-items: center; gap: 8px; }
+.led { width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex: none; }
+.dark .label { color: var(--lime); }
+.dark .led { box-shadow: 0 0 8px rgba(200,255,77,.7); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.dark a:focus-visible, .dark button:focus-visible { outline-color: var(--lime); }
+
+/* 버튼 */
+.btn { display: inline-flex; align-items: center; height: 40px; padding: 0 18px; border-radius: 980px; font: 500 15px/1 var(--font); border: 1px solid var(--accent); transition: background .2s, color .2s; }
+.btn.go { background: var(--accent); color: #fff; } .btn.go:hover { background: var(--accent-h); }
+.btn.line { color: var(--accent); } .btn.line:hover { background: var(--accent); color: #fff; }
+.dark .btn.go { background: #fff; color: var(--ink); border-color: #fff; } .dark .btn.go:hover { background: var(--lime); border-color: var(--lime); }
+.dark .btn.line { color: #fff; border-color: rgba(255,255,255,.6); } .dark .btn.line:hover { background: #fff; color: var(--ink); }
+.btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.more { color: var(--accent); font-size: 15px; font-weight: 500; }
+.more::after { content: " ›"; }
+.dark .more { color: #fff; }
+
+/* 내비 */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: rgba(251,251,253,.8); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid rgba(0,0,0,.1); }
+.nav .wrap { height: 52px; display: flex; align-items: center; gap: 36px; }
+.wordmark { display: flex; flex-direction: column; gap: 3px; line-height: 1; }
+.wordmark b { font: 900 18px/1 var(--font); letter-spacing: .05em; }
+.wordmark span { font: 600 7px/1 var(--mono); letter-spacing: .78em; }
+.nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 26px; font-size: 13px; }
+.nav ul a { opacity: .78; } .nav ul a:hover { opacity: 1; }
+.nav .right { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+.nav .tag { font: 600 10.5px/1 var(--mono); letter-spacing: .12em; color: var(--ink-2); }
+.nav .shop { height: 30px; padding: 0 14px; border-radius: 980px; background: var(--accent); color: #fff; font: 500 13px/30px var(--font); }
+.menu-btn { display: none; width: 36px; height: 32px; border-radius: 8px; border: 1px solid var(--line); background: none; cursor: pointer; place-items: center; }
+.nav .mnav { display: none; border-top: 1px solid var(--line); }
+.nav .mnav.open { display: block; }
+.mnav ul { flex-direction: column; gap: 0; padding: 6px 0 14px; }
+.mnav li a { display: block; padding: 12px 0; font-size: 20px; font-weight: 700; opacity: 1; }
+
+/* 제품군 아이콘 줄 */
+.chapter { border-bottom: 1px solid var(--tile-2); }
+.chapter-in { max-width: 1000px; margin: 0 auto; display: flex; justify-content: center; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 14px max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px)); }
+.chapter-in::-webkit-scrollbar { display: none; }
+.chapter a { flex: 0 0 auto; width: 100px; display: flex; flex-direction: column; align-items: center; gap: 7px; padding: 6px 4px; border-radius: 14px; position: relative; transition: background .2s; }
+.chapter a:hover { background: var(--tile); }
+.chapter img { height: 50px; width: auto; max-width: 80px; object-fit: contain; }
+.chapter span { font-size: 12px; font-weight: 500; white-space: nowrap; }
+.chapter i { position: absolute; top: 2px; right: 8px; font: 600 9px/1 var(--mono); letter-spacing: .1em; color: var(--amber); font-style: normal; }
+
+/* 섹션 머리 */
+.sec { padding: 88px 0 0; }
+.sec-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 28px; }
+.sec-head h2 { font-size: clamp(32px, 4.4vw, 48px); line-height: 1.1; }
+.sec-head p { margin: 0; color: var(--ink-2); font-size: 17px; }
+
+/* ── 벤토 그리드: 12칸, 내용에 따라 다른 크기 ── */
+.bento { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: minmax(180px, auto); gap: var(--gap); }
+.tile { background: var(--tile); border-radius: var(--r); padding: 32px; position: relative; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.tile.dark { background: var(--char); color: #fff; }
+.tile.white { background: var(--bg); border: 1px solid var(--tile-2); }
+.c3 { grid-column: span 3; } .c4 { grid-column: span 4; } .c5 { grid-column: span 5; } .c6 { grid-column: span 6; } .c7 { grid-column: span 7; } .c8 { grid-column: span 8; } .c12 { grid-column: span 12; }
+.r2 { grid-row: span 2; }
+.tile h3 { font-size: 28px; line-height: 1.15; }
+.tile p { margin: 8px 0 0; color: var(--ink-2); }
+.tile.dark p { color: var(--char-ink-2); }
+.tile .price { font: 600 14px/1 var(--mono); color: var(--ink-2); margin-top: 12px; }
+.tile.dark .price { color: var(--char-ink-2); }
+.tile .art { transition: transform .9s cubic-bezier(.2,.7,.2,1); }
+.tile:hover .art { transform: translateY(-6px) scale(1.02); }
+
+/* 큰 신제품 박스 */
+.t-hero { min-height: 560px; padding: 44px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 12px; background: linear-gradient(160deg, #FAFAFC 0%, var(--tile) 55%, #ECEDF2 100%); }
+.t-hero h2 { font-size: clamp(44px, 5.4vw, 72px); line-height: 1; margin: 14px 0 12px; }
+.t-hero .sub { font-size: 21px; color: var(--ink); margin: 0 0 20px; }
+.t-hero .specs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; padding: 0; list-style: none; }
+.t-hero .specs li { font: 600 12px/1 var(--mono); letter-spacing: .06em; padding: 8px 10px; border-radius: 8px; background: var(--bg); color: var(--ink); }
+.t-hero .art { max-height: 470px; width: auto; justify-self: center; filter: drop-shadow(0 30px 34px rgba(0,0,0,.2)); }
+/* 세로로 긴 출시 예정 박스 */
+.t-soon { min-height: 560px; }
+.t-soon h3 { font-size: 40px; margin: 14px 0 6px; }
+.t-soon .status { display: inline-flex; gap: 8px; align-items: center; align-self: flex-start; margin-top: 16px; font: 600 11.5px/1 var(--mono); letter-spacing: .1em; color: var(--char-ink-2); border: 1px solid rgba(255,255,255,.18); border-radius: 980px; padding: 8px 12px; }
+.t-soon .status .led { color: var(--amber); box-shadow: 0 0 8px var(--amber); animation: blink 1.6s ease-in-out infinite; }
+@keyframes blink { 50% { opacity: .3; } }
+.t-soon .art { margin-top: auto; width: 100%; filter: drop-shadow(0 30px 40px rgba(0,0,0,.55)); }
+.t-soon .btns { margin-top: 22px; }
+/* 가로로 넓은 박스 */
+.t-wide { display: grid; grid-template-columns: 1fr 1.15fr; gap: 16px; align-items: center; min-height: 300px; }
+.t-wide .pair { display: flex; gap: 14px; align-items: flex-end; justify-content: center; }
+.t-wide .pair img { max-height: 210px; width: auto; max-width: 48%; filter: drop-shadow(0 20px 24px rgba(0,0,0,.18)); }
+.t-wide .pair img + img { max-height: 175px; }
+.t-wide .btns { margin-top: 18px; }
+/* 작은 박스 */
+.t-small { min-height: 300px; }
+.t-small h3 { font-size: 22px; margin-top: 12px; }
+.t-small .art { margin-top: auto; align-self: center; max-height: 130px; width: auto; filter: drop-shadow(0 16px 18px rgba(0,0,0,.18)); }
+.t-small .more { margin-top: 14px; }
+.t-call .num { font: 600 clamp(26px, 2.6vw, 34px)/1 var(--mono); color: var(--lime); margin-top: auto; font-variant-numeric: tabular-nums; }
+.t-call small { display: block; margin-top: 10px; color: var(--char-ink-2); font-size: 13px; }
+
+/* 용도별로 찾기 박스 (인터랙티브) */
+.t-uses { padding: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; min-height: 520px; }
+.t-uses h2 { font-size: clamp(30px, 3.4vw, 40px); line-height: 1.1; margin: 12px 0 18px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+.chips button { height: 34px; padding: 0 14px; border-radius: 980px; border: 1px solid var(--line); background: var(--bg); cursor: pointer; font: 500 14px/1 var(--font); transition: background .2s, color .2s, border-color .2s; }
+.chips button:hover { border-color: var(--ink-2); }
+.chips button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+.u-desc { margin: 0 0 14px; color: var(--ink-2); min-height: 3.1em; }
+.u-list { list-style: none; margin: auto 0 0; padding: 0; }
+.u-list li { display: grid; grid-template-columns: 1fr auto auto; gap: 14px; align-items: center; padding: 12px 0; border-top: 1px solid var(--line); }
+.u-list button { background: none; border: 0; padding: 0; text-align: left; cursor: pointer; font: 700 16px/1.4 var(--font); display: inline-flex; align-items: center; gap: 9px; }
+.u-list button::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--line); transition: background .2s; }
+.u-list li.peek button { color: var(--accent); } .u-list li.peek button::before { background: var(--accent); }
+.u-list span { font: 600 14px/1 var(--mono); font-variant-numeric: tabular-nums; }
+.u-list a { color: var(--accent); font-size: 13px; font-weight: 500; white-space: nowrap; }
+.u-list a:hover { text-decoration: underline; }
+.u-stage { background: var(--bg); border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 24px; min-height: 360px; }
+.u-stage img { max-height: 300px; width: auto; max-width: 92%; object-fit: contain; filter: drop-shadow(0 24px 26px rgba(0,0,0,.18)); transition: opacity .16s, transform .3s; }
+.u-stage img.swap { opacity: 0; transform: scale(.97); }
+.u-stage .u-name { font: 600 11px/1 var(--mono); letter-spacing: .12em; color: var(--ink-2); text-transform: uppercase; }
+/* 인기 순위 박스 */
+.rank { list-style: none; margin: 16px 0 0; padding: 0; counter-reset: r; display: grid; gap: 4px; }
+.rank li a { display: grid; grid-template-columns: 30px 54px 1fr; gap: 12px; align-items: center; padding: 8px 0; }
+.rank li a::before { counter-increment: r; content: "0" counter(r); font: 600 13px/1 var(--mono); color: var(--accent); }
+.rank img { width: 54px; height: 54px; object-fit: contain; }
+.rank b { display: block; font-size: 15px; }
+.rank small { font: 600 12.5px/1.6 var(--mono); color: var(--ink-2); }
+.rank li a:hover b { color: var(--accent); }
+.t-first .art { margin: auto auto 0; max-height: 170px; width: auto; filter: drop-shadow(0 18px 20px rgba(0,0,0,.18)); }
+
+/* 라인업 (카탈로그는 규칙적으로) */
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
+.tabs button { height: 36px; padding: 0 15px; border-radius: 980px; border: 1px solid var(--line); background: var(--bg); cursor: pointer; font: 500 14px/1 var(--font); }
+.tabs button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+.rack { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.unit { background: var(--tile); border-radius: 20px; padding: 16px 16px 18px; display: flex; flex-direction: column; transition: background .2s; }
+.unit:hover { background: var(--tile-2); }
+.unit[hidden] { display: none; }
+.unit .pic { height: 150px; display: grid; place-items: center; margin-bottom: 12px; }
+.unit .pic img { max-height: 140px; width: auto; object-fit: contain; }
+.unit .cat { font: 600 10px/1 var(--mono); letter-spacing: .12em; color: var(--ink-2); }
+.unit h3 { font-size: 16px; margin: 6px 0 4px; letter-spacing: -0.02em; }
+.unit b { font: 600 13.5px/1 var(--mono); font-variant-numeric: tabular-nums; margin-top: auto; padding-top: 8px; }
+.unit .tag { color: var(--accent); font: 600 10px/1 var(--mono); letter-spacing: .12em; margin-left: 6px; }
+
+/* 정품·A/S 박스 */
+.steps { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.steps li { background: var(--bg); border-radius: 18px; padding: 18px; }
+.steps b { font: 600 11px/1 var(--mono); letter-spacing: .12em; color: var(--accent); }
+.steps h4 { margin: 10px 0 6px; font-size: 18px; }
+.steps p { margin: 0; font-size: 14px; color: var(--ink-2); }
+.faq details { border-top: 1px solid var(--line); }
+.faq details:first-of-type { border-top: 0; }
+.faq summary { list-style: none; cursor: pointer; padding: 18px 0; display: grid; grid-template-columns: 1fr 20px; gap: 10px; font-weight: 700; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font: 400 22px/1 var(--mono); color: var(--ink-2); text-align: right; }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { margin: -4px 0 18px; color: var(--ink-2); font-size: 15px; }
+.kv { display: grid; grid-template-columns: 76px 1fr; gap: 8px 12px; margin-top: 18px; font-size: 14px; }
+.kv dt { font: 600 10.5px/1.9 var(--mono); letter-spacing: .12em; color: var(--char-ink-2); }
+.kv dd { margin: 0; }
+.kv a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* 푸터 */
+footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-size: 12px; }
+.f-in { padding-top: 28px; padding-bottom: 36px; }
+.f-dir { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+.f-dir h4 { margin: 0 0 8px; color: var(--ink); font-size: 12px; }
+.f-dir ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.f-dir a:hover { color: var(--ink); text-decoration: underline; }
+.f-legal { padding-top: 16px; display: grid; gap: 4px; }
+
+/* 등장 모션 (보이는 상태에서 살짝만) */
+.rise { transform: translateY(20px); transition: transform .9s cubic-bezier(.2,.7,.2,1); }
+.rise.in { transform: none; }
+
+/* 반응형 */
+@media (max-width: 1068px) {
+  .nav .tag { display: none; }
+  .c3 { grid-column: span 6; } .c4 { grid-column: span 6; } .c5 { grid-column: span 12; } .c7 { grid-column: span 12; } .c8 { grid-column: span 12; }
+  .t-soon { grid-row: auto; min-height: 460px; }
+  .t-soon .art { max-width: 420px; align-self: center; }
+  .rack { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 834px) { .nav ul.main { display: none; } .menu-btn { display: grid; } }
+@media (max-width: 734px) {
+  :root { --r: 22px; --gap: 12px; }
+  .sec { padding-top: 64px; }
+  .c3, .c4, .c6 { grid-column: span 12; }
+  .tile { padding: 24px; }
+  .t-hero { grid-template-columns: 1fr; padding: 28px 24px; min-height: 0; text-align: left; }
+  .t-hero .art { max-height: 300px; order: -1; }
+  .t-wide { grid-template-columns: 1fr; }
+  .t-uses { grid-template-columns: 1fr; padding: 24px; }
+  .u-stage { min-height: 240px; order: -1; } .u-stage img { max-height: 190px; }
+  .t-small { min-height: 0; } .t-small .art { margin-top: 18px; }
+  .rack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .unit .pic { height: 110px; } .unit .pic img { max-height: 100px; }
+  .steps { grid-template-columns: 1fr; }
+  .f-dir { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) { .rise, .tile .art, .u-stage img { transition: none; transform: none; } .t-soon .status .led { animation: none; } }
+/* ── 상단: 제품군 아이콘 줄 + 제품 히어로 슬라이드 (홈페이지다운 첫 화면) ── */
+.chapter { background: var(--bg); border-bottom: 1px solid var(--tile-2); }
+.chapter-in { max-width: 1040px; margin: 0 auto; display: flex; justify-content: center; gap: 8px; overflow-x: auto; scrollbar-width: none; padding: 16px max(16px, env(safe-area-inset-right, 0px)) 12px max(16px, env(safe-area-inset-left, 0px)); }
+.chapter-in::-webkit-scrollbar { display: none; }
+.chapter a { flex: 0 0 auto; width: 104px; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 6px 4px; border-radius: 14px; position: relative; transition: background .2s; }
+.chapter a:hover { background: var(--tile); }
+.chapter img { height: 54px; width: auto; max-width: 84px; object-fit: contain; }
+.chapter span { font-size: 12.5px; font-weight: 500; color: var(--ink); white-space: nowrap; }
+.chapter i { position: absolute; top: 2px; right: 8px; font: 600 9px/1 var(--mono); letter-spacing: .1em; color: #FF9F0A; font-style: normal; }
+
+.stage { position: relative; background: var(--tile); overflow: hidden; }
+.slides { position: relative; min-height: 780px; }
+.slide { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 64px 20px 72px; opacity: 0; visibility: hidden; transition: opacity .8s ease, visibility 0s linear .8s; }
+.slide.on { opacity: 1; visibility: visible; transition: opacity .8s ease; }
+.slide:nth-child(2) { background: linear-gradient(180deg, #FFFFFF 0%, var(--tile) 100%); }
+.s-copy .label { justify-content: center; margin-bottom: 14px; }
+.slide h1, .slide h2 { font-size: clamp(44px, 6vw, 72px); line-height: 1.05; font-weight: 900; color: var(--ink); }
+.s-sub { margin: 10px 0 22px; font-size: clamp(19px, 2.2vw, 26px); color: var(--ink); }
+.slide .btns { justify-content: center; }
+.s-price { margin: 14px 0 0; font-size: 14px; color: var(--ink-2); }
+.s-art { margin-top: auto; max-height: 330px; width: auto; max-width: 88%; object-fit: contain; filter: drop-shadow(0 28px 30px rgba(0,0,0,.18)); transform: translateY(16px); transition: transform 1s cubic-bezier(.2,.7,.2,1); }
+.slide.on .s-art { transform: none; }
+.slide > .s-art { margin-bottom: 44px; }
+.s-art.wide { max-height: 250px; margin-bottom: 64px; }
+.s-art.pair { display: flex; gap: 28px; align-items: flex-end; justify-content: center; filter: none; }
+.s-art.pair img { max-height: 300px; max-width: 44%; width: auto; filter: drop-shadow(0 28px 30px rgba(0,0,0,.2)); }
+.s-art.pair img + img { max-height: 250px; }
+.s-ctrl { position: absolute; left: 0; right: 0; bottom: 22px; display: flex; justify-content: center; align-items: center; gap: 12px; z-index: 2; }
+.s-dots { display: flex; gap: 10px; background: rgba(255,255,255,.75); backdrop-filter: blur(10px); border-radius: 999px; padding: 10px 14px; }
+.s-dots button { width: 8px; height: 8px; border: 0; padding: 0; border-radius: 999px; background: #86868B; cursor: pointer; transition: width .4s, background .4s; }
+.s-dots button[aria-current="true"] { width: 36px; background: var(--ink); }
+.s-pp { width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(255,255,255,.75); backdrop-filter: blur(10px); color: var(--ink); display: grid; place-items: center; cursor: pointer; }
+@media (max-width: 640px) {
+  .chapter-in { justify-content: flex-start; }
+  .chapter a { width: 84px; } .chapter img { height: 42px; }
+  .slides { min-height: 640px; }
+  .slide { padding: 44px 16px 72px; }
+  .s-art { max-height: 250px; } .s-art.wide { max-height: 150px; margin-bottom: 60px; }
+  .s-art.pair img { max-height: 210px; } .s-art.pair img + img { max-height: 170px; }
+}
+@media (prefers-reduced-motion: reduce) { .slide, .s-art, .s-dots button { transition: none; } .s-art { transform: none; } }
+
+
+/* ── 카테고리 제품 박스: 크기별 배치 ── */
+.cat { scroll-margin-top: 64px; }
+.p-tile { gap: 18px; }
+.p-tile .p-copy { display: flex; flex-direction: column; min-width: 0; }
+.p-tile .label { margin-bottom: 10px; }
+.p-tile h2 { font-size: clamp(40px, 4.8vw, 64px); line-height: 1; margin-bottom: 4px; }
+.p-tile h3 { font-size: 26px; line-height: 1.15; }
+.p-tile .btns { margin-top: 16px; }
+.p-tile .price { margin-top: 12px; }
+.p-tile .art { object-fit: contain; width: auto; filter: drop-shadow(0 24px 26px rgba(0,0,0,.18)); }
+.p-tile.dark .art { filter: drop-shadow(0 30px 36px rgba(0,0,0,.55)); }
+.p-tile.big { display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 44px; min-height: 560px; background: linear-gradient(160deg, #FAFAFC 0%, var(--tile) 55%, #ECEDF2 100%); }
+.p-tile.big .art { max-height: 470px; justify-self: center; }
+.p-tile.big p:not(.price) { font-size: 19px; color: var(--ink); }
+.p-tile.big .specs { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
+.p-tile.big .specs li { font: 600 12px/1 var(--mono); letter-spacing: .06em; padding: 8px 10px; border-radius: 8px; background: var(--bg); }
+.p-tile.tall { min-height: 560px; }
+.p-tile.tall .art { margin-top: auto; align-self: center; max-height: 300px; max-width: 92%; }
+.p-tile.wide { display: grid; grid-template-columns: 1fr 1fr; align-items: center; min-height: 272px; }
+.p-tile.wide .art { max-height: 210px; max-width: 100%; justify-self: center; }
+.p-tile.small { min-height: 360px; }
+.p-tile.small h3 { font-size: 22px; }
+.p-tile.small .art { margin-top: auto; align-self: center; max-height: 150px; max-width: 90%; }
+@media (max-width: 1068px) {
+  .p-tile.big { grid-column: span 12; } .p-tile.tall { grid-column: span 6; grid-row: span 1; min-height: 460px; }
+  .p-tile.wide { grid-column: span 12; } .p-tile.small { grid-column: span 6; }
+}
+@media (max-width: 734px) {
+  .p-tile.big, .p-tile.wide { grid-template-columns: 1fr; padding: 26px 24px; min-height: 0; }
+  .p-tile.big .art, .p-tile.wide .art { order: -1; max-height: 240px; }
+  .p-tile.tall, .p-tile.small { grid-column: span 12; min-height: 0; }
+  .p-tile.tall .art, .p-tile.small .art { margin-top: 18px; max-height: 200px; }
+}
+</style>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="wordmark" href="#top" aria-label="ZOOM AUDIO 홈"><b>ZOOM</b><span>AUDIO</span></a>
+    <nav aria-label="주 메뉴"><ul class="main"><li><a href="#handy">레코더</a></li><li><a href="#effects">이펙터</a></li><li><a href="#mixer">믹서·팟캐스트</a></li><li><a href="#finder">용도별로 찾기</a></li><li><a href="#support">정품·A/S</a></li></ul></nav>
+    <div class="right">
+      <span class="tag">OFFICIAL IMPORTER · AVX</span>
+      <a class="shop" href="https://www.avx.co.kr/goods/brand?code=0004">구매하기</a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mnav" aria-label="메뉴 열기"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 5h12M2 11h12"/></svg></button>
+    </div>
+  </div>
+  <div class="mnav wrap" id="mnav"><ul><li><a href="#handy">레코더</a></li><li><a href="#effects">이펙터</a></li><li><a href="#mixer">믹서·팟캐스트</a></li><li><a href="#finder">용도별로 찾기</a></li><li><a href="#support">정품·A/S</a></li></ul></div>
+</header>
+
+<nav class="chapter" aria-label="제품군">
+  <div class="chapter-in">
+    <a href="#handy"><img data-src="h6studio" alt=""><span>핸디 레코더</span></a>
+    <a href="#field"><img data-src="f6" alt=""><span>필드 레코더</span></a>
+    <a href="#effects"><img data-src="g1four" alt=""><span>이펙터</span></a>
+    <a href="#vocal"><img data-src="v6sp" alt=""><span>보컬</span></a>
+    <a href="#mixer"><img data-src="l6max" alt=""><span>믹서·레코더</span></a>
+    <a href="#podcast"><img data-src="p4next" alt=""><span>팟캐스트</span></a>
+    <a href="#effects"><img data-src="neurig" alt=""><span>출시 예정</span><i>SOON</i></a>
+  </div>
+</nav>
+
+<main>
+<!-- 제품 히어로 슬라이드 -->
+<section class="stage" id="top" aria-roledescription="carousel" aria-label="주요 제품">
+  <div class="slides">
+    <article class="slide on" aria-roledescription="slide" aria-label="1 / 3">
+      <div class="s-copy">
+        <span class="label"><i class="led"></i>NEW · HANDY RECORDER</span>
+        <h1>H6studio</h1>
+        <p class="s-sub">여섯 트랙. 대구경 XY 마이크.</p>
+        <div class="btns"><a class="btn go" href="#handy">자세히 보기</a><a class="btn ghost" href="https://www.avx.co.kr/goods/view?no=2545">구매하기</a></div>
+        <p class="s-price">699,000원</p>
+      </div>
+      <img class="s-art" src="../zoom-studio-home/img/products/h6studio.png" alt="H6studio 핸디 레코더">
+    </article>
+    <article class="slide" aria-roledescription="slide" aria-label="2 / 3">
+      <div class="s-copy">
+        <span class="label"><i class="led"></i>FIELD RECORDER · 32-BIT FLOAT</span>
+        <h2>F 시리즈</h2>
+        <p class="s-sub">촬영장의 모든 소리를, 깨짐 없이.</p>
+        <div class="btns"><a class="btn go" href="https://www.avx.co.kr/goods/view?no=534">F6 보기</a><a class="btn ghost" href="https://www.avx.co.kr/goods/view?no=922">F3 보기</a></div>
+        <p class="s-price">F6 1,030,000원 · F3 530,000원</p>
+      </div>
+      <div class="s-art pair"><img src="../zoom-studio-home/img/products/f6.png" alt="F6 필드 레코더"><img src="../zoom-studio-home/img/products/f3.png" alt="F3 필드 레코더"></div>
+    </article>
+    <article class="slide" aria-roledescription="slide" aria-label="3 / 3">
+      <div class="s-copy">
+        <span class="label"><i class="led"></i>LIVETRAK · PORTABLE MIXER</span>
+        <h2>LiveTrak L6max</h2>
+        <p class="s-sub">합주를 섞고, 그대로 기록한다.</p>
+        <div class="btns"><a class="btn go" href="https://www.avx.co.kr/goods/view?no=2684">자세히 보기</a><a class="btn ghost" href="#finder">합주 장비 찾기</a></div>
+        <p class="s-price">570,000원</p>
+      </div>
+      <img class="s-art wide" src="../zoom-studio-home/img/products/l6max.png" alt="LiveTrak L6max">
+    </article>
+  </div>
+  <div class="s-ctrl">
+    <div class="s-dots" role="group" aria-label="슬라이드 선택">
+      <button type="button" aria-current="true" aria-label="H6studio"></button>
+      <button type="button" aria-current="false" aria-label="F 시리즈"></button>
+      <button type="button" aria-current="false" aria-label="LiveTrak L6max"></button>
+    </div>
+    <button class="s-pp" id="sPP" type="button" aria-label="자동 넘김 멈춤"><svg viewBox="0 0 12 12" width="12" height="12" fill="currentColor"><rect x="2" y="1" width="3" height="10" rx="1"/><rect x="7" y="1" width="3" height="10" rx="1"/></svg></button>
+  </div>
+</section>
+
+  <section class="sec wrap cat" id="handy" aria-labelledby="h-handy">
+    <div class="sec-head"><div><span class="label"><i class="led"></i>HANDY RECORDER</span><h2 id="h-handy">핸디 레코더</h2></div><p>손에 쥐고 바로 녹음. 합주실, 무대, 책상 위까지.</p></div>
+    <div class="bento">
+      <article class="tile p-tile big c8 r2 rise">
+        <div class="p-copy"><span class="label"><i class="led"></i>NEW</span><h2>H6studio</h2><p>여섯 트랙. 대구경 XY 마이크.</p><ul class="specs"><li>6 + 2 MIX</li><li>32-BIT FLOAT</li><li>XLR/TRS ×4</li><li>AA · 15H</li></ul><p class="price">699,000원</p><div class="btns"><a class="btn go" href="https://claude.ai/artifact/SCHGy9TERkg3ViwjEJdivj">자세히 보기</a><a class="btn line" href="https://www.avx.co.kr/goods/view?no=2545">구매하기</a></div></div>
+        <img class="art" data-src="h6studio" alt="H6studio">
+      </article>
+      <article class="tile p-tile tall c4 r2 rise">
+        <div class="p-copy"><h3>H5studio</h3><p>4트랙 스튜디오 핸디 레코더. 오디오 인터페이스로도.</p><p class="price">659,000원</p><div class="btns"><a class="btn go" href="https://www.avx.co.kr/goods/view?no=2277">구매하기</a></div></div>
+        <img class="art" data-src="h5studio" alt="H5studio">
+      </article>
+      <article class="tile p-tile small c3 rise">
+        <div class="p-copy"><span class="label"><i class="led"></i>FIRMWARE V4.0</span><h3>H6essential</h3><p>6트랙 32비트 플로트. 이제 멀티트랙 녹음 모드까지.</p><p class="price">559,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=1465">구매하기</a></div></div>
+        <img class="art" data-src="h6e" alt="H6essential">
+      </article>
+      <article class="tile p-tile small c3 rise">
+        <div class="p-copy"><h3>H4essential</h3><p>4트랙 32비트 플로트.</p><p class="price">399,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=1468">구매하기</a></div></div>
+        <img class="art" data-src="h4e" alt="H4essential">
+      </article>
+      <article class="tile p-tile small c3 rise">
+        <div class="p-copy"><h3>H2essential</h3><p>32비트 플로트 핸디 레코더.</p><p class="price">339,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=1919">구매하기</a></div></div>
+        <img class="art" data-src="h2e" alt="H2essential">
+      </article>
+      <article class="tile p-tile small c3 white rise">
+        <div class="p-copy"><span class="label"><i class="led"></i>START HERE</span><h3>H1essential</h3><p>처음 사는 녹음기라면. 가볍게 시작하는 32비트.</p><p class="price">199,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=1469">구매하기</a></div></div>
+        <img class="art" data-src="h1e" alt="H1essential">
+      </article>
+    </div>
+  </section>
+
+  <section class="sec wrap cat" id="field" aria-labelledby="h-field">
+    <div class="sec-head"><div><span class="label"><i class="led"></i>FIELD RECORDER</span><h2 id="h-field">필드 레코더</h2></div><p>촬영장과 야외에서. 갑자기 커지는 소리에도 깨지지 않게.</p></div>
+    <div class="bento">
+      <article class="tile p-tile tall c5 r2 dark rise">
+        <div class="p-copy"><h3>F8n Pro</h3><p>8채널 필드 레코더.</p><p class="price">1,700,000원</p><div class="btns"><a class="btn go" href="https://www.avx.co.kr/goods/view?no=423">구매하기</a></div></div>
+        <img class="art" data-src="f8npro" alt="F8n Pro">
+      </article>
+      <article class="tile p-tile wide c7 rise">
+        <div class="p-copy"><h3>F6</h3><p>멀티트랙 필드 레코더. 전용 가방 PCF-6 포함.</p><p class="price">1,030,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=534">구매하기</a></div></div>
+        <img class="art" data-src="f6" alt="F6">
+      </article>
+      <article class="tile p-tile wide c7 rise">
+        <div class="p-copy"><h3>F3</h3><p>2채널 32비트 플로트 필드 레코더.</p><p class="price">530,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=922">구매하기</a></div></div>
+        <img class="art" data-src="f3" alt="F3">
+      </article>
+    </div>
+  </section>
+
+  <section class="sec wrap cat" id="effects" aria-labelledby="h-effects">
+    <div class="sec-head"><div><span class="label"><i class="led"></i>MULTI-EFFECTS</span><h2 id="h-effects">이펙터</h2></div><p>페달 하나로 시작해 보드 전체까지. 합주실에 들고 가는 톤.</p></div>
+    <div class="bento">
+      <article class="tile p-tile tall c6 r2 dark rise">
+        <div class="p-copy"><span class="label"><i class="led"></i>COMING SOON</span><h3>NEURIG</h3><p>기타 앰프와 이펙트를, 뉴럴 모델링으로.</p><p class="price">가격 문의 · 국내 안전 인증 진행 중</p><div class="btns"><a class="btn go" href="https://www.avx.co.kr/goods/view?no=3201">출시 문의</a></div></div>
+        <img class="art" data-src="neurig" alt="NEURIG">
+      </article>
+      <article class="tile p-tile wide c6 rise">
+        <div class="p-copy"><h3>G2 FOUR / G2X FOUR</h3><p>기타 멀티 이펙트 프로세서.</p><p class="price">357,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=3024">구매하기</a></div></div>
+        <img class="art" data-src="g1four" alt="G2 FOUR / G2X FOUR">
+      </article>
+      <article class="tile p-tile small c3 rise">
+        <div class="p-copy"><h3>B2 FOUR</h3><p>베이스 멀티 이펙트 프로세서.</p><p class="price">446,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=3023">구매하기</a></div></div>
+        <img class="art" data-src="b2four" alt="B2 FOUR">
+      </article>
+      <article class="tile p-tile small c3 rise">
+        <div class="p-copy"><h3>MS-70CDR+</h3><p>코러스·딜레이·리버브 멀티스톰프.</p><p class="price">214,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=2989">구매하기</a></div></div>
+        <img class="art" data-src="ms70cdr" alt="MS-70CDR+">
+      </article>
+    </div>
+  </section>
+
+  <section class="sec wrap cat" id="vocal" aria-labelledby="h-vocal">
+    <div class="sec-head"><div><span class="label"><i class="led"></i>VOCAL PROCESSOR</span><h2 id="h-vocal">보컬</h2></div><p>하모니, 피치, 루프. 목소리 하나로 무대를 채우는 이펙터.</p></div>
+    <div class="bento">
+      <article class="tile p-tile wide c7 rise">
+        <div class="p-copy"><h3>V6-SP</h3><p>보컬 이펙터·루퍼·포먼트를 발끝으로.</p><p class="price">660,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=2995">구매하기</a></div></div>
+        <img class="art" data-src="v6sp" alt="V6-SP">
+      </article>
+      <article class="tile p-tile wide c5 rise">
+        <div class="p-copy"><h3>V3</h3><p>하모니·피치 코렉트 보컬 프로세서. USB 오디오 인터페이스.</p><p class="price">499,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=2994">구매하기</a></div></div>
+        <img class="art" data-src="v3" alt="V3">
+      </article>
+    </div>
+  </section>
+
+  <section class="sec wrap cat" id="mixer" aria-labelledby="h-mixer">
+    <div class="sec-head"><div><span class="label"><i class="led"></i>MIXER · RECORDER</span><h2 id="h-mixer">믹서·레코더</h2></div><p>합주를 섞고, 그대로 기록하는 장비.</p></div>
+    <div class="bento">
+      <article class="tile p-tile wide c8 rise">
+        <div class="p-copy"><h3>LiveTrak L12next</h3><p>12채널 14트랙 디지털 믹서·레코더.</p><p class="price">1,150,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=2738">구매하기</a></div></div>
+        <img class="art" data-src="l12next" alt="LiveTrak L12next">
+      </article>
+      <article class="tile p-tile small c4 rise">
+        <div class="p-copy"><h3>LiveTrak L6max</h3><p>12채널 포터블 오디오 레코더.</p><p class="price">570,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=2684">구매하기</a></div></div>
+        <img class="art" data-src="l6max" alt="LiveTrak L6max">
+      </article>
+      <article class="tile p-tile wide c12 rise">
+        <div class="p-copy"><h3>R20 MultiTrak</h3><p>멀티트랙 레코더.</p><p class="price">891,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=2977">구매하기</a></div></div>
+        <img class="art" data-src="r20" alt="R20 MultiTrak">
+      </article>
+    </div>
+  </section>
+
+  <section class="sec wrap cat" id="podcast" aria-labelledby="h-podcast">
+    <div class="sec-head"><div><span class="label"><i class="led"></i>PODCAST</span><h2 id="h-podcast">팟캐스트</h2></div><p>둘이서, 넷이서. 마이크를 꽂고 버튼 몇 번이면 대화가 깨끗하게.</p></div>
+    <div class="bento">
+      <article class="tile p-tile wide c8 rise">
+        <div class="p-copy"><h3>PodTrak P4next</h3><p>4트랙 팟캐스트 레코더. 오디오 인터페이스로도.</p><p class="price">305,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=2680">구매하기</a></div></div>
+        <img class="art" data-src="p4next" alt="PodTrak P4next">
+      </article>
+      <article class="tile p-tile small c4 rise">
+        <div class="p-copy"><h3>PodTrak P2</h3><p>2트랙 팟캐스트 레코더.</p><p class="price">199,000원</p><div class="btns"><a class="btn line" href="https://www.avx.co.kr/goods/view?no=2282">구매하기</a></div></div>
+        <img class="art" data-src="p2" alt="PodTrak P2">
+      </article>
+    </div>
+  </section>
+
+  <!-- 용도별로 찾기: 찾기 도구 박스 하나 -->
+  <section class="sec wrap" id="finder" aria-labelledby="h-uses">
+    <div class="bento">
+      <article class="tile t-uses c12 rise">
+        <div style="display:flex;flex-direction:column;min-width:0">
+          <span class="label"><i class="led"></i>FIND BY USE</span>
+          <h2 id="h-uses">용도별로 찾기.</h2>
+          <div class="chips" id="chips" role="group" aria-label="용도"></div>
+          <p class="u-desc" id="uDesc"></p>
+          <ul class="u-list" id="uList"></ul>
+        </div>
+        <div class="u-stage" aria-live="polite"><img id="uImg" alt=""><span class="u-name" id="uName"></span></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 4. 정품·A/S: 단계 박스 + 연락처 박스 + FAQ 박스 -->
+  <section class="sec wrap" id="support" aria-labelledby="h-support">
+    <div class="sec-head"><h2 id="h-support">사는 순간부터, 쓰는 내내.</h2><p>ZOOM 한국 공식 수입원 에이브이엑스(AVX)가 함께해요.</p></div>
+    <div class="bento">
+      <article class="tile c8 rise">
+        <span class="label"><i class="led"></i>SUPPORT FLOW</span>
+        <ol class="steps">
+          <li><b>01</b><h4>구매</h4><p>AVX와 공식 판매처에서 국내 정식 수입 제품을.</p></li>
+          <li><b>02</b><h4>세팅</h4><p>매뉴얼·펌웨어는 ZOOM 공식 지원 페이지에서.</p></li>
+          <li><b>03</b><h4>기술 상담</h4><p>연결·세팅·장비 선택은 전화나 카카오톡으로.</p></li>
+          <li><b>04</b><h4>A/S</h4><p>고장·점검은 AVX 고객센터로 접수.</p></li>
+        </ol>
+      </article>
+      <article class="tile dark c4 rise">
+        <span class="label"><i class="led"></i>AVX CUSTOMER CENTER</span>
+        <div class="num" style="font:600 32px/1 var(--mono);color:var(--lime);margin-top:18px">02-2265-0032</div>
+        <dl class="kv">
+          <dt>HOURS</dt><dd>평일 9:30 – 18:30</dd>
+          <dt>KAKAO</dt><dd>카카오톡 채널 '에이브이엑스'</dd>
+          <dt>MANUAL</dt><dd><a href="https://zoomcorp.com/en/us/support/">zoomcorp.com 지원</a></dd>
+        </dl>
+      </article>
+      <article class="tile white c12 faq rise">
+        <details open><summary>정품인지 어떻게 확인하나요?</summary><p>한국 공식 수입원 AVX와 공식 판매처에서 판매하는 제품이 국내 정식 수입 제품이에요. 구매처가 확실하지 않으면 고객센터로 문의해 주세요.</p></details>
+        <details><summary>A/S는 어디로 접수하나요?</summary><p>AVX 고객센터(02-2265-0032, 평일 9:30 – 18:30)로 연락하시면 접수 방법을 안내해 드려요.</p></details>
+        <details><summary>펌웨어 업데이트는 어디서 하나요?</summary><p>ZOOM 공식 지원 페이지에서 제품별 펌웨어와 매뉴얼을 받을 수 있어요. 처음이라면 기술 상담으로 물어보세요.</p></details>
+        <details><summary>어떤 제품이 맞을지 모르겠어요.</summary><p>위의 '용도별로 찾기'에서 하는 음악을 골라 보세요. 그래도 고민되면 장르와 인원을 알려 주시면 맞는 구성을 추천해 드려요.</p></details>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap f-in">
+    <div class="f-dir">
+      <div><h4>레코더</h4><ul><li><a href="https://www.avx.co.kr/goods/view?no=2545">H6studio</a></li><li><a href="https://www.avx.co.kr/goods/view?no=2277">H5studio</a></li><li><a href="https://www.avx.co.kr/goods/view?no=1465">H6essential</a></li><li><a href="https://www.avx.co.kr/goods/view?no=922">F3</a></li><li><a href="https://www.avx.co.kr/goods/view?no=534">F6</a></li></ul></div>
+      <div><h4>이펙터·보컬</h4><ul><li><a href="https://www.avx.co.kr/goods/view?no=3201">NEURIG</a></li><li><a href="https://www.avx.co.kr/goods/view?no=3024">G2 FOUR</a></li><li><a href="https://www.avx.co.kr/goods/view?no=2989">MS-70CDR+</a></li><li><a href="https://www.avx.co.kr/goods/view?no=2995">V6-SP</a></li></ul></div>
+      <div><h4>믹서·팟캐스트</h4><ul><li><a href="https://www.avx.co.kr/goods/view?no=2738">LiveTrak L12next</a></li><li><a href="https://www.avx.co.kr/goods/view?no=2684">LiveTrak L6max</a></li><li><a href="https://www.avx.co.kr/goods/view?no=2977">R20</a></li><li><a href="https://www.avx.co.kr/goods/view?no=2680">PodTrak P4next</a></li></ul></div>
+      <div><h4>고객지원</h4><ul><li><a href="#support">정품·A/S 안내</a></li><li><a href="https://www.avx.co.kr/goods/brand?code=0004">AVX ZOOM 브랜드관</a></li><li><a href="https://zoomcorp.com/en/us/support/">매뉴얼·펌웨어</a></li></ul></div>
+    </div>
+    <div class="f-legal">
+      <span>가격은 에이브이엑스(AVX) 자사몰 판매가 기준(2026년 11월)이며 배송비 별도, 변동될 수 있습니다. 인기 순서는 AVX 자사몰 ZOOM 브랜드관 인기순 정렬 기준입니다.</span>
+      <span>에이브이엑스(주) · 서울특별시 성동구 성수이로10길 14 802·803호 · 고객센터 02-2265-0032</span>
+      <span>ZOOM은 ZOOM CORPORATION의 상표입니다. 이 페이지는 ZOOM AUDIO 홈페이지 디자인 시안입니다.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- 제품 이미지 (빌드 때 내장) -->
+<div id="imgsrc" hidden>
+  <img data-k="h6studio" src="../zoom-studio-home/img/products/h6studio.png" alt="">
+  <img data-k="h5studio" src="../zoom-studio-home/img/products/h5studio.png" alt="">
+  <img data-k="h6e" src="../zoom-studio-home/img/products/h6e.png" alt="">
+  <img data-k="h4e" src="../zoom-studio-home/img/products/h4e.png" alt="">
+  <img data-k="h2e" src="../zoom-studio-home/img/products/h2e.png" alt="">
+  <img data-k="h1e" src="../zoom-studio-home/img/products/h1e.png" alt="">
+  <img data-k="f8npro" src="../zoom-studio-home/img/products/f8npro.png" alt="">
+  <img data-k="f6" src="../zoom-studio-home/img/products/f6.png" alt="">
+  <img data-k="f3" src="../zoom-studio-home/img/products/f3.png" alt="">
+  <img data-k="neurig" src="../zoom-studio-home/img/products/neurig.png" alt="">
+  <img data-k="g1four" src="../zoom-studio-home/img/products/g1four.png" alt="">
+  <img data-k="b2four" src="../zoom-studio-home/img/products/b2four.png" alt="">
+  <img data-k="ms70cdr" src="../zoom-studio-home/img/products/ms70cdr.png" alt="">
+  <img data-k="v6sp" src="../zoom-studio-home/img/products/v6sp.png" alt="">
+  <img data-k="v3" src="../zoom-studio-home/img/products/v3.png" alt="">
+  <img data-k="l12next" src="../zoom-studio-home/img/products/l12next.png" alt="">
+  <img data-k="l6max" src="../zoom-studio-home/img/products/l6max.png" alt="">
+  <img data-k="r20" src="../zoom-studio-home/img/products/r20.png" alt="">
+  <img data-k="p4next" src="../zoom-studio-home/img/products/p4next.png" alt="">
+  <img data-k="p2" src="../zoom-studio-home/img/products/p2.png" alt="">
+</div>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const P = k => document.querySelector(`#imgsrc [data-k="${k}"]`)?.getAttribute('src') || '';
+  document.querySelectorAll('img[data-src]').forEach(i => { i.src = P(i.dataset.src); });
+
+  const PRODUCTS = [{"k": "h6studio", "n": "H6studio", "p": "699,000원", "no": 2545}, {"k": "h5studio", "n": "H5studio", "p": "659,000원", "no": 2277}, {"k": "h6e", "n": "H6essential", "p": "559,000원", "no": 1465}, {"k": "h4e", "n": "H4essential", "p": "399,000원", "no": 1468}, {"k": "h2e", "n": "H2essential", "p": "339,000원", "no": 1919}, {"k": "h1e", "n": "H1essential", "p": "199,000원", "no": 1469}, {"k": "f8npro", "n": "F8n Pro", "p": "1,700,000원", "no": 423}, {"k": "f6", "n": "F6", "p": "1,030,000원", "no": 534}, {"k": "f3", "n": "F3", "p": "530,000원", "no": 922}, {"k": "neurig", "n": "NEURIG", "p": "가격 문의 · 국내 안전 인증 진행 중", "no": 3201}, {"k": "g1four", "n": "G2 FOUR / G2X FOUR", "p": "357,000원", "no": 3024}, {"k": "b2four", "n": "B2 FOUR", "p": "446,000원", "no": 3023}, {"k": "ms70cdr", "n": "MS-70CDR+", "p": "214,000원", "no": 2989}, {"k": "v6sp", "n": "V6-SP", "p": "660,000원", "no": 2995}, {"k": "v3", "n": "V3", "p": "499,000원", "no": 2994}, {"k": "l12next", "n": "LiveTrak L12next", "p": "1,150,000원", "no": 2738}, {"k": "l6max", "n": "LiveTrak L6max", "p": "570,000원", "no": 2684}, {"k": "r20", "n": "R20 MultiTrak", "p": "891,000원", "no": 2977}, {"k": "p4next", "n": "PodTrak P4next", "p": "305,000원", "no": 2680}, {"k": "p2", "n": "PodTrak P2", "p": "199,000원", "no": 2282}];
+  const by = Object.fromEntries(PRODUCTS.map(p => [p.k, p]));
+  const url = no => `https://www.avx.co.kr/goods/view?no=${no}`;
+
+  // 상단 히어로 슬라이드
+  const slides = [...document.querySelectorAll('.slide')], sd = [...document.querySelectorAll('.s-dots button')], spp = document.getElementById('sPP');
+  if (slides.length) {
+    let si = 0, st = null, sPlay = !reduce;
+    const PAUSE_I = spp.innerHTML, PLAY_I = '<svg viewBox="0 0 12 12" width="12" height="12" fill="currentColor"><path d="M3 1.5v9l7-4.5z"/></svg>';
+    const sGo = i => { si = (i + slides.length) % slides.length; slides.forEach((s, k) => { s.classList.toggle('on', k === si); s.inert = k !== si; }); sd.forEach((d, k) => d.setAttribute('aria-current', k === si)); };
+    const sStart = () => { clearInterval(st); st = setInterval(() => sGo(si + 1), 6000); sPlay = true; spp.innerHTML = PAUSE_I; spp.setAttribute('aria-label', '자동 넘김 멈춤'); };
+    const sStop = () => { clearInterval(st); sPlay = false; spp.innerHTML = PLAY_I; spp.setAttribute('aria-label', '자동 넘김 재생'); };
+    sd.forEach((d, k) => d.addEventListener('click', () => { sGo(k); sStop(); }));
+    spp.addEventListener('click', () => sPlay ? sStop() : sStart());
+    sGo(0); sPlay ? sStart() : sStop();
+  }
+
+
+  // 용도별로 찾기
+  const USES = [
+    { t: '합주·공연', x: '합주실과 무대를 통째로, 또는 악기별로 나눠서.', pics: ['h6studio', 'h4e', 'l6max'] },
+    { t: '홈레코딩', x: '혼자 작업하는 뮤지션의 책상 위 스튜디오.', pics: ['r20', 'h5studio', 'l12next'] },
+    { t: '사운드 메이킹', x: '페달 하나로 시작해 보드 전체까지.', pics: ['ms70cdr', 'g1four', 'b2four'] },
+    { t: '보컬', x: '하모니, 피치, 루프. 목소리를 위한 이펙터.', pics: ['v3', 'v6sp'] },
+    { t: '팟캐스트·방송', x: '둘이서, 넷이서. 대화를 깨끗하게.', pics: ['p2', 'p4next'] },
+    { t: '영상·현장', x: '촬영장과 야외에서, 클리핑 걱정 없이.', pics: ['f3', 'f6', 'f8npro'] },
+  ];
+  const chips = document.getElementById('chips'), uDesc = document.getElementById('uDesc'), uList = document.getElementById('uList'), uImg = document.getElementById('uImg'), uName = document.getElementById('uName');
+  let cur = null;
+  const preview = k => {
+    if (uImg.dataset.k === k) return;
+    uImg.dataset.k = k; uImg.classList.add('swap');
+    setTimeout(() => { if (uImg.dataset.k !== k) return; uImg.src = P(k); uImg.alt = by[k].n; uName.textContent = by[k].n; uImg.classList.remove('swap'); }, reduce ? 0 : 150);
+    uList.querySelectorAll('li').forEach(li => li.classList.toggle('peek', li.dataset.k === k));
+  };
+  const showUse = i => {
+    [...chips.children].forEach((c, j) => c.setAttribute('aria-pressed', j === i));
+    const u = USES[i]; uDesc.textContent = u.x; cur = u.pics[0];
+    uList.innerHTML = u.pics.map(k => { const p = by[k]; return `<li data-k="${k}"><button type="button">${p.n}</button><span>${p.p}</span><a href="${url(p.no)}" aria-label="${p.n} AVX에서 구매">구매 ›</a></li>`; }).join('');
+    uList.querySelectorAll('li').forEach(li => { const b = li.querySelector('button'), k = li.dataset.k;
+      b.addEventListener('mouseenter', () => preview(k)); b.addEventListener('focus', () => preview(k));
+      b.addEventListener('click', () => { cur = k; preview(k); }); });
+    uImg.dataset.k = ''; preview(cur);
+  };
+  uList.addEventListener('mouseleave', () => cur && preview(cur));
+  USES.forEach((u, i) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = u.t; b.addEventListener('click', () => showUse(i)); chips.append(b); });
+  showUse(0);
+
+  // 모바일 메뉴
+  const mb = document.getElementById('menuBtn'), mn = document.getElementById('mnav');
+  mb.addEventListener('click', () => { const o = mn.classList.toggle('open'); mb.setAttribute('aria-expanded', o); mb.setAttribute('aria-label', o ? '메뉴 닫기' : '메뉴 열기'); });
+  mn.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mn.classList.remove('open'); mb.setAttribute('aria-expanded', false); }));
+
+  // 등장 모션
+  if (!reduce) { const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 }); document.querySelectorAll('.rise').forEach(el => io.observe(el)); }
+  else document.querySelectorAll('.rise').forEach(el => el.classList.add('in'));
+})();
+</script>
