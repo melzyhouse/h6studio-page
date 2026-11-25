@@ -435,6 +435,24 @@ footer { background: var(--bg-2); color: var(--ink-2); border-top: 1px solid var
   .u-txt { padding: 20px 22px 22px; } .u-txt h3 { font-size: 24px; }
 }
 @media (prefers-reduced-motion: reduce) { .use-dots button { transition: none; } }
+
+/* 용도별 카드: 제품 미리보기 행 */
+.u-txt li { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 14px; }
+.u-txt li button { text-align: left; background: none; border: 0; padding: 0; font: 700 15px/1.4 var(--font); color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+.u-txt li button::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--line); transition: background .2s; }
+.u-txt li.peek button { color: var(--accent); }
+.u-txt li.peek button::before { background: var(--accent); }
+.u-txt li.sel:not(.peek) button::before { background: var(--ink-2); }
+.u-txt li a { font: 500 13px/1 var(--font); color: var(--accent); white-space: nowrap; }
+.u-txt li a:hover { text-decoration: underline; }
+.u-pic { position: relative; flex-direction: column; gap: 14px; }
+.u-pic img { transition: opacity .16s ease, transform .3s ease; }
+.u-pic img.swap { opacity: 0; transform: scale(.97); }
+.u-name { font: 600 11px/1 var(--mono); letter-spacing: .12em; color: var(--ink-2); text-transform: uppercase; }
+
+/* 타이틀 굵기 한 단계 낮춤: 900 → 700 (로고 제외) */
+h1, h2, h3, .slide h1, .slide h2, .uses-head h2, .u-txt h3, .feature h2, .sec-head h2, .soon h2, .node h3, .detail h3, .unit h3, .price-row strong, .hero h1 { font-weight: 700; }
+@media (prefers-reduced-motion: reduce) { .u-pic img { transition: none; } }
 </style>
 
 <header class="nav">
@@ -715,10 +733,30 @@ footer { background: var(--bg-2); color: var(--ink-2); border-top: 1px solid var
   uTrack.innerHTML = USES.map(u => `
     <article class="use-card">
       <div class="u-txt"><span class="label"><i class="led"></i>${u.tag}</span><h3>${u.t}</h3><p>${u.x}</p>
-        <ul>${u.pics.map(k => { const p = byKey[k]; return `<li><a href="${url(p.no)}">${p.n}</a><span>${p.p}</span></li>`; }).join('')}</ul></div>
-      <div class="u-pic"><img src="${P(u.img)}" alt="${byKey[u.img].n}" loading="lazy"></div>
+        <ul>${u.pics.map(k => { const p = byKey[k]; return `<li${k === u.img ? ' class="sel peek"' : ''}><button type="button" data-k="${k}" aria-pressed="${k === u.img}">${p.n}</button><span>${p.p}</span><a href="${url(p.no)}" aria-label="${p.n} AVX에서 구매">구매 ›</a></li>`; }).join('')}</ul></div>
+      <div class="u-pic"><img src="${P(u.img)}" alt="${byKey[u.img].n}" loading="lazy"><span class="u-name">${byKey[u.img].n}</span></div>
     </article>`).join('');
   const uCards = [...uTrack.children];
+  // 제품에 마우스를 올리거나 누르면 카드 이미지가 그 제품으로 바뀜
+  uCards.forEach(card => {
+    const img = card.querySelector('.u-pic img'), name = card.querySelector('.u-name');
+    const pick = (btn, keep) => {
+      const k = btn.dataset.k, p = byKey[k];
+      card.querySelectorAll('li').forEach(li => li.classList.toggle('peek', li.contains(btn)));
+      if (keep) card.querySelectorAll('li').forEach(li => { const on = li.contains(btn); li.classList.toggle('sel', on); li.querySelector('button').setAttribute('aria-pressed', on); });
+      if ((img.dataset.k || card.querySelector('li.sel button')?.dataset.k) === k && img.dataset.k) return;
+      img.dataset.k = k;
+      img.classList.add('swap');
+      setTimeout(() => { if (img.dataset.k !== k) return; img.src = P(k); img.alt = p.n; name.textContent = p.n; img.classList.remove('swap'); }, reduce ? 0 : 160);
+    };
+    const sel = () => card.querySelector('li.sel button');
+    card.querySelectorAll('li button').forEach(b => {
+      b.addEventListener('mouseenter', () => pick(b, false));
+      b.addEventListener('focus', () => pick(b, false));
+      b.addEventListener('click', () => { pick(b, true); uStop(); });
+    });
+    card.querySelector('ul').addEventListener('mouseleave', () => { const b = sel(); if (b) pick(b, false); });
+  });
   uCards.forEach((c, i) => { const d = document.createElement('button'); d.type = 'button'; d.setAttribute('aria-label', USES[i].t); d.addEventListener('click', () => { uGo(i); uStop(); }); uDots.append(d); });
   let ui = 0, ut = null, uPlay = !reduce;
   const uMark = i => [...uDots.children].forEach((d, k) => d.setAttribute('aria-current', k === i));
