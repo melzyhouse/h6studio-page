@@ -4,7 +4,7 @@ ZOOM H6studio 핸디 레코더 상세페이지를 Apple MacBook Neo 페이지 �
 사용자는 한국어로 대화한다. 답변도 한국어로.
 
 ## 폴더
-- `zoom-studio-home/` : **ZOOM STUDIO 홈페이지 시안** (apple.com/kr 홈페이지 구성)
+- `zoom-studio-home/` : **ZOOM AUDIO 홈페이지 시안 (폴더명은 zoom-studio-home 그대로)** (apple.com/kr 홈페이지 구성)
   - `index.html` 원본 → `python3 build.py` → `zoom-studio.html`(게시용, 이미지 내장) / `zoom-studio-preview.html`(로컬 미리보기)
   - `img/products/` : zoomcorp.com 공식 목록용 투명 PNG(정면 컷, 1000px로 정리)
   - 게시 링크: https://claude.ai/artifact/3RPxPbxKGWfGUaGpFeWBak

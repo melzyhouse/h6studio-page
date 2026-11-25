@@ -1,11 +1,11 @@
-<title>ZOOM STUDIO</title>
+<title>ZOOM AUDIO</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <style>
 /* Apple 홈페이지 구조(전폭 히어로 타일 → 2열 프로모 타일 → 가로 갤러리 → 디렉터리 푸터)에
-   ZOOM STUDIO 브랜드 컬러(노션 디자인 지침 2026-11-16: 차콜 네이비 + 하단 블루 그라데이션 + 라임 포인트)를 입힘 */
+   ZOOM AUDIO 브랜드 컬러(노션 디자인 지침 2026-11-16: 차콜 네이비 + 하단 블루 그라데이션 + 라임 포인트)를 입힘 */
 :root {
   --navy: #1B2545;        /* 기본 바탕 */
   --navy-in: #15244F;     /* 한 단계 밝은 안쪽 판 */
@@ -34,7 +34,7 @@ button { font: inherit; }
 .gnav-in { max-width: 1024px; margin: 0 auto; height: 48px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
 .wordmark { display: flex; flex-direction: column; line-height: 1; gap: 3px; }
 .wordmark b { font: 900 17px/1 var(--font); letter-spacing: .06em; }
-.wordmark span { font: 600 7.5px/1 var(--mono); letter-spacing: .62em; color: var(--lime); }
+.wordmark span { font: 600 7.5px/1 var(--mono); letter-spacing: .62em; color: #fff; }
 .gnav ul { list-style: none; display: flex; gap: 26px; margin: 0; padding: 0; font-size: 12.5px; }
 .gnav ul a { opacity: .82; transition: opacity .2s; }
 .gnav ul a:hover, .gnav ul a:focus-visible { opacity: 1; }
@@ -98,11 +98,12 @@ main { display: flex; flex-direction: column; gap: var(--gap); padding-bottom: v
 .promo .art.wide { max-width: 86%; max-height: 240px; margin-bottom: 64px; }
 
 /* 서비스 타일 그래픽 */
-.panel { margin-top: auto; margin-bottom: 44px; width: min(420px, 82%); border-radius: 18px; background: var(--navy-in); color: #fff; padding: 22px 24px; text-align: left; font: 500 14px/1.5 var(--font); }
-.panel .row { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(201,211,240,.18); }
+/* 밝은 타일 규칙: 흰 판 + 파란 라벨 + 검정 글자 (라임·네이비는 어두운 타일에만) */
+.panel { margin-top: auto; margin-bottom: 44px; width: min(420px, 82%); border-radius: 18px; background: var(--white); color: var(--ink); padding: 22px 24px; text-align: left; font: 500 14px/1.5 var(--font); box-shadow: 0 1px 0 rgba(0,0,0,.04); }
+.panel .row { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
 .panel .row:last-child { border-bottom: 0; }
-.panel .row b { font: 600 12px/1.5 var(--mono); letter-spacing: .1em; color: var(--lime); }
-.panel .row span { color: var(--mist); }
+.panel .row b { font: 600 12px/1.5 var(--mono); letter-spacing: .1em; color: var(--cta); }
+.panel .row span { color: var(--ink-2); }
 .feed { margin-top: auto; margin-bottom: 44px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: min(330px, 76%); }
 .feed div { aspect-ratio: 4/5; background: var(--navy); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: 8px; color: #fff; text-align: left; }
 .feed div::after { content: ""; position: absolute; inset: 55% 0 0; background: linear-gradient(180deg, transparent, var(--blue-3)); opacity: .7; }
@@ -180,7 +181,7 @@ footer { background: var(--paper); color: var(--ink-2); font-size: 12px; line-he
 
 <header class="gnav">
   <div class="gnav-in">
-    <a class="wordmark" href="#top" aria-label="ZOOM STUDIO 홈"><b>ZOOM</b><span>STUDIO</span></a>
+    <a class="wordmark" href="#top" aria-label="ZOOM AUDIO 홈"><b>ZOOM</b><span>AUDIO</span></a>
     <nav aria-label="제품">
       <ul>
         <li><a href="#handy">핸디 레코더</a></li>
@@ -324,6 +325,22 @@ footer { background: var(--paper); color: var(--ink-2); font-size: 12px; line-he
       <img class="art wide" src="img/products/l6max.png" alt="LiveTrak L6max 포터블 믹서 레코더">
     </section>
 
+    <section class="tile dark promo" aria-labelledby="h-insta">
+      <div class="tile-copy rise">
+        <span class="label"><i class="led"></i>INSTAGRAM · OPENING SOON</span>
+        <h3 id="h-insta">ZOOM AUDIO<br>인스타그램</h3>
+        <p class="sub">세팅법부터 사운드 체크까지, 연재로 만나요.</p>
+      </div>
+      <div class="feed" aria-hidden="true">
+        <div><i>HOW TO USE</i><img src="img/products/h6studio.png" alt=""></div>
+        <div><i>SOUND CHECK</i><img src="img/products/ms70cdr.png" alt=""></div>
+        <div><i>SETUP</i><img src="img/products/l12next.png" alt=""></div>
+        <div><i>PRODUCT GUIDE</i><img src="img/products/h4e.png" alt=""></div>
+        <div><i>Q&amp;A</i><img src="img/products/p2.png" alt=""></div>
+        <div><i>NEWS</i><img src="img/products/neurig.png" alt=""></div>
+      </div>
+    </section>
+
     <section class="tile light promo" id="support" aria-labelledby="h-official">
       <div class="tile-copy rise">
         <span class="label">OFFICIAL KOREA</span>
@@ -335,22 +352,6 @@ footer { background: var(--paper); color: var(--ink-2); font-size: 12px; line-he
         <div class="row"><b>CH 01</b><span>국내 정식 판매 제품</span></div>
         <div class="row"><b>CH 02</b><span>A/S·기술 상담 02-2265-0032</span></div>
         <div class="row"><b>CH 03</b><span>평일 9:30 – 18:30</span></div>
-      </div>
-    </section>
-
-    <section class="tile dark promo" aria-labelledby="h-insta">
-      <div class="tile-copy rise">
-        <span class="label"><i class="led"></i>INSTAGRAM · OPENING SOON</span>
-        <h3 id="h-insta">ZOOM STUDIO<br>인스타그램</h3>
-        <p class="sub">세팅법부터 사운드 체크까지, 연재로 만나요.</p>
-      </div>
-      <div class="feed" aria-hidden="true">
-        <div><i>HOW TO USE</i><img src="img/products/h6studio.png" alt=""></div>
-        <div><i>SOUND CHECK</i><img src="img/products/ms70cdr.png" alt=""></div>
-        <div><i>SETUP</i><img src="img/products/l12next.png" alt=""></div>
-        <div><i>PRODUCT GUIDE</i><img src="img/products/h4e.png" alt=""></div>
-        <div><i>Q&amp;A</i><img src="img/products/p2.png" alt=""></div>
-        <div><i>NEWS</i><img src="img/products/neurig.png" alt=""></div>
       </div>
     </section>
   </div>
@@ -413,9 +414,9 @@ footer { background: var(--paper); color: var(--ink-2); font-size: 12px; line-he
       <div><h4>고객지원</h4><ul><li><a href="https://www.avx.co.kr/">AVX 자사몰</a></li><li><a href="https://www.avx.co.kr/goods/brand?code=0004">ZOOM 브랜드관</a></li><li><a href="https://zoomcorp.com/en/us/support/">ZOOM 매뉴얼·펌웨어</a></li></ul></div>
     </div>
     <div class="corp">
-      <span><strong>ZOOM STUDIO</strong> · 한국 공식 수입원 에이브이엑스(주) · 고객센터 02-2265-0032 (평일 9:30 – 18:30)</span>
+      <span><strong>ZOOM AUDIO</strong> · 한국 공식 수입원 에이브이엑스(주) · 고객센터 02-2265-0032 (평일 9:30 – 18:30)</span>
       <span>서울특별시 성동구 성수이로10길 14 802·803호</span>
-      <span>ZOOM은 ZOOM CORPORATION의 상표입니다. 이 페이지는 ZOOM STUDIO 홈페이지 디자인 시안입니다.</span>
+      <span>ZOOM은 ZOOM CORPORATION의 상표입니다. 이 페이지는 ZOOM AUDIO 홈페이지 디자인 시안입니다.</span>
     </div>
   </div>
 </footer>
