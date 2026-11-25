@@ -77,7 +77,7 @@ chapter = "\n".join(f'    <a href="#{c["id"]}" data-series="{c["id"]}"><span>{e(
 keys = [it["k"] for c in CATEGORIES for it in c["items"]]
 imgs = "\n".join(f'  <img data-k="{k}" src="../zoom-studio-home/img/products/{k}.png" alt="">' for k in dict.fromkeys(keys))
 cats = [dict(id=c["id"], label=c["label"], title=c["title"], intro=c["intro"],
-             items=[dict(k=it["k"], n=it["n"], sub=it["sub"], price=it["price"], no=it["no"], tag=it.get("tag", ""), more=it.get("more", "")) for it in c["items"]])
+             items=[dict(k=it["k"], n=it["n"], sub=it["sub"], price=it["price"], no=it["no"], tag=it.get("tag", ""), more=it.get("more", ""), aw=art_width(it["k"], area=20000, max_w=210, max_h=230)) for it in c["items"]])
         for c in CATEGORIES]
 out = (src.replace("<!--CHAPTER-->", chapter)
           .replace("<!--REPS-->", "\n".join(rep_tile(c) for c in CATEGORIES))

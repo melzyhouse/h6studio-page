@@ -495,6 +495,11 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
 /* 대표 박스 이미지: 면적 기준으로 크기 맞춤 (--w는 make_page.py가 계산) */
 .p-tile.rep2 .art { width: calc(var(--w) * 1px * var(--k, 1)); max-width: 100%; max-height: none; height: auto; }
 @media (max-width: 734px) { .p-tile.rep2 .art { --k: .8; } }
+
+/* 용도별 추천 이미지: 면적 기준 크기 (--w는 make_page.py가 계산) */
+.use-card .u-pic { padding: 24px 14px; }
+.u-pic img { width: calc(var(--w) * 1px * var(--k, 1)); max-width: 100%; max-height: none; height: auto; }
+@media (max-width: 734px) { .u-pic img { --k: .75; } }
 </style>
 
 <header class="nav">
@@ -745,7 +750,7 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
     <article class="use-card">
       <div class="u-txt"><h3>${u.t}</h3><p>${u.x}</p>
         <ul>${u.pics.map((k, j) => { const p = by2[k]; return `<li class="${j === 0 ? 'sel peek' : ''}"><button type="button" data-k="${k}">${p.n}</button><span>${p.price}</span><a href="${p.more || url(p.no)}" aria-label="${p.n} 자세히 보기">보기 ›</a></li>`; }).join('')}</ul></div>
-      <div class="u-pic"><img src="${P(u.pics[0])}" alt="${by2[u.pics[0]].n}" data-k="${u.pics[0]}" loading="lazy"><span class="u-name">${by2[u.pics[0]].n}</span></div>
+      <div class="u-pic"><img src="${P(u.pics[0])}" alt="${by2[u.pics[0]].n}" data-k="${u.pics[0]}" style="--w:${by2[u.pics[0]].aw}" loading="lazy"><span class="u-name">${by2[u.pics[0]].n}</span></div>
     </article>`).join('');
   const uCards = [...uTrack.children];
   let ui = 0, ut = null, uPlay = !reduce;
@@ -758,7 +763,7 @@ footer { margin-top: 96px; background: var(--tile); color: var(--ink-2); font-si
       if (keep) card.querySelectorAll('li').forEach(li => li.classList.toggle('sel', li.contains(btn)));
       if (img.dataset.k === k) return;
       img.dataset.k = k; img.classList.add('swap');
-      setTimeout(() => { if (img.dataset.k !== k) return; img.src = P(k); img.alt = p.n; name.textContent = p.n; img.classList.remove('swap'); }, reduce ? 0 : 150);
+      setTimeout(() => { if (img.dataset.k !== k) return; img.src = P(k); img.alt = p.n; img.style.setProperty('--w', p.aw); name.textContent = p.n; img.classList.remove('swap'); }, reduce ? 0 : 150);
     };
     card.querySelectorAll('li button').forEach(b => { b.addEventListener('mouseenter', () => pick(b, false)); b.addEventListener('focus', () => pick(b, false)); b.addEventListener('click', () => { pick(b, true); uStop(); }); });
     card.querySelector('ul').addEventListener('mouseleave', () => { const b = card.querySelector('li.sel button'); if (b) pick(b, false); });
